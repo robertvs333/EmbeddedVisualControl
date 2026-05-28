@@ -33,6 +33,9 @@ setup(
             'main_qr = jetson_camera.main_qr:main',
             'application_node = jetson_camera.application_node:main',
             'face_tracking_sub = jetson_camera.face_tracking_sub:main',
+            'sensor_fusion = jetson_camera.sensor_fusion:main',
+            'ToF_sensor = jetson_camera.ToF_sensor:main',
+            'tracking = jetson_camera.tracking:main',
         ],
     },
 )
