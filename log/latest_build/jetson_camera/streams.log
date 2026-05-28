@@ -1,0 +1,27 @@
+[3.663s] Invoking command in '/home/jetson/EVC_2/workshops/vision_ws/src/jetson_camera': PYTHONPATH=/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/jetson_camera build --build-base /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build install --record /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/install.log --single-version-externally-managed install_data
+[4.851s] running egg_info
+[4.854s] writing ../../build/jetson_camera/jetson_camera.egg-info/PKG-INFO
+[4.856s] writing dependency_links to ../../build/jetson_camera/jetson_camera.egg-info/dependency_links.txt
+[4.856s] writing entry points to ../../build/jetson_camera/jetson_camera.egg-info/entry_points.txt
+[4.857s] writing requirements to ../../build/jetson_camera/jetson_camera.egg-info/requires.txt
+[4.857s] writing top-level names to ../../build/jetson_camera/jetson_camera.egg-info/top_level.txt
+[4.870s] reading manifest file '../../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'
+[4.880s] writing manifest file '../../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'
+[4.881s] running build
+[4.881s] running build_py
+[4.887s] running install
+[4.892s] running install_lib
+[4.916s] running install_data
+[4.916s] running install_egg_info
+[4.917s] removing '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info' (and everything under it)
+[4.917s] Copying ../../build/jetson_camera/jetson_camera.egg-info to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info
+[4.917s] running install_scripts
+[4.998s] Installing QR_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[5.000s] Installing application_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[5.001s] Installing face_tracking_sub script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[5.002s] Installing main_qr script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[5.002s] Installing processing_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[5.003s] Installing publisher_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[5.004s] Installing subscriber_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[5.005s] writing list of installed files to '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/install.log'
+[5.106s] Invoked command in '/home/jetson/EVC_2/workshops/vision_ws/src/jetson_camera' returned '0': PYTHONPATH=/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/jetson_camera build --build-base /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build install --record /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/install.log --single-version-externally-managed install_data

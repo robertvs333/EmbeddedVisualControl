@@ -1,0 +1,115 @@
+[1.476s] Invoking command in '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy JETSON_P_NUMBER=potor- /usr/bin/cmake --build /home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces -- -j4 -l4
+[1.746s] [  3%] Built target jetson_interfaces__cpp
+[1.897s] [ 12%] Built target jetson_interfaces__rosidl_generator_c
+[2.036s] [ 22%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_cpp
+[2.167s] [ 32%] Built target jetson_interfaces__rosidl_typesupport_introspection_c
+[2.322s] [ 41%] Built target jetson_interfaces__rosidl_typesupport_c
+[2.463s] [ 51%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_c
+[2.594s] [ 61%] Built target jetson_interfaces__rosidl_typesupport_introspection_cpp
+[2.734s] [ 70%] Built target jetson_interfaces__rosidl_typesupport_cpp
+[2.853s] [ 70%] Built target jetson_interfaces
+[2.954s] [ 74%] Built target jetson_interfaces__py
+[3.136s] [ 80%] Built target jetson_interfaces__python
+[3.316s] [ 87%] Built target jetson_interfaces__rosidl_typesupport_introspection_c__pyext
+[3.472s] [ 93%] Built target jetson_interfaces__rosidl_typesupport_c__pyext
+[3.627s] [100%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[3.693s] Invoked command in '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy JETSON_P_NUMBER=potor- /usr/bin/cmake --build /home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces -- -j4 -l4
+[3.752s] Invoking command in '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy JETSON_P_NUMBER=potor- /usr/bin/cmake --install /home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces
+[3.808s] -- Install configuration: ""
+[3.811s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/ament_index/resource_index/rosidl_interfaces/jetson_interfaces
+[3.812s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces
+[3.813s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg
+[3.815s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[3.815s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__functions.c
+[3.818s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__functions.h
+[3.821s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__struct.h
+[3.822s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.h
+[3.824s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_generator_c__visibility_control.h
+[3.825s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/dual_image.h
+[3.827s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/library_path.sh
+[3.828s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/library_path.dsv
+[3.829s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_generator_c.so
+[3.831s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces
+[3.834s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg
+[3.836s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[3.837s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_fastrtps_c.h
+[3.838s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[3.839s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_c.so
+[3.840s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces
+[3.841s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg
+[3.842s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[3.843s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_fastrtps_cpp.hpp
+[3.843s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dds_fastrtps
+[3.844s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[3.845s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[3.845s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces
+[3.846s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg
+[3.847s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[3.848s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.c
+[3.848s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_introspection_c.h
+[3.849s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[3.850s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_c.so
+[3.850s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_c.so
+[3.851s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces
+[3.851s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg
+[3.852s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[3.852s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.hpp
+[3.853s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__traits.hpp
+[3.854s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__struct.hpp
+[3.855s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__builder.hpp
+[3.856s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/dual_image.hpp
+[3.856s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
+[3.857s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces
+[3.858s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg
+[3.858s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[3.859s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.cpp
+[3.859s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_introspection_cpp.hpp
+[3.860s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_cpp.so
+[3.861s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_cpp.so
+[3.861s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/pythonpath.sh
+[3.862s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/pythonpath.dsv
+[3.863s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/__init__.py
+[4.008s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg
+[4.011s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/_dual_image.py
+[4.011s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/_dual_image_s.c
+[4.014s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/__init__.py
+[4.014s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so
+[4.016s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so
+[4.017s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so
+[4.023s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__python.so
+[4.030s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/msg/DualImage.idl
+[4.031s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/msg/DualImage.msg
+[4.032s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/ament_index/resource_index/package_run_dependencies/jetson_interfaces
+[4.033s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/ament_index/resource_index/parent_prefix_path/jetson_interfaces
+[4.034s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/ament_prefix_path.sh
+[4.036s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/ament_prefix_path.dsv
+[4.041s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/path.sh
+[4.042s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/path.dsv
+[4.042s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/local_setup.bash
+[4.043s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/local_setup.sh
+[4.043s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/local_setup.zsh
+[4.044s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/local_setup.dsv
+[4.044s] -- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/package.dsv
+[4.044s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/ament_index/resource_index/packages/jetson_interfaces
+[4.045s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cExport.cmake
+[4.045s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cExport-noconfig.cmake
+[4.046s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[4.046s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[4.061s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cExport.cmake
+[4.062s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[4.063s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cppExport.cmake
+[4.064s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[4.065s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[4.066s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cppExport.cmake
+[4.067s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[4.067s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake-extras.cmake
+[4.068s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[4.068s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[4.069s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[4.069s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[4.069s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[4.070s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[4.070s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfacesConfig.cmake
+[4.089s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfacesConfig-version.cmake
+[4.090s] -- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/package.xml
+[4.091s] Invoked command in '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy JETSON_P_NUMBER=potor- /usr/bin/cmake --install /home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces

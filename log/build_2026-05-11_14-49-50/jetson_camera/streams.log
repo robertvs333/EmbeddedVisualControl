@@ -1,0 +1,48 @@
+[3.006s] Invoking command in '/home/jetson/EVC_2/workshops/vision_ws/src/jetson_camera': PYTHONPATH=/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/jetson_camera build --build-base /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build install --record /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/install.log --single-version-externally-managed install_data
+[4.034s] running egg_info
+[4.037s] writing ../../build/jetson_camera/jetson_camera.egg-info/PKG-INFO
+[4.038s] writing dependency_links to ../../build/jetson_camera/jetson_camera.egg-info/dependency_links.txt
+[4.039s] writing entry points to ../../build/jetson_camera/jetson_camera.egg-info/entry_points.txt
+[4.039s] writing requirements to ../../build/jetson_camera/jetson_camera.egg-info/requires.txt
+[4.040s] writing top-level names to ../../build/jetson_camera/jetson_camera.egg-info/top_level.txt
+[4.049s] package init file 'jetson_camera/motorDrivers/__init__.py' not found (or not a regular file)
+[4.051s] reading manifest file '../../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'
+[4.057s] writing manifest file '../../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'
+[4.058s] running build
+[4.059s] running build_py
+[4.060s] creating /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers
+[4.060s] copying jetson_camera/motorDrivers/Adafruit_PWM_Servo_Driver.py -> /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers
+[4.061s] copying jetson_camera/motorDrivers/hat.py -> /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers
+[4.061s] copying jetson_camera/motorDrivers/encoderDriver.py -> /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers
+[4.062s] copying jetson_camera/motorDrivers/motorDriver.py -> /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers
+[4.062s] copying jetson_camera/motorDrivers/Adafruit_I2C.py -> /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers
+[4.063s] copying jetson_camera/motorDrivers/main.py -> /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers
+[4.064s] running install
+[4.067s] running install_lib
+[4.073s] creating /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers
+[4.074s] copying /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers/Adafruit_PWM_Servo_Driver.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers
+[4.075s] copying /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers/hat.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers
+[4.075s] copying /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers/encoderDriver.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers
+[4.076s] copying /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers/motorDriver.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers
+[4.076s] copying /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers/Adafruit_I2C.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers
+[4.076s] copying /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/motorDrivers/main.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers
+[4.079s] byte-compiling /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers/Adafruit_PWM_Servo_Driver.py to Adafruit_PWM_Servo_Driver.cpython-38.pyc
+[4.082s] byte-compiling /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers/hat.py to hat.cpython-38.pyc
+[4.086s] byte-compiling /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers/encoderDriver.py to encoderDriver.cpython-38.pyc
+[4.087s] byte-compiling /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers/motorDriver.py to motorDriver.cpython-38.pyc
+[4.089s] byte-compiling /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers/Adafruit_I2C.py to Adafruit_I2C.cpython-38.pyc
+[4.092s] byte-compiling /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/motorDrivers/main.py to main.cpython-38.pyc
+[4.097s] running install_data
+[4.099s] running install_egg_info
+[4.107s] removing '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info' (and everything under it)
+[4.108s] Copying ../../build/jetson_camera/jetson_camera.egg-info to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info
+[4.111s] running install_scripts
+[4.182s] Installing QR_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[4.184s] Installing application_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[4.185s] Installing face_tracking_sub script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[4.185s] Installing main_qr script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[4.185s] Installing processing_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[4.186s] Installing publisher_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[4.186s] Installing subscriber_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera
+[4.187s] writing list of installed files to '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/install.log'
+[4.282s] Invoked command in '/home/jetson/EVC_2/workshops/vision_ws/src/jetson_camera' returned '0': PYTHONPATH=/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/jetson_camera build --build-base /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build install --record /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/install.log --single-version-externally-managed install_data

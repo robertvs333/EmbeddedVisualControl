@@ -1,0 +1,498 @@
+[0.000000] (-) TimerEvent: {}
+[0.000816] (jetson_camera) JobQueued: {'identifier': 'jetson_camera', 'dependencies': OrderedDict()}
+[0.001419] (jetson_interfaces) JobQueued: {'identifier': 'jetson_interfaces', 'dependencies': OrderedDict()}
+[0.002388] (jetson_camera) JobStarted: {'identifier': 'jetson_camera'}
+[0.095986] (jetson_interfaces) JobStarted: {'identifier': 'jetson_interfaces'}
+[0.099804] (-) TimerEvent: {}
+[0.200843] (-) TimerEvent: {}
+[0.302209] (-) TimerEvent: {}
+[0.402900] (-) TimerEvent: {}
+[0.503781] (-) TimerEvent: {}
+[0.604421] (-) TimerEvent: {}
+[0.705059] (-) TimerEvent: {}
+[0.805701] (-) TimerEvent: {}
+[0.906362] (-) TimerEvent: {}
+[1.007001] (-) TimerEvent: {}
+[1.107677] (-) TimerEvent: {}
+[1.208366] (-) TimerEvent: {}
+[1.310739] (-) TimerEvent: {}
+[1.332418] (jetson_interfaces) JobProgress: {'identifier': 'jetson_interfaces', 'progress': 'cmake'}
+[1.335042] (jetson_interfaces) Command: {'cmd': ['/usr/bin/cmake', '/home/jetson/EVC_2/workshops/vision_ws/src/jetson_interfaces', '-DCMAKE_INSTALL_PREFIX=/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces'], 'cwd': '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'jetson'), ('SSH_CLIENT', '192.168.8.218 57766 22'), ('LC_TIME', 'nl_NL.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jetson/EVC_2/install/jetson_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64:/usr/local/cuda/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('OLDPWD', '/home/jetson/EVC_2/workshops'), ('TERM_PROGRAM_VERSION', '1.108.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-39501ba7-2327-46ca-997f-ca1a89c7a264.sock'), ('JETSON_L4T', '32.6.1'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Nano Developer Kit'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'nl_NL.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/jetson/EVC_2/workshops/vision_ws/install:/home/jetson/EVC/workshops/vision_ws/install:/home/jetson/EVC_2/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'jetson'), ('JETSON_MODULE', 'NVIDIA Jetson Nano (4 GB ram)'), ('JETSON_SERIAL_NUMBER', '1424621023431'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('JETSON_CODENAME', 'Porg'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda/bin:/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/bin/remote-cli:/home/jetson/.local/bin:/opt/ros/foxy/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/local/cuda/bin'), ('LC_ADDRESS', 'nl_NL.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('DISPLAY', 'localhost:10.0'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'nl_NL.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra210'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-912b335bce.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_interfaces:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'nl_NL.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_BOARDIDS', 'p3448'), ('LC_MEASUREMENT', 'nl_NL.UTF-8'), ('LC_IDENTIFICATION', 'nl_NL.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '5.3'), ('PWD', '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces'), ('SSH_CONNECTION', '192.168.8.218 57766 192.168.8.172 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/install/jetson_interfaces/lib/python3.8/site-packages:/home/jetson/EVC_2/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/install/Adafruit_SSD1306/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'nl_NL.UTF-8'), ('LC_PAPER', 'nl_NL.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', '4.6'), ('CMAKE_PREFIX_PATH', '/home/jetson/EVC_2/install/jetson_interfaces:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy'), ('JETSON_P_NUMBER', 'p3448-0000')]), 'shell': False}
+[1.410956] (-) TimerEvent: {}
+[1.511737] (-) TimerEvent: {}
+[1.612440] (-) TimerEvent: {}
+[1.713255] (-) TimerEvent: {}
+[1.783868] (jetson_interfaces) StdoutLine: {'line': b'-- The C compiler identification is GNU 8.4.0\n'}
+[1.813418] (-) TimerEvent: {}
+[1.914185] (-) TimerEvent: {}
+[2.000786] (jetson_interfaces) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 8.4.0\n'}
+[2.014343] (-) TimerEvent: {}
+[2.025951] (jetson_interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[2.114497] (-) TimerEvent: {}
+[2.215181] (-) TimerEvent: {}
+[2.316155] (-) TimerEvent: {}
+[2.332903] (jetson_interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[2.336510] (jetson_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[2.416369] (-) TimerEvent: {}
+[2.517363] (-) TimerEvent: {}
+[2.618019] (-) TimerEvent: {}
+[2.683095] (jetson_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[2.718180] (-) TimerEvent: {}
+[2.744131] (jetson_interfaces) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[2.745460] (jetson_interfaces) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[2.756939] (jetson_interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[2.818454] (-) TimerEvent: {}
+[2.919533] (-) TimerEvent: {}
+[3.020609] (-) TimerEvent: {}
+[3.066658] (jetson_interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[3.070725] (jetson_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[3.120834] (-) TimerEvent: {}
+[3.221719] (-) TimerEvent: {}
+[3.322482] (-) TimerEvent: {}
+[3.402296] (jetson_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[3.422636] (-) TimerEvent: {}
+[3.457785] (jetson_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[3.459905] (jetson_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[3.473957] (jetson_interfaces) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[3.522794] (-) TimerEvent: {}
+[3.602934] (jetson_interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[3.604046] (jetson_interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[3.622954] (-) TimerEvent: {}
+[3.724480] (-) TimerEvent: {}
+[3.746638] (jetson_camera) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/jetson_camera', 'build', '--build-base', '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build', 'install', '--record', '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/jetson/EVC_2/workshops/vision_ws/src/jetson_camera', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'jetson', 'SSH_CLIENT': '192.168.8.218 57766 22', 'LC_TIME': 'nl_NL.UTF-8', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/jetson/EVC_2/install/jetson_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64:/usr/local/cuda/lib64', 'BROWSER': '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/jetson', 'OLDPWD': '/home/jetson/EVC_2/workshops', 'TERM_PROGRAM_VERSION': '1.108.2', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-39501ba7-2327-46ca-997f-ca1a89c7a264.sock', 'JETSON_L4T': '32.6.1', 'ROS_PYTHON_VERSION': '3', 'JETSON_MODEL': 'NVIDIA Jetson Nano Developer Kit', 'VSCODE_GIT_ASKPASS_MAIN': '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass-main.js', 'LC_MONETARY': 'nl_NL.UTF-8', 'VSCODE_GIT_ASKPASS_NODE': '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/node', 'SSL_CERT_FILE': '/usr/lib/ssl/certs/ca-certificates.crt', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/jetson/EVC_2/workshops/vision_ws/install:/home/jetson/EVC/workshops/vision_ws/install:/home/jetson/EVC_2/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'jetson', 'JETSON_MODULE': 'NVIDIA Jetson Nano (4 GB ram)', 'JETSON_SERIAL_NUMBER': '1424621023431', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'JETSON_CODENAME': 'Porg', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '3', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/usr/local/cuda/bin:/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/bin/remote-cli:/home/jetson/.local/bin:/opt/ros/foxy/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/local/cuda/bin', 'LC_ADDRESS': 'nl_NL.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'SSL_CERT_DIR': '/usr/lib/ssl/certs', 'DISPLAY': 'localhost:10.0', 'LANG': 'en_US.UTF-8', 'LC_TELEPHONE': 'nl_NL.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'JETSON_SOC': 'tegra210', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-912b335bce.sock', 'TERM_PROGRAM': 'vscode', 'AMENT_PREFIX_PATH': '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_interfaces:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy', 'SHELL': '/bin/bash', 'LC_NAME': 'nl_NL.UTF-8', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'JETSON_BOARDIDS': 'p3448', 'LC_MEASUREMENT': 'nl_NL.UTF-8', 'LC_IDENTIFICATION': 'nl_NL.UTF-8', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'JETSON_CUDA_ARCH_BIN': '5.3', 'PWD': '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera', 'SSH_CONNECTION': '192.168.8.218 57766 192.168.8.172 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/install/jetson_interfaces/lib/python3.8/site-packages:/home/jetson/EVC_2/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/install/Adafruit_SSD1306/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'LC_NUMERIC': 'nl_NL.UTF-8', 'LC_PAPER': 'nl_NL.UTF-8', 'COLCON': '1', 'JETSON_JETPACK': '4.6', 'CMAKE_PREFIX_PATH': '/home/jetson/EVC_2/install/jetson_interfaces', 'JETSON_P_NUMBER': 'p3448-0000'}, 'shell': False}
+[3.824725] (-) TimerEvent: {}
+[3.925523] (-) TimerEvent: {}
+[4.026515] (-) TimerEvent: {}
+[4.127481] (-) TimerEvent: {}
+[4.228393] (-) TimerEvent: {}
+[4.329148] (-) TimerEvent: {}
+[4.429885] (-) TimerEvent: {}
+[4.530664] (-) TimerEvent: {}
+[4.618757] (jetson_interfaces) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)\n'}
+[4.630832] (-) TimerEvent: {}
+[4.638683] (jetson_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[4.677408] (jetson_interfaces) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[4.730980] (-) TimerEvent: {}
+[4.831696] (-) TimerEvent: {}
+[4.926617] (jetson_camera) StdoutLine: {'line': b'running egg_info\n'}
+[4.929362] (jetson_camera) StdoutLine: {'line': b'writing ../../build/jetson_camera/jetson_camera.egg-info/PKG-INFO\n'}
+[4.930157] (jetson_camera) StdoutLine: {'line': b'writing dependency_links to ../../build/jetson_camera/jetson_camera.egg-info/dependency_links.txt\n'}
+[4.930843] (jetson_camera) StdoutLine: {'line': b'writing entry points to ../../build/jetson_camera/jetson_camera.egg-info/entry_points.txt\n'}
+[4.931440] (jetson_camera) StdoutLine: {'line': b'writing requirements to ../../build/jetson_camera/jetson_camera.egg-info/requires.txt\n'}
+[4.931998] (-) TimerEvent: {}
+[4.932404] (jetson_camera) StdoutLine: {'line': b'writing top-level names to ../../build/jetson_camera/jetson_camera.egg-info/top_level.txt\n'}
+[4.950348] (jetson_camera) StdoutLine: {'line': b"reading manifest file '../../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'\n"}
+[4.957397] (jetson_camera) StdoutLine: {'line': b"writing manifest file '../../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'\n"}
+[4.961589] (jetson_camera) StdoutLine: {'line': b'running build\n'}
+[4.966349] (jetson_camera) StdoutLine: {'line': b'running build_py\n'}
+[4.966845] (jetson_camera) StdoutLine: {'line': b'copying jetson_camera/processing_node.py -> /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera\n'}
+[4.967302] (jetson_camera) StdoutLine: {'line': b'copying jetson_camera/subscriber_node2.py -> /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera\n'}
+[4.967699] (jetson_camera) StdoutLine: {'line': b'running install\n'}
+[4.968044] (jetson_camera) StdoutLine: {'line': b'running install_lib\n'}
+[4.975221] (jetson_camera) StdoutLine: {'line': b'copying /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/processing_node.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera\n'}
+[4.975895] (jetson_camera) StdoutLine: {'line': b'copying /home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/build/lib/jetson_camera/subscriber_node2.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera\n'}
+[4.976378] (jetson_camera) StdoutLine: {'line': b'byte-compiling /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/processing_node.py to processing_node.cpython-38.pyc\n'}
+[4.976820] (jetson_camera) StdoutLine: {'line': b'byte-compiling /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/subscriber_node2.py to subscriber_node2.cpython-38.pyc\n'}
+[4.978930] (jetson_camera) StdoutLine: {'line': b'running install_data\n'}
+[4.981100] (jetson_camera) StdoutLine: {'line': b'copying launch/camera_subscriber.launch.py -> /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/share/jetson_camera/launch\n'}
+[4.981580] (jetson_camera) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.988917] (jetson_camera) StdoutLine: {'line': b"removing '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[4.990220] (jetson_camera) StdoutLine: {'line': b'Copying ../../build/jetson_camera/jetson_camera.egg-info to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info\n'}
+[4.995921] (jetson_camera) StdoutLine: {'line': b'running install_scripts\n'}
+[5.032254] (-) TimerEvent: {}
+[5.077472] (jetson_camera) StdoutLine: {'line': b'Installing processing_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera\n'}
+[5.079868] (jetson_camera) StdoutLine: {'line': b'Installing publisher_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera\n'}
+[5.080617] (jetson_camera) StdoutLine: {'line': b'Installing subscriber_node script to /home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/jetson_camera\n'}
+[5.081344] (jetson_camera) StdoutLine: {'line': b"writing list of installed files to '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_camera/install.log'\n"}
+[5.132509] (-) TimerEvent: {}
+[5.173024] (jetson_interfaces) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[5.182877] (jetson_camera) CommandEnded: {'returncode': 0}
+[5.232651] (-) TimerEvent: {}
+[5.277758] (jetson_interfaces) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[5.317824] (jetson_camera) JobEnded: {'identifier': 'jetson_camera', 'rc': 0}
+[5.332849] (-) TimerEvent: {}
+[5.433489] (-) TimerEvent: {}
+[5.534218] (-) TimerEvent: {}
+[5.628964] (jetson_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[5.634356] (-) TimerEvent: {}
+[5.735329] (-) TimerEvent: {}
+[5.764027] (jetson_interfaces) StdoutLine: {'line': b'-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)\n'}
+[5.835499] (-) TimerEvent: {}
+[5.936555] (-) TimerEvent: {}
+[6.037297] (-) TimerEvent: {}
+[6.137918] (-) TimerEvent: {}
+[6.238809] (-) TimerEvent: {}
+[6.339475] (-) TimerEvent: {}
+[6.440101] (-) TimerEvent: {}
+[6.540738] (-) TimerEvent: {}
+[6.573872] (jetson_interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") \n'}
+[6.640945] (-) TimerEvent: {}
+[6.742336] (-) TimerEvent: {}
+[6.843451] (-) TimerEvent: {}
+[6.944101] (-) TimerEvent: {}
+[7.045136] (-) TimerEvent: {}
+[7.146698] (-) TimerEvent: {}
+[7.247430] (-) TimerEvent: {}
+[7.348565] (-) TimerEvent: {}
+[7.445567] (jetson_interfaces) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)\n'}
+[7.448707] (-) TimerEvent: {}
+[7.549532] (-) TimerEvent: {}
+[7.650652] (-) TimerEvent: {}
+[7.751449] (-) TimerEvent: {}
+[7.852156] (-) TimerEvent: {}
+[7.953657] (-) TimerEvent: {}
+[8.056950] (-) TimerEvent: {}
+[8.157947] (-) TimerEvent: {}
+[8.259063] (-) TimerEvent: {}
+[8.359704] (-) TimerEvent: {}
+[8.460675] (-) TimerEvent: {}
+[8.561638] (-) TimerEvent: {}
+[8.662370] (-) TimerEvent: {}
+[8.763475] (-) TimerEvent: {}
+[8.864210] (-) TimerEvent: {}
+[8.934052] (jetson_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[8.964379] (-) TimerEvent: {}
+[9.065085] (-) TimerEvent: {}
+[9.166036] (-) TimerEvent: {}
+[9.267038] (-) TimerEvent: {}
+[9.367942] (-) TimerEvent: {}
+[9.468841] (-) TimerEvent: {}
+[9.569506] (-) TimerEvent: {}
+[9.670185] (-) TimerEvent: {}
+[9.753503] (jetson_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[9.770355] (-) TimerEvent: {}
+[9.871282] (-) TimerEvent: {}
+[9.887846] (jetson_interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[9.896394] (jetson_interfaces) StdoutLine: {'line': b'-- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)\n'}
+[9.971438] (-) TimerEvent: {}
+[10.010357] (jetson_interfaces) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[10.011196] (jetson_interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[10.011626] (jetson_interfaces) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8\n'}
+[10.012020] (jetson_interfaces) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.8.so\n'}
+[10.071638] (-) TimerEvent: {}
+[10.108548] (jetson_interfaces) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[10.171801] (-) TimerEvent: {}
+[10.272445] (-) TimerEvent: {}
+[10.373082] (-) TimerEvent: {}
+[10.473764] (-) TimerEvent: {}
+[10.574603] (-) TimerEvent: {}
+[10.586249] (jetson_interfaces) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[10.674747] (-) TimerEvent: {}
+[10.693595] (jetson_interfaces) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[10.703526] (jetson_interfaces) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[10.709222] (jetson_interfaces) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[10.733396] (jetson_interfaces) StdoutLine: {'line': b'-- Configuring done\n'}
+[10.774903] (-) TimerEvent: {}
+[10.875582] (-) TimerEvent: {}
+[10.976582] (-) TimerEvent: {}
+[10.999706] (jetson_interfaces) StdoutLine: {'line': b'-- Generating done\n'}
+[11.076796] (-) TimerEvent: {}
+[11.096996] (jetson_interfaces) StdoutLine: {'line': b'-- Build files have been written to: /home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces\n'}
+[11.131414] (jetson_interfaces) CommandEnded: {'returncode': 0}
+[11.133967] (jetson_interfaces) JobProgress: {'identifier': 'jetson_interfaces', 'progress': 'build'}
+[11.139825] (jetson_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces', '--', '-j4', '-l4'], 'cwd': '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'jetson'), ('SSH_CLIENT', '192.168.8.218 57766 22'), ('LC_TIME', 'nl_NL.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jetson/EVC_2/install/jetson_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64:/usr/local/cuda/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('OLDPWD', '/home/jetson/EVC_2/workshops'), ('TERM_PROGRAM_VERSION', '1.108.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-39501ba7-2327-46ca-997f-ca1a89c7a264.sock'), ('JETSON_L4T', '32.6.1'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Nano Developer Kit'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'nl_NL.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/jetson/EVC_2/workshops/vision_ws/install:/home/jetson/EVC/workshops/vision_ws/install:/home/jetson/EVC_2/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'jetson'), ('JETSON_MODULE', 'NVIDIA Jetson Nano (4 GB ram)'), ('JETSON_SERIAL_NUMBER', '1424621023431'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('JETSON_CODENAME', 'Porg'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda/bin:/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/bin/remote-cli:/home/jetson/.local/bin:/opt/ros/foxy/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/local/cuda/bin'), ('LC_ADDRESS', 'nl_NL.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('DISPLAY', 'localhost:10.0'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'nl_NL.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra210'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-912b335bce.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_interfaces:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'nl_NL.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_BOARDIDS', 'p3448'), ('LC_MEASUREMENT', 'nl_NL.UTF-8'), ('LC_IDENTIFICATION', 'nl_NL.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '5.3'), ('PWD', '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces'), ('SSH_CONNECTION', '192.168.8.218 57766 192.168.8.172 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/install/jetson_interfaces/lib/python3.8/site-packages:/home/jetson/EVC_2/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/install/Adafruit_SSD1306/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'nl_NL.UTF-8'), ('LC_PAPER', 'nl_NL.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', '4.6'), ('CMAKE_PREFIX_PATH', '/home/jetson/EVC_2/install/jetson_interfaces:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy'), ('JETSON_P_NUMBER', 'p3448-0000')]), 'shell': False}
+[11.177031] (-) TimerEvent: {}
+[11.278666] (-) TimerEvent: {}
+[11.337470] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__cpp\x1b[0m\n'}
+[11.343340] (jetson_interfaces) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[11.378824] (-) TimerEvent: {}
+[11.390211] (jetson_interfaces) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[11.478981] (-) TimerEvent: {}
+[11.580913] (-) TimerEvent: {}
+[11.682376] (-) TimerEvent: {}
+[11.783657] (-) TimerEvent: {}
+[11.884910] (-) TimerEvent: {}
+[11.986197] (-) TimerEvent: {}
+[12.086844] (-) TimerEvent: {}
+[12.187480] (-) TimerEvent: {}
+[12.288147] (-) TimerEvent: {}
+[12.388773] (-) TimerEvent: {}
+[12.489434] (-) TimerEvent: {}
+[12.590224] (-) TimerEvent: {}
+[12.608979] (jetson_interfaces) StdoutLine: {'line': b'[  6%] Built target jetson_interfaces__cpp\n'}
+[12.633564] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_generator_c\x1b[0m\n'}
+[12.657811] (jetson_interfaces) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[12.658583] (jetson_interfaces) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[12.666747] (jetson_interfaces) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[12.690371] (-) TimerEvent: {}
+[12.771307] (jetson_interfaces) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding C object CMakeFiles/jetson_interfaces__rosidl_generator_c.dir/rosidl_generator_c/jetson_interfaces/msg/detail/dual_image__functions.c.o\x1b[0m\n'}
+[12.790546] (-) TimerEvent: {}
+[12.891248] (-) TimerEvent: {}
+[12.992579] (-) TimerEvent: {}
+[13.072222] (jetson_interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libjetson_interfaces__rosidl_generator_c.so\x1b[0m\n'}
+[13.092750] (-) TimerEvent: {}
+[13.193736] (-) TimerEvent: {}
+[13.294744] (-) TimerEvent: {}
+[13.396039] (-) TimerEvent: {}
+[13.482536] (jetson_interfaces) StdoutLine: {'line': b'[ 22%] Built target jetson_interfaces__rosidl_generator_c\n'}
+[13.496194] (-) TimerEvent: {}
+[13.596886] (-) TimerEvent: {}
+[13.615142] (jetson_interfaces) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[13.697066] (-) TimerEvent: {}
+[13.797745] (-) TimerEvent: {}
+[13.898489] (-) TimerEvent: {}
+[13.913208] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_cpp\x1b[0m\n'}
+[13.998647] (-) TimerEvent: {}
+[14.073441] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_introspection_cpp\x1b[0m\n'}
+[14.094896] (jetson_interfaces) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/jetson_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/jetson_interfaces/msg/dual_image__type_support.cpp.o\x1b[0m\n'}
+[14.098792] (-) TimerEvent: {}
+[14.199435] (-) TimerEvent: {}
+[14.203782] (jetson_interfaces) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/jetson_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/jetson_interfaces/msg/detail/dual_image__type_support.cpp.o\x1b[0m\n'}
+[14.299603] (-) TimerEvent: {}
+[14.401005] (-) TimerEvent: {}
+[14.502382] (-) TimerEvent: {}
+[14.515095] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_fastrtps_cpp\x1b[0m\n'}
+[14.602544] (-) TimerEvent: {}
+[14.694247] (jetson_interfaces) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/jetson_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/jetson_interfaces/msg/detail/dds_fastrtps/dual_image__type_support.cpp.o\x1b[0m\n'}
+[14.702704] (-) TimerEvent: {}
+[14.803388] (-) TimerEvent: {}
+[14.904055] (-) TimerEvent: {}
+[15.004738] (-) TimerEvent: {}
+[15.105428] (-) TimerEvent: {}
+[15.206891] (-) TimerEvent: {}
+[15.308287] (-) TimerEvent: {}
+[15.408968] (-) TimerEvent: {}
+[15.509680] (-) TimerEvent: {}
+[15.554860] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_introspection_c\x1b[0m\n'}
+[15.594578] (jetson_interfaces) StdoutLine: {'line': b'[ 38%] \x1b[32m\x1b[1mLinking CXX shared library libjetson_interfaces__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[15.609850] (-) TimerEvent: {}
+[15.711029] (-) TimerEvent: {}
+[15.750755] (jetson_interfaces) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding C object CMakeFiles/jetson_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/jetson_interfaces/msg/detail/dual_image__type_support.c.o\x1b[0m\n'}
+[15.811224] (-) TimerEvent: {}
+[15.852930] (jetson_interfaces) StdoutLine: {'line': b'[ 41%] Built target jetson_interfaces__rosidl_typesupport_cpp\n'}
+[15.911399] (-) TimerEvent: {}
+[15.938983] (jetson_interfaces) StdoutLine: {'line': b'[ 45%] \x1b[32m\x1b[1mLinking CXX shared library libjetson_interfaces__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[15.976586] (jetson_interfaces) StdoutLine: {'line': b'[ 48%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[16.011573] (-) TimerEvent: {}
+[16.087899] (jetson_interfaces) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking C shared library libjetson_interfaces__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[16.111752] (-) TimerEvent: {}
+[16.212468] (-) TimerEvent: {}
+[16.313976] (-) TimerEvent: {}
+[16.361802] (jetson_interfaces) StdoutLine: {'line': b'[ 51%] Built target jetson_interfaces__rosidl_typesupport_introspection_c\n'}
+[16.414192] (-) TimerEvent: {}
+[16.447169] (jetson_interfaces) StdoutLine: {'line': b'[ 51%] Built target jetson_interfaces__rosidl_typesupport_introspection_cpp\n'}
+[16.514338] (-) TimerEvent: {}
+[16.615030] (-) TimerEvent: {}
+[16.636735] (jetson_interfaces) StdoutLine: {'line': b'[ 54%] \x1b[32m\x1b[1mLinking CXX shared library libjetson_interfaces__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[16.715193] (-) TimerEvent: {}
+[16.816173] (-) TimerEvent: {}
+[16.916948] (-) TimerEvent: {}
+[17.012791] (jetson_interfaces) StdoutLine: {'line': b'[ 54%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[17.017420] (-) TimerEvent: {}
+[17.056589] (jetson_interfaces) StdoutLine: {'line': b'[ 58%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[17.117655] (-) TimerEvent: {}
+[17.218838] (-) TimerEvent: {}
+[17.236726] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_c\x1b[0m\n'}
+[17.292540] (jetson_interfaces) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding CXX object CMakeFiles/jetson_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/jetson_interfaces/msg/dual_image__type_support.cpp.o\x1b[0m\n'}
+[17.318998] (-) TimerEvent: {}
+[17.408490] (jetson_interfaces) StdoutLine: {'line': b'[ 64%] \x1b[32m\x1b[1mLinking CXX shared library libjetson_interfaces__rosidl_typesupport_c.so\x1b[0m\n'}
+[17.419145] (-) TimerEvent: {}
+[17.520028] (-) TimerEvent: {}
+[17.560692] (jetson_interfaces) StdoutLine: {'line': b'[ 64%] Built target jetson_interfaces__rosidl_typesupport_c\n'}
+[17.620176] (-) TimerEvent: {}
+[17.720783] (-) TimerEvent: {}
+[17.821499] (-) TimerEvent: {}
+[17.922488] (-) TimerEvent: {}
+[18.023328] (-) TimerEvent: {}
+[18.123945] (-) TimerEvent: {}
+[18.176266] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_fastrtps_c\x1b[0m\n'}
+[18.224151] (-) TimerEvent: {}
+[18.242753] (jetson_interfaces) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/jetson_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/jetson_interfaces/msg/detail/dual_image__type_support_c.cpp.o\x1b[0m\n'}
+[18.324364] (-) TimerEvent: {}
+[18.425249] (-) TimerEvent: {}
+[18.525953] (-) TimerEvent: {}
+[18.627023] (-) TimerEvent: {}
+[18.728045] (-) TimerEvent: {}
+[18.829110] (-) TimerEvent: {}
+[18.929829] (-) TimerEvent: {}
+[19.030897] (-) TimerEvent: {}
+[19.131541] (-) TimerEvent: {}
+[19.232253] (-) TimerEvent: {}
+[19.332961] (-) TimerEvent: {}
+[19.433605] (-) TimerEvent: {}
+[19.437504] (jetson_interfaces) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libjetson_interfaces__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[19.533770] (-) TimerEvent: {}
+[19.634488] (-) TimerEvent: {}
+[19.735300] (-) TimerEvent: {}
+[19.789956] (jetson_interfaces) StdoutLine: {'line': b'[ 70%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_c\n'}
+[19.830136] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces\x1b[0m\n'}
+[19.835518] (-) TimerEvent: {}
+[19.872719] (jetson_interfaces) StdoutLine: {'line': b'[ 70%] Built target jetson_interfaces\n'}
+[19.913438] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__py\x1b[0m\n'}
+[19.935718] (-) TimerEvent: {}
+[19.957210] (jetson_interfaces) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[20.035872] (-) TimerEvent: {}
+[20.136663] (-) TimerEvent: {}
+[20.237357] (-) TimerEvent: {}
+[20.338371] (-) TimerEvent: {}
+[20.439011] (-) TimerEvent: {}
+[20.539677] (-) TimerEvent: {}
+[20.640339] (-) TimerEvent: {}
+[20.741006] (-) TimerEvent: {}
+[20.841629] (-) TimerEvent: {}
+[20.942359] (-) TimerEvent: {}
+[21.043032] (-) TimerEvent: {}
+[21.143685] (-) TimerEvent: {}
+[21.245395] (-) TimerEvent: {}
+[21.346455] (-) TimerEvent: {}
+[21.447124] (-) TimerEvent: {}
+[21.547764] (-) TimerEvent: {}
+[21.648394] (-) TimerEvent: {}
+[21.749121] (-) TimerEvent: {}
+[21.850222] (-) TimerEvent: {}
+[21.951683] (-) TimerEvent: {}
+[22.053280] (-) TimerEvent: {}
+[22.154988] (-) TimerEvent: {}
+[22.221388] (jetson_interfaces) StdoutLine: {'line': b'[ 74%] Built target jetson_interfaces__py\n'}
+[22.255164] (-) TimerEvent: {}
+[22.260120] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__python\x1b[0m\n'}
+[22.345776] (jetson_interfaces) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/jetson_interfaces__python.dir/rosidl_generator_py/jetson_interfaces/msg/_dual_image_s.c.o\x1b[0m\n'}
+[22.356654] (-) TimerEvent: {}
+[22.458654] (-) TimerEvent: {}
+[22.559577] (-) TimerEvent: {}
+[22.660703] (-) TimerEvent: {}
+[22.683591] (jetson_interfaces) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/jetson_interfaces/libjetson_interfaces__python.so\x1b[0m\n'}
+[22.760877] (-) TimerEvent: {}
+[22.861594] (-) TimerEvent: {}
+[22.869110] (jetson_interfaces) StdoutLine: {'line': b'[ 80%] Built target jetson_interfaces__python\n'}
+[22.916509] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_c__pyext\x1b[0m\n'}
+[22.921506] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_fastrtps_c__pyext\x1b[0m\n'}
+[22.940336] (jetson_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target jetson_interfaces__rosidl_typesupport_introspection_c__pyext\x1b[0m\n'}
+[22.961779] (-) TimerEvent: {}
+[23.022970] (jetson_interfaces) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding C object CMakeFiles/jetson_interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/jetson_interfaces/_jetson_interfaces_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[23.054051] (jetson_interfaces) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/jetson_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/jetson_interfaces/_jetson_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[23.060506] (jetson_interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/jetson_interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/jetson_interfaces/_jetson_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[23.061922] (-) TimerEvent: {}
+[23.162860] (-) TimerEvent: {}
+[23.263531] (-) TimerEvent: {}
+[23.364436] (-) TimerEvent: {}
+[23.465123] (-) TimerEvent: {}
+[23.482753] (jetson_interfaces) StdoutLine: {'line': b'[ 93%] \x1b[32m\x1b[1mLinking CXX shared library rosidl_generator_py/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so\x1b[0m\n'}
+[23.486947] (jetson_interfaces) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so\x1b[0m\n'}
+[23.559742] (jetson_interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so\x1b[0m\n'}
+[23.565307] (-) TimerEvent: {}
+[23.666058] (-) TimerEvent: {}
+[23.762379] (jetson_interfaces) StdoutLine: {'line': b'[100%] Built target jetson_interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[23.766508] (jetson_interfaces) StdoutLine: {'line': b'[100%] Built target jetson_interfaces__rosidl_typesupport_c__pyext\n'}
+[23.767158] (-) TimerEvent: {}
+[23.807340] (jetson_interfaces) StdoutLine: {'line': b'[100%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[23.849925] (jetson_interfaces) CommandEnded: {'returncode': 0}
+[23.853120] (jetson_interfaces) JobProgress: {'identifier': 'jetson_interfaces', 'progress': 'install'}
+[23.867451] (-) TimerEvent: {}
+[23.894179] (jetson_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces'], 'cwd': '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'jetson'), ('SSH_CLIENT', '192.168.8.218 57766 22'), ('LC_TIME', 'nl_NL.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jetson/EVC_2/install/jetson_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64:/usr/local/cuda/lib64'), ('BROWSER', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('OLDPWD', '/home/jetson/EVC_2/workshops'), ('TERM_PROGRAM_VERSION', '1.108.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-39501ba7-2327-46ca-997f-ca1a89c7a264.sock'), ('JETSON_L4T', '32.6.1'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Nano Developer Kit'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'nl_NL.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/jetson/EVC_2/workshops/vision_ws/install:/home/jetson/EVC/workshops/vision_ws/install:/home/jetson/EVC_2/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'jetson'), ('JETSON_MODULE', 'NVIDIA Jetson Nano (4 GB ram)'), ('JETSON_SERIAL_NUMBER', '1424621023431'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('JETSON_CODENAME', 'Porg'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda/bin:/home/jetson/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/bin/remote-cli:/home/jetson/.local/bin:/opt/ros/foxy/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/home/jetson/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/local/cuda/bin'), ('LC_ADDRESS', 'nl_NL.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('DISPLAY', 'localhost:10.0'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'nl_NL.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra210'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-912b335bce.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_interfaces:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'nl_NL.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_BOARDIDS', 'p3448'), ('LC_MEASUREMENT', 'nl_NL.UTF-8'), ('LC_IDENTIFICATION', 'nl_NL.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '5.3'), ('PWD', '/home/jetson/EVC_2/workshops/vision_ws/build/jetson_interfaces'), ('SSH_CONNECTION', '192.168.8.218 57766 192.168.8.172 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/install/jetson_interfaces/lib/python3.8/site-packages:/home/jetson/EVC_2/install/jetson_camera/lib/python3.8/site-packages:/home/jetson/EVC_2/install/Adafruit_SSD1306/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'nl_NL.UTF-8'), ('LC_PAPER', 'nl_NL.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', '4.6'), ('CMAKE_PREFIX_PATH', '/home/jetson/EVC_2/install/jetson_interfaces:/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC/workshops/vision_ws/install/jetson_camera:/home/jetson/EVC_2/install/jetson_camera:/opt/ros/foxy'), ('JETSON_P_NUMBER', 'p3448-0000')]), 'shell': False}
+[23.932081] (jetson_interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[23.932969] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/ament_index/resource_index/rosidl_interfaces/jetson_interfaces\n'}
+[23.933499] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces\n'}
+[23.933971] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[23.935234] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[23.936962] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__functions.c\n'}
+[23.937974] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__functions.h\n'}
+[23.938615] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__struct.h\n'}
+[23.939027] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.h\n'}
+[23.939477] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[23.939878] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/dual_image.h\n'}
+[23.940238] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/library_path.sh\n'}
+[23.940580] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/library_path.dsv\n'}
+[23.940904] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_generator_c.so\n'}
+[23.941327] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_generator_c.so" to ""\n'}
+[23.941862] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces\n'}
+[23.942335] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[23.942749] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[23.943086] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_fastrtps_c.h\n'}
+[23.943468] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[23.943807] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[23.944707] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[23.945185] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces\n'}
+[23.945628] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[23.946010] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[23.946479] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[23.946833] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dds_fastrtps\n'}
+[23.947213] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[23.947610] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[23.951683] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[23.952456] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces\n'}
+[23.952897] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[23.953296] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[23.953781] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.c\n'}
+[23.954309] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_introspection_c.h\n'}
+[23.954942] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[23.955584] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_c.so\n'}
+[23.957465] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_c.so" to ""\n'}
+[23.958059] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_c.so\n'}
+[23.958544] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_c.so" to ""\n'}
+[23.958961] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces\n'}
+[23.959363] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[23.959751] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[23.960130] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.hpp\n'}
+[23.960533] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__traits.hpp\n'}
+[23.968840] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__struct.hpp\n'}
+[23.969480] (-) TimerEvent: {}
+[23.969980] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__builder.hpp\n'}
+[23.970559] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/dual_image.hpp\n'}
+[23.971013] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[23.971469] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces\n'}
+[23.971821] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[23.972158] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[23.972488] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.cpp\n'}
+[23.972821] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_introspection_cpp.hpp\n'}
+[23.973159] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[23.973591] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[23.974064] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_cpp.so\n'}
+[23.974561] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_cpp.so" to ""\n'}
+[23.974984] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/pythonpath.sh\n'}
+[23.975355] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/pythonpath.dsv\n'}
+[23.975816] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/__init__.py\n'}
+[24.069654] (-) TimerEvent: {}
+[24.112994] (jetson_interfaces) StdoutLine: {'line': b"Compiling '/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/__init__.py'...\n"}
+[24.132178] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg\n'}
+[24.132984] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/_dual_image.py\n'}
+[24.133411] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/_dual_image_s.c\n'}
+[24.133845] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/__init__.py\n'}
+[24.137215] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so\n'}
+[24.137884] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so" to ""\n'}
+[24.138590] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so\n'}
+[24.139756] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so" to ""\n'}
+[24.140516] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so\n'}
+[24.142441] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so" to ""\n'}
+[24.143099] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__python.so\n'}
+[24.144270] (jetson_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/lib/libjetson_interfaces__python.so" to ""\n'}
+[24.144767] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/msg/DualImage.idl\n'}
+[24.145369] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/msg/DualImage.msg\n'}
+[24.146310] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/ament_index/resource_index/package_run_dependencies/jetson_interfaces\n'}
+[24.147061] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/ament_index/resource_index/parent_prefix_path/jetson_interfaces\n'}
+[24.147712] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/ament_prefix_path.sh\n'}
+[24.152206] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/ament_prefix_path.dsv\n'}
+[24.153155] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/path.sh\n'}
+[24.154551] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/environment/path.dsv\n'}
+[24.155276] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/local_setup.bash\n'}
+[24.155847] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/local_setup.sh\n'}
+[24.162668] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/local_setup.zsh\n'}
+[24.163379] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/local_setup.dsv\n'}
+[24.173617] (-) TimerEvent: {}
+[24.178471] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/package.dsv\n'}
+[24.185741] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/ament_index/resource_index/packages/jetson_interfaces\n'}
+[24.186576] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cExport.cmake\n'}
+[24.187228] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[24.187662] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[24.188470] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[24.189270] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cExport.cmake\n'}
+[24.191094] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[24.191588] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cppExport.cmake\n'}
+[24.191935] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[24.192268] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[24.192613] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[24.192950] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[24.193283] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[24.193608] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[24.193938] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[24.194424] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[24.194772] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[24.195101] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[24.195426] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[24.195751] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfacesConfig.cmake\n'}
+[24.196108] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfacesConfig-version.cmake\n'}
+[24.196431] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/EVC_2/workshops/vision_ws/install/jetson_interfaces/share/jetson_interfaces/package.xml\n'}
+[24.196764] (jetson_interfaces) CommandEnded: {'returncode': 0}
+[24.273827] (-) TimerEvent: {}
+[24.292856] (jetson_interfaces) JobEnded: {'identifier': 'jetson_interfaces', 'rc': 0}
+[24.296159] (-) EventReactorShutdown: {}
