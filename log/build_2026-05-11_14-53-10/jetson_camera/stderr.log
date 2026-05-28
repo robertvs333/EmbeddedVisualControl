@@ -1,6 +1,0 @@
-package init file 'jetson_camera/motorDrivers/__init__.py' not found (or not a regular file)
-  File "/home/jetson/EVC_2/workshops/vision_ws/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/main_qr.py", line 9
-    from jetson_camera/motorDrivers.encoderDriver import WheelEncoderDriver
-                      ^
-SyntaxError: invalid syntax
-

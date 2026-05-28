@@ -1,6 +1,0 @@
-camera_publisher:
-  ros__parameters:
-    sensor_id: 0
-    width: 640
-    height: 480
-    fps: 10

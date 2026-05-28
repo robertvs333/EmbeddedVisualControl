@@ -1,2 +1,0 @@
-sensor_msgs/CompressedImage raw_image
-sensor_msgs/CompressedImage undistorted_image
