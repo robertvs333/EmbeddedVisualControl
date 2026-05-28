@@ -14,7 +14,9 @@ import numpy as np
 import time
 
 import mediapipe as mp
-from ultralytics import YOLO
+
+# MobileSAM imports (pip install mobile-sam)
+from mobile_sam import sam_model_registry, SamAutomaticMaskGenerator
 
 class HUDIntegratedDetectionNode(Node):
     def __init__(self):
@@ -24,17 +26,47 @@ class HUDIntegratedDetectionNode(Node):
         # 1. Initialize Vision Engines
         self.mp_face_detection = mp.solutions.face_detection
         self.face_detector = self.mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.6)
-        self.object_model = YOLO('yolov8n.pt')
+
+        # Initialize MobileSAM
+        self.get_logger().info("Loading MobileSAM model...")
+        sam_checkpoint = "mobile_sam.pt"
+        model_type = "vit_t"
+        sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+        sam.eval()
+
+        # Dynamic SAM Polling variables
+        self.sam_active_skip = 4      
+        self.sam_idle_skip = 30       
+        self.current_sam_skip = self.sam_active_skip
         
+        self.sam_frame_counter = 0
+        self.sam_last_bbox = None
+        self.sam_last_confidence = 0.0
+        self.sam_max_width = 640
+        
+        # Tracker Lifecycle Management
+        self.tracker = None
+        self.tracker_frame_counter = 0
+        self.tracker_update_interval = 6  
+
+        self.mask_generator = SamAutomaticMaskGenerator(
+            sam,
+            points_per_side=6,
+            pred_iou_thresh=0.65,
+            stability_score_thresh=0.75,
+            min_mask_region_area=350,
+        )
+        self.get_logger().info("MobileSAM ready.")
+
         # 2. State Control Variables
         self.is_scanning = False
-        self.sample_size = 10  
+        self.sample_size = 10
         self.state_history = []
         self.distance_history = []
-        self.camera_fov_rad = 1.05  
+        self.camera_fov_rad = 1.05
         self.min_face_confidence = 0.80
-        self.min_object_confidence = 0.65
-        self.centering_time_limit = 5.0  # seconds before giving up on a candidate
+        self.max_object_area_ratio = 0.5
+        self.centering_time_limit = 5.0
         self.centering_start_time = None
 
         # 3. ROS 2 Communication
@@ -48,9 +80,8 @@ class HUDIntegratedDetectionNode(Node):
         self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.tof_sub], queue_size=10, slop=0.1)
         self.ts.registerCallback(self.synchronized_callback)
 
-        self.tof_threshold_m = 2.0  
-        
-        # Create a persistent OpenCV window
+        self.tof_threshold_m = 2.0
+
         cv2.namedWindow("Sensor Fusion HUD Monitor", cv2.WINDOW_NORMAL)
         self.get_logger().info("HUD Diagnostic Monitor Spawned. Standby...")
 
@@ -70,7 +101,6 @@ class HUDIntegratedDetectionNode(Node):
         bbox_center_x = bbox_x + (bbox_w / 2)
         normalized_error = 0.5 - (bbox_center_x / frame_w)
         target_angle = normalized_error * self.camera_fov_rad
-        
         angle_msg = Float32()
         angle_msg.data = float(target_angle)
         self.angle_pub.publish(angle_msg)
@@ -80,19 +110,91 @@ class HUDIntegratedDetectionNode(Node):
         angle_msg.data = 0.0
         self.angle_pub.publish(angle_msg)
 
+    def create_tracker(self):
+        if hasattr(cv2, 'TrackerCSRT_create'):
+            return cv2.TrackerCSRT_create()
+        if hasattr(cv2, 'legacy') and hasattr(cv2.legacy, 'TrackerCSRT_create'):
+            return cv2.legacy.TrackerCSRT_create()
+        if hasattr(cv2, 'TrackerKCF_create'):
+            return cv2.TrackerKCF_create()
+        if hasattr(cv2, 'legacy') and hasattr(cv2.legacy, 'TrackerKCF_create'):
+            return cv2.legacy.TrackerKCF_create()
+        raise RuntimeError('No supported OpenCV tracker found')
+
+    def init_tracker(self, cv_img, bbox):
+        try:
+            self.tracker = self.create_tracker()
+            self.tracker.init(cv_img, tuple(bbox))
+            self.tracker_frame_counter = 0  
+        except Exception as e:
+            self.get_logger().warning(f"Tracker init failed: {e}")
+            self.tracker = None
+
+    def reset_tracker(self):
+        self.tracker = None
+        self.sam_last_bbox = None
+        self.sam_last_confidence = 0.0
+        self.tracker_frame_counter = 0
+
+    def detect_object_with_sam(self, cv_img):
+        ih, iw = cv_img.shape[:2]
+        frame_cx, frame_cy = iw / 2, ih / 2
+        frame_area = iw * ih
+
+        rgb = cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB)
+        scale = 1.0
+        if iw > self.sam_max_width:
+            scale = self.sam_max_width / float(iw)
+            target_h = int(ih * scale)
+            rgb = cv2.resize(rgb, (self.sam_max_width, target_h), interpolation=cv2.INTER_AREA)
+
+        masks = self.mask_generator.generate(rgb)
+
+        if not masks:
+            return None, 0.0
+
+        diag = np.sqrt(iw**2 + ih**2)
+        best_mask = None
+        best_score = -1.0
+
+        for m in masks:
+            # Scale coordinates up to original resolution immediately
+            x, y, w, h = [int(v / scale) for v in m['bbox']]
+            
+            # FIXED: Drop giant background segments directly inside the loop loop
+            if w * h > self.max_object_area_ratio * frame_area:
+                continue
+
+            mask_cx = x + w / 2
+            mask_cy = y + h / 2
+            dist = np.sqrt((mask_cx - frame_cx)**2 + (mask_cy - frame_cy)**2)
+            centrality = 1.0 - (dist / diag)           
+            quality = m['predicted_iou']                
+            
+            # FIXED: Shifted weight to prioritize shape validity over position
+            score = 0.15 * centrality + 0.85 * quality   
+
+            if score > best_score:
+                best_score = score
+                best_mask = m
+
+        if best_mask is None:
+            return None, 0.0
+
+        x, y, w, h = [int(v / scale) for v in best_mask['bbox']]
+        confidence = float(best_mask['predicted_iou'])
+        return (x, y, w, h), confidence
+
     def synchronized_callback(self, image_msg, tof_msg):
         try:
-            # Decode the compressed ROS image into an OpenCV BGR image
             cv_img = self.bridge.compressed_imgmsg_to_cv2(image_msg, desired_encoding='bgr8')
             ih, iw, _ = cv_img.shape
             tof_distance = tof_msg.range
-            
-            # Draw static crosshairs for the ToF center-beam alignment
+
             cx, cy = iw // 2, ih // 2
             cv2.line(cv_img, (cx - 20, cy), (cx + 20, cy), (255, 255, 255), 2)
             cv2.line(cv_img, (cx, cy - 20), (cx, cy + 20), (255, 255, 255), 2)
 
-            # --- PASSIVE MODE: Just stream camera data if not triggered ---
             if not self.is_scanning:
                 cv2.putText(cv_img, "SYSTEM STATE: STANDBY", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
                 cv2.putText(cv_img, f"ToF Dist: {tof_distance:.2f}m", (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (200, 200, 200), 1)
@@ -100,7 +202,6 @@ class HUDIntegratedDetectionNode(Node):
                 cv2.waitKey(1)
                 return
 
-            # --- ACTIVE MODE: Trigger is running ---
             frame_type = "none"
             frame_confidence = 0.0
             centered = False
@@ -121,28 +222,45 @@ class HUDIntegratedDetectionNode(Node):
                     frame_confidence = face_confidence
                     target_bbox = (fx, fy, fw, fh)
                     centered = self.is_spatial_match(target_bbox, iw, ih)
-                else:
-                    frame_type = "none"
 
-            # 2. YOLO Object Fallback
+            # 2. MobileSAM + tracker fallback with Forced Re-verification
             if frame_type == "none":
-                yolo_results = self.object_model(cv_img, verbose=False)
-                if len(yolo_results[0].boxes) > 0:
-                    best_box = max(yolo_results[0].boxes, key=lambda b: b.conf[0].item())
-                    object_confidence = best_box.conf[0].item()
-                    if object_confidence >= self.min_object_confidence:
-                        x1, y1, x2, y2 = map(int, best_box.xyxy[0].tolist())
-                        frame_type = "object"
-                        frame_confidence = object_confidence
-                        target_bbox = (x1, y1, x2 - x1, y2 - y1)
-                        centered = self.is_spatial_match(target_bbox, iw, ih)
+                if self.tracker is not None:
+                    self.tracker_frame_counter += 1
+                    
+                    if self.tracker_frame_counter >= self.tracker_update_interval:
+                        self.reset_tracker()
                     else:
-                        frame_type = "none"
+                        success, tracked_bbox = self.tracker.update(cv_img)
+                        if success:
+                            target_bbox = tuple(map(int, tracked_bbox))
+                            frame_type = "object"
+                            frame_confidence = self.sam_last_confidence
+                            centered = self.is_spatial_match(target_bbox, iw, ih)
+                            self.current_sam_skip = self.sam_active_skip 
+                        else:
+                            self.reset_tracker()
 
-            # 3. HUD Graphics & State Pipeline Integration
+                if frame_type == "none":
+                    self.sam_frame_counter += 1
+                    
+                    if self.sam_frame_counter >= self.current_sam_skip or self.sam_last_bbox is None:
+                        self.sam_frame_counter = 0 
+                        self.sam_last_bbox, self.sam_last_confidence = self.detect_object_with_sam(cv_img)
+
+                        if self.sam_last_bbox is not None:
+                            self.current_sam_skip = self.sam_active_skip
+                            frame_type = "object"
+                            frame_confidence = self.sam_last_confidence
+                            target_bbox = self.sam_last_bbox
+                            centered = self.is_spatial_match(target_bbox, iw, ih)
+                            self.init_tracker(cv_img, target_bbox)
+                        else:
+                            self.current_sam_skip = self.sam_idle_skip
+
+            # 3. HUD Graphics & State Pipeline
             if frame_type != "none" and target_bbox:
                 x, y, w, h = target_bbox
-                # Yellow if moving/off-center, Solid Green if locked onto the crosshair
                 box_color = (0, 255, 0) if centered else (0, 255, 255)
                 cv2.rectangle(cv_img, (x, y), (x + w, y + h), box_color, 2)
                 cv2.putText(cv_img, f"{frame_type.upper()} ({frame_confidence:.2f})", (x, y - 10),
@@ -168,38 +286,29 @@ class HUDIntegratedDetectionNode(Node):
                     self.distance_history.clear()
                     return
 
-                # Update Status Text
                 cv2.putText(cv_img, "SYSTEM STATE: ALIGNING CHASSIS", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 165, 255), 2)
             else:
                 self.centering_start_time = None
-                # Target is centered or no target exists - record snapshot frames
                 if centered:
                     self.stop_robot()
-                    tof_presence = tof_distance < self.tof_threshold_m
-                    boost = 0.15 if tof_presence else (-0.30 if frame_type == "face" else -0.10)
+                    boost = 0 if frame_type == "face" else 0
                     confidence = np.clip(frame_confidence + boost, 0.0, 1.0)
-                    
                     self.state_history.append((frame_type, confidence))
                     self.distance_history.append(tof_distance)
-                    
                     cv2.putText(cv_img, "SYSTEM STATE: CAPTURING SNAPSHOT", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
                 else:
                     self.state_history.append(("none", 1.0))
                     self.distance_history.append(0.0)
                     cv2.putText(cv_img, "SYSTEM STATE: SCANNING (EMPTY)", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
 
-                # Add a visual frame buffering progress bar to the screen
                 progress = len(self.state_history)
                 cv2.rectangle(cv_img, (20, 90), (220, 105), (50, 50, 50), -1)
                 cv2.rectangle(cv_img, (20, 90), (20 + (progress * 20), 105), (0, 255, 0), -1)
                 cv2.putText(cv_img, f"Samples: {progress}/{self.sample_size}", (230, 103), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
 
-            # Draw Live ToF Readout 
             cv2.putText(cv_img, f"Live ToF Distance: {tof_distance:.2f}m", (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
-
-            # Render frame to window
             cv2.imshow("Sensor Fusion HUD Monitor", cv_img)
-            cv2.waitKey(1) # Refresh window context
+            cv2.waitKey(1)
 
             if len(self.state_history) >= self.sample_size:
                 self.evaluate_and_publish_final_result()
@@ -227,6 +336,7 @@ class HUDIntegratedDetectionNode(Node):
         output_msg.data = f"{{\'_type\': \'{fused_state}\', \'confidence\': {fused_confidence:.2f}, \'distance_m\': {fused_distance:.2f}}}"
         self.result_pub.publish(output_msg)
         self.get_logger().info(f"Payload Published: {output_msg.data}")
+
 
 def main(args=None):
     rclpy.init(args=args)
