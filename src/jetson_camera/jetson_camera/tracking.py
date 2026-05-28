@@ -87,7 +87,7 @@ class SmoothSingleWheelCenteringNode(Node):
         # Driving the right wheel forward (+) spins the vehicle counter-clockwise (turns left).
         # If target_angle < 0 (Target is on Right), turn_command is negative.
         # Driving the right wheel backward (-) spins the vehicle clockwise (turns right).
-        right_wheel_speed = turn_command + (self.controller.trim * turn_command)
+        right_wheel_speed = -1*(turn_command + (self.controller.trim * turn_command))
 
         # Apply speeds directly to the motors over I2C instantly
         self.controller.motor.set_wheels_speed(left=left_wheel_speed, right=right_wheel_speed)
