@@ -11,6 +11,7 @@ from std_msgs.msg import String, Float32
 import cv2
 from cv_bridge import CvBridge
 import numpy as np
+import time
 
 import mediapipe as mp
 from ultralytics import YOLO
@@ -31,6 +32,10 @@ class HUDIntegratedDetectionNode(Node):
         self.state_history = []
         self.distance_history = []
         self.camera_fov_rad = 1.05  
+        self.min_face_confidence = 0.80
+        self.min_object_confidence = 0.65
+        self.centering_time_limit = 5.0  # seconds before giving up on a candidate
+        self.centering_start_time = None
 
         # 3. ROS 2 Communication
         self.trigger_sub = self.create_subscription(String, '/detection/trigger', self.trigger_callback, 10)
@@ -107,24 +112,32 @@ class HUDIntegratedDetectionNode(Node):
 
             if face_results.detections:
                 best_face = max(face_results.detections, key=lambda d: d.score[0])
-                bboxC = best_face.location_data.relative_bounding_box
-                fx, fy = max(0, int(bboxC.xmin * iw)), max(0, int(bboxC.ymin * ih))
-                fw, fh = int(bboxC.width * iw), int(bboxC.height * ih)
-                frame_type = "face"
-                frame_confidence = best_face.score[0]
-                target_bbox = (fx, fy, fw, fh)
-                centered = self.is_spatial_match(target_bbox, iw, ih)
+                face_confidence = best_face.score[0]
+                if face_confidence >= self.min_face_confidence:
+                    bboxC = best_face.location_data.relative_bounding_box
+                    fx, fy = max(0, int(bboxC.xmin * iw)), max(0, int(bboxC.ymin * ih))
+                    fw, fh = int(bboxC.width * iw), int(bboxC.height * ih)
+                    frame_type = "face"
+                    frame_confidence = face_confidence
+                    target_bbox = (fx, fy, fw, fh)
+                    centered = self.is_spatial_match(target_bbox, iw, ih)
+                else:
+                    frame_type = "none"
 
             # 2. YOLO Object Fallback
             if frame_type == "none":
                 yolo_results = self.object_model(cv_img, verbose=False)
                 if len(yolo_results[0].boxes) > 0:
                     best_box = max(yolo_results[0].boxes, key=lambda b: b.conf[0].item())
-                    x1, y1, x2, y2 = map(int, best_box.xyxy[0].tolist())
-                    frame_type = "object"
-                    frame_confidence = best_box.conf[0].item()
-                    target_bbox = (x1, y1, x2 - x1, y2 - y1)
-                    centered = self.is_spatial_match(target_bbox, iw, ih)
+                    object_confidence = best_box.conf[0].item()
+                    if object_confidence >= self.min_object_confidence:
+                        x1, y1, x2, y2 = map(int, best_box.xyxy[0].tolist())
+                        frame_type = "object"
+                        frame_confidence = object_confidence
+                        target_bbox = (x1, y1, x2 - x1, y2 - y1)
+                        centered = self.is_spatial_match(target_bbox, iw, ih)
+                    else:
+                        frame_type = "none"
 
             # 3. HUD Graphics & State Pipeline Integration
             if frame_type != "none" and target_bbox:
@@ -136,13 +149,29 @@ class HUDIntegratedDetectionNode(Node):
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, box_color, 2)
 
             if frame_type != "none" and not centered:
-                self.state_history.clear()
-                self.distance_history.clear()
+                if self.centering_start_time is None:
+                    self.centering_start_time = time.time()
+                    self.state_history.clear()
+                    self.distance_history.clear()
+
+                elapsed = time.time() - self.centering_start_time
                 self.send_tracking_angle(target_bbox[0], target_bbox[2], iw)
-                
+
+                if elapsed >= self.centering_time_limit:
+                    self.get_logger().info(
+                        f"Centering timeout after {elapsed:.1f}s. Abandoning target and stopping scan."
+                    )
+                    self.stop_robot()
+                    self.is_scanning = False
+                    self.centering_start_time = None
+                    self.state_history.clear()
+                    self.distance_history.clear()
+                    return
+
                 # Update Status Text
                 cv2.putText(cv_img, "SYSTEM STATE: ALIGNING CHASSIS", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 165, 255), 2)
             else:
+                self.centering_start_time = None
                 # Target is centered or no target exists - record snapshot frames
                 if centered:
                     self.stop_robot()
