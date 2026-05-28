@@ -5,7 +5,7 @@ from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 
 import message_filters
-from sensor_msgs.msg import Image, Range
+from sensor_msgs.msg import CompressedImage, Range
 from std_msgs.msg import String, Float32
 
 import cv2
@@ -37,7 +37,7 @@ class HUDIntegratedDetectionNode(Node):
         self.result_pub = self.create_publisher(String, '/detection/final_result', 10)
         self.angle_pub = self.create_publisher(Float32, '/detection/tracking_angle', 10)
 
-        self.image_sub = message_filters.Subscriber(self, Image, '/camera/image_undistorted', qos_profile=qos_profile_sensor_data)
+        self.image_sub = message_filters.Subscriber(self, CompressedImage, '/camera/image_undistorted', qos_profile=qos_profile_sensor_data)
         self.tof_sub = message_filters.Subscriber(self, Range, '/tof/distance', qos_profile=qos_profile_sensor_data)
 
         self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.tof_sub], queue_size=10, slop=0.1)
@@ -77,7 +77,8 @@ class HUDIntegratedDetectionNode(Node):
 
     def synchronized_callback(self, image_msg, tof_msg):
         try:
-            cv_img = self.bridge.imgmsg_to_cv2(image_msg, desired_encoding='bgr8')
+            # Decode the compressed ROS image into an OpenCV BGR image
+            cv_img = self.bridge.compressed_imgmsg_to_cv2(image_msg, desired_encoding='bgr8')
             ih, iw, _ = cv_img.shape
             tof_distance = tof_msg.range
             

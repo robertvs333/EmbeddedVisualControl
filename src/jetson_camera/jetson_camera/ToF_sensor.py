@@ -11,7 +11,6 @@ from sensor_msgs.msg import Range
 try:
     import VL53L1X
     HARDWARE_AVAILABLE = True
-    self.get_logger().info("Successfully imported VL53L1X hardware library.")
 except ImportError:
     HARDWARE_AVAILABLE = False
 # -----------------------------------
@@ -36,6 +35,8 @@ class TofPublisherNode(Node):
             except Exception as e:
                 self.get_logger().error(f"Failed to connect to ToF Hardware via I2C: {e}")
                 self.hardware_available = False
+        else:
+            self.get_logger().info("VL53L1X library not available; using simulated mock mode.")
 
         if not self.hardware_available:
             self.get_logger().warn("Hardware driver missing or disconnected. Running in SIMULATED MOCK MODE.")
