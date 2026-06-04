@@ -25,7 +25,13 @@ class MovementNode(Node):
         self.axle_width = 0.19
         self.encoder_resolution = 147.0
         
-        # Keep track of state to only publish when it changes
+        # PID Constants (Based on PDF suggestions)
+        self.SAMPLETIME = 0.1  # 10Hz updates for better responsiveness
+        self.TARGET = 25       # Target ticks per sample interval
+        self.KP = 0.02
+        self.KD = 0.01
+        self.KI = 0.005
+
         self.last_wheel_state = [0, 0]
 
         # Publishers
@@ -33,13 +39,6 @@ class MovementNode(Node):
         self.left_dir_pub = self.create_publisher(Int8, '/motors/left_direction', 10)
         self.right_dir_pub = self.create_publisher(Int8, '/motors/right_direction', 10)
         
-        # Subscriber for instructions: [distance, degrees]
-        # self.cmd_sub = self.create_subscription(
-        #     Float32MultiArray, 
-        #     '/cmd_movement', 
-        #     self.instruction_cb, 
-        #     10
-        # )
         self.cmd_angle_sub = self.create_subscription(
             Float32, 
             '/detection/tracking_angle', 
@@ -53,77 +52,102 @@ class MovementNode(Node):
             qos_profile=qos_profile_sensor_data
         )
 
-        self.get_logger().info("Movement Node ready for split direction publishing.")
+        self.get_logger().info("Movement Node ready with PID straight-line control.")
 
     def set_wheel_state(self, left, right):
-        """Publishes 1, -1, or 0 to separate topics only if the direction changes."""
         if [left, right] != self.last_wheel_state:
-            # Create Int8 messages
-            l_msg = Int8()
-            l_msg.data = int(left)
-            r_msg = Int8()
-            r_msg.data = int(right)
-            
-            # Publish to separate topics
+            l_msg, r_msg = Int8(), Int8()
+            l_msg.data, r_msg.data = int(left), int(right)
             self.left_dir_pub.publish(l_msg)
             self.right_dir_pub.publish(r_msg)
-            
             self.last_wheel_state = [left, right]
 
-    def instruction(self, msg):
-        if len(msg.data) < 2:
-            return
+    def execute_linear_move(self, distance):
+        """Drives straight using PID control as described in the tutorial."""
+        direction = 1 if distance > 0 else -1
+        self.set_wheel_state(direction, direction)
 
-        target_dist = self.tof_sub
-        target_deg =  (180*self.cmd_angle_sub)/math.pi
+        # PID Variables
+        m1_speed = 0.3  # Starting speed (Left)
+        m2_speed = 0.3  # Starting speed (Right)
         
-        # Reset ticks for fresh measurement
+        e1_prev_error = 0
+        e2_prev_error = 0
+        e1_sum_error = 0
+        e2_sum_error = 0
+
+        total_dist_traveled = 0.0
         self.left_encoder._ticks = 0
         self.right_encoder._ticks = 0
 
-        if target_dist != 0.0:
-            self.execute_linear_move(target_dist)
-        elif target_deg != 0.0:
-            self.execute_rotation(target_deg)
+        while rclpy.ok() and abs(total_dist_traveled) < abs(distance):
+            # 1. Capture current ticks for this sample
+            e1_ticks_start = self.left_encoder._ticks
+            e2_ticks_start = self.right_encoder._ticks
 
-        # Stop hardware and notify system
+            time.sleep(self.SAMPLETIME)
+
+            # 2. Calculate how many ticks occurred during the sample (Actual Speed)
+            e1_value = abs(self.left_encoder._ticks - e1_ticks_start)
+            e2_value = abs(self.right_encoder._ticks - e2_ticks_start)
+
+            # 3. Calculate Error (Target - Actual)
+            e1_error = self.TARGET - e1_value
+            e2_error = self.TARGET - e2_value
+
+            # 4. PID Calculation: adjustment = (P) + (D) + (I)
+            m1_adj = (e1_error * self.KP) + (e1_prev_error * self.KD) + (e1_sum_error * self.KI)
+            m2_adj = (e2_error * self.KP) + (e2_prev_error * self.KD) + (e2_sum_error * self.KI)
+
+            # 5. Apply adjustment to current speeds
+            m1_speed += m1_adj
+            m2_speed += m2_adj
+
+            # 6. Clamp speeds between 0 and 1
+            m1_speed = max(min(1.0, m1_speed), 0.0)
+            m2_speed = max(min(1.0, m2_speed), 0.0)
+
+            # 7. Update motors
+            self.motor.set_wheels_speed(m1_speed * direction, m2_speed * direction)
+
+            # 8. Update history for next loop
+            e1_prev_error = e1_error
+            e2_prev_error = e2_error
+            e1_sum_error += e1_error
+            e2_sum_error += e2_error
+
+            # 9. Track total distance for exit condition
+            avg_ticks = (abs(self.left_encoder._ticks) + abs(self.right_encoder._ticks)) / 2.0
+            total_dist_traveled = (avg_ticks / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
+
+        # Stop and cleanup
         self.motor.set_wheels_speed(0.0, 0.0)
         self.set_wheel_state(0, 0)
         self.status_pub.publish(Bool(data=True))
 
-    def execute_linear_move(self, distance, speed=0.3):
-        direction = 1 if distance > 0 else -1
-        self.set_wheel_state(direction, direction)
-        self.motor.set_wheels_speed(speed * direction, speed * direction)
-        
-        while rclpy.ok():
-            # Encoder distance math
-            l_m = abs((self.left_encoder._ticks / self.encoder_resolution) * 2 * math.pi * self.wheel_radius)
-            r_m = abs((self.right_encoder._ticks / self.encoder_resolution) * 2 * math.pi * self.wheel_radius)
-            
-            if (l_m + r_m) / 2.0 >= abs(distance):
-                break
-            time.sleep(0.01)
-
     def execute_rotation(self, degrees, speed=0.3):
+        # (Rotation logic remains standard as PID is primarily for straight lines)
         target_rad = abs(degrees) * (math.pi / 180.0)
-        
-        # Positive = Right, Negative = Left
-        if degrees > 0: # Turn Right
-            self.set_wheel_state(1, -1) # Left Fwd, Right Bwd
+        if degrees > 0:
+            self.set_wheel_state(1, -1)
             self.motor.set_wheels_speed(speed, -speed)
-        else: # Turn Left
-            self.set_wheel_state(-1, 1) # Left Bwd, Right Fwd
+        else:
+            self.set_wheel_state(-1, 1)
             self.motor.set_wheels_speed(-speed, speed)
 
+        self.left_encoder._ticks = 0
+        self.right_encoder._ticks = 0
+
         while rclpy.ok():
-            # (RightDist - LeftDist) / AxleWidth = Angle in Radians
-            l_dist = (self.left_encoder._ticks / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
-            r_dist = (self.right_encoder._ticks / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
-            
-            if abs((r_dist - l_dist) / self.axle_width) >= target_rad:
+            l_dist = (abs(self.left_encoder._ticks) / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
+            r_dist = (abs(self.right_encoder._ticks) / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
+            if abs((r_dist + l_dist) / self.axle_width) >= target_rad:
                 break
             time.sleep(0.01)
+
+    def tracking_angle_cb(self, msg):
+        # Placeholder logic for tracking angle if needed
+        pass
 
     def destroy_node(self):
         self.motor.set_wheels_speed(0.0, 0.0)
