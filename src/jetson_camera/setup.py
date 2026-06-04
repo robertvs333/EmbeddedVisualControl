@@ -39,6 +39,7 @@ setup(
             'camera_detection = jetson_camera.camera_detection:main',
             'encoder_node = jetson_camera.encoder_node:main',
             'route_plotter = jetson_camera.plot_route:main',
+            'movement_node = jetson_camera.movement_node:main',
         ],
     },
 )
