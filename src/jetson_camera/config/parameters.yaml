@@ -26,7 +26,7 @@ route_plotter:
     odom_topic: /route/odom
     frame_id: odom
     child_frame_id: base_link
-    wheel_radius: 0.065
+    wheel_radius: 0.0325
     wheel_base: 0.19
     ticks_per_rev: 147.0
     initial_x: 0.0
@@ -37,5 +37,5 @@ route_plotter:
     plot_output_path: route_plot.png
     save_route_log_on_shutdown: true
     route_log_output_path: route_log.csv
-    show_live_plot: false
+    show_live_plot: true
     update_rate_hz: 10.0
