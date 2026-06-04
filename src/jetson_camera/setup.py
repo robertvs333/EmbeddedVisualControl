@@ -36,6 +36,7 @@ setup(
             'sensor_fusion = jetson_camera.sensor_fusion:main',
             'ToF_sensor = jetson_camera.ToF_sensor:main',
             'tracking = jetson_camera.tracking:main',
+            'camera_detection = jetson_camera.camera_detection:main',
         ],
     },
 )
