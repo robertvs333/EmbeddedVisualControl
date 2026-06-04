@@ -36,6 +36,8 @@ setup(
             'sensor_fusion = jetson_camera.sensor_fusion:main',
             'ToF_sensor = jetson_camera.ToF_sensor:main',
             'tracking = jetson_camera.tracking:main',
+            'encoder_node = jetson_camera.encoder_node:main',
+            'route_plotter = jetson_camera.plot_route:main',
         ],
     },
 )

@@ -4,3 +4,38 @@ camera_publisher:
     width: 640
     height: 480
     fps: 10
+
+
+encoder_node:
+  ros__parameters:
+    left_encoder_pin: 35
+    right_encoder_pin: 12
+    left_ticks_topic: /encoders/left_ticks
+    right_ticks_topic: /encoders/right_ticks
+    left_direction_topic: /motors/left_direction
+    right_direction_topic: /motors/right_direction
+    publish_rate_hz: 10.0
+
+route_plotter:
+  ros__parameters:
+    left_ticks_topic: /encoders/left_ticks
+    right_ticks_topic: /encoders/right_ticks
+    left_direction_topic: /motors/left_direction
+    right_direction_topic: /motors/right_direction
+    path_topic: /route/path
+    odom_topic: /route/odom
+    frame_id: odom
+    child_frame_id: base_link
+    wheel_radius: 0.065
+    wheel_base: 0.19
+    ticks_per_rev: 147.0
+    initial_x: 0.0
+    initial_y: 0.0
+    initial_theta: 0.0
+    ticks_are_signed: true
+    save_plot_on_shutdown: true
+    plot_output_path: route_plot.png
+    save_route_log_on_shutdown: true
+    route_log_output_path: route_log.csv
+    show_live_plot: false
+    update_rate_hz: 10.0
