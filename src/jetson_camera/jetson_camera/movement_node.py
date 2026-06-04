@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Bool, Int8, Float32MultiArray
+from std_msgs.msg import Bool, Int8, Float32MultiArray, Float32
 import math
 import time
 
+import message_filters
+from sensor_msgs.msg import Range
+from rclpy.qos import qos_profile_sensor_data
 from jetson_camera.motorDrivers.motorDriver import DaguWheelsDriver
 from jetson_camera.motorDrivers.encoderDriver import WheelEncoderDriver
 
@@ -18,9 +21,9 @@ class MovementNode(Node):
         self.right_encoder = WheelEncoderDriver(self.motor.GPIO_MOTOR_ENCODER_2)
 
         # Robot constants
-        self.wheel_radius = 0.033
+        self.wheel_radius = 0.0325
         self.axle_width = 0.19
-        self.encoder_resolution = 140.0
+        self.encoder_resolution = 147.0
         
         # Keep track of state to only publish when it changes
         self.last_wheel_state = [0, 0]
@@ -31,11 +34,23 @@ class MovementNode(Node):
         self.right_dir_pub = self.create_publisher(Int8, '/motors/right_direction', 10)
         
         # Subscriber for instructions: [distance, degrees]
-        self.cmd_sub = self.create_subscription(
-            Float32MultiArray, 
-            '/cmd_movement', 
-            self.instruction_cb, 
+        # self.cmd_sub = self.create_subscription(
+        #     Float32MultiArray, 
+        #     '/cmd_movement', 
+        #     self.instruction_cb, 
+        #     10
+        # )
+        self.cmd_angle_sub = self.create_subscription(
+            Float32, 
+            '/detection/tracking_angle', 
+            self.tracking_angle_cb, 
             10
+        )
+        self.tof_sub = message_filters.Subscriber(
+            self, 
+            Range, 
+            '/tof/distance', 
+            qos_profile=qos_profile_sensor_data
         )
 
         self.get_logger().info("Movement Node ready for split direction publishing.")
@@ -55,12 +70,12 @@ class MovementNode(Node):
             
             self.last_wheel_state = [left, right]
 
-    def instruction_cb(self, msg):
+    def instruction(self, msg):
         if len(msg.data) < 2:
             return
 
-        target_dist = msg.data[0]
-        target_deg = msg.data[1]
+        target_dist = self.tof_sub
+        target_deg =  (180*self.cmd_angle_sub)/math.pi
         
         # Reset ticks for fresh measurement
         self.left_encoder._ticks = 0
