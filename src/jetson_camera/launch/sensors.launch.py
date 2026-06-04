@@ -14,6 +14,12 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='jetson_camera',
+            executable='encoder_node',
+            name='encoder_node',
+            parameters=[config],
+        ),
+        Node(
+            package='jetson_camera',
             executable='imu_node',
             name='imu_node',
             parameters=[config],
