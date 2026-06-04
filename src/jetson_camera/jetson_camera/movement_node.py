@@ -25,9 +25,9 @@ class MovementNode(Node):
         self.axle_width = 0.19
         self.encoder_resolution = 147.0
         
-        # PID Constants (Based on PDF suggestions)
-        self.SAMPLETIME = 0.1  # 10Hz updates for better responsiveness
-        self.TARGET = 25       # Target ticks per sample interval
+        # PID Constants (From PDF)
+        self.SAMPLETIME = 0.1 
+        self.TARGET = 25       
         self.KP = 0.02
         self.KD = 0.01
         self.KI = 0.005
@@ -39,6 +39,14 @@ class MovementNode(Node):
         self.left_dir_pub = self.create_publisher(Int8, '/motors/left_direction', 10)
         self.right_dir_pub = self.create_publisher(Int8, '/motors/right_direction', 10)
         
+        # --- FIXED: UNCOMMENTED SUBSCRIBER ---
+        self.cmd_sub = self.create_subscription(
+            Float32MultiArray, 
+            '/cmd_movement', 
+            self.instruction_cb, 
+            10
+        )
+
         self.cmd_angle_sub = self.create_subscription(
             Float32, 
             '/detection/tracking_angle', 
@@ -52,7 +60,7 @@ class MovementNode(Node):
             qos_profile=qos_profile_sensor_data
         )
 
-        self.get_logger().info("Movement Node ready with PID straight-line control.")
+        self.get_logger().info("Movement Node ready with PID control. Awaiting /cmd_movement...")
 
     def set_wheel_state(self, left, right):
         if [left, right] != self.last_wheel_state:
@@ -62,76 +70,72 @@ class MovementNode(Node):
             self.right_dir_pub.publish(r_msg)
             self.last_wheel_state = [left, right]
 
+    # --- FIXED: ADDED MISSING CALLBACK ---
+    def instruction_cb(self, msg):
+        """Processes the [distance, angle] command array."""
+        if len(msg.data) < 2:
+            self.get_logger().error("Instruction needs at least 2 values: [dist, angle]")
+            return
+
+        dist = msg.data[0]
+        angle = msg.data[1]
+
+        if dist != 0.0:
+            self.get_logger().info(f"PID Linear Move: {dist}m")
+            self.execute_linear_move(dist)
+        elif angle != 0.0:
+            self.get_logger().info(f"Encoder Rotation: {angle}deg")
+            self.execute_rotation(angle)
+
     def execute_linear_move(self, distance):
-        """Drives straight using PID control as described in the tutorial."""
-        direction = 1 if distance > 0 else -1
+        direction = 1 if distance < 0 else -1
         self.set_wheel_state(direction, direction)
 
-        # PID Variables
-        m1_speed = 0.3  # Starting speed (Left)
-        m2_speed = 0.3  # Starting speed (Right)
+        m1_speed, m2_speed = 0.3, 0.3
+        e1_prev_err, e2_prev_err = 0, 0
+        e1_sum_err, e2_sum_err = 0, 0
         
-        e1_prev_error = 0
-        e2_prev_error = 0
-        e1_sum_error = 0
-        e2_sum_error = 0
-
-        total_dist_traveled = 0.0
+        total_dist = 0.0
         self.left_encoder._ticks = 0
         self.right_encoder._ticks = 0
 
-        while rclpy.ok() and abs(total_dist_traveled) < abs(distance):
-            # 1. Capture current ticks for this sample
-            e1_ticks_start = self.left_encoder._ticks
-            e2_ticks_start = self.right_encoder._ticks
+        while rclpy.ok() and abs(total_dist) < abs(distance):
+            t1_start = self.left_encoder._ticks
+            t2_start = self.right_encoder._ticks
 
             time.sleep(self.SAMPLETIME)
 
-            # 2. Calculate how many ticks occurred during the sample (Actual Speed)
-            e1_value = abs(self.left_encoder._ticks - e1_ticks_start)
-            e2_value = abs(self.right_encoder._ticks - e2_ticks_start)
+            e1_val = abs(self.left_encoder._ticks - t1_start)
+            e2_val = abs(self.right_encoder._ticks - t2_start)
 
-            # 3. Calculate Error (Target - Actual)
-            e1_error = self.TARGET - e1_value
-            e2_error = self.TARGET - e2_value
+            e1_err = self.TARGET - e1_val
+            e2_err = self.TARGET - e2_val
 
-            # 4. PID Calculation: adjustment = (P) + (D) + (I)
-            m1_adj = (e1_error * self.KP) + (e1_prev_error * self.KD) + (e1_sum_error * self.KI)
-            m2_adj = (e2_error * self.KP) + (e2_prev_error * self.KD) + (e2_sum_error * self.KI)
+            m1_speed += (e1_err * self.KP) + (e1_prev_err * self.KD) + (e1_sum_err * self.KI)
+            m2_speed += (e2_err * self.KP) + (e2_prev_err * self.KD) + (e2_sum_err * self.KI)
 
-            # 5. Apply adjustment to current speeds
-            m1_speed += m1_adj
-            m2_speed += m2_adj
-
-            # 6. Clamp speeds between 0 and 1
             m1_speed = max(min(1.0, m1_speed), 0.0)
             m2_speed = max(min(1.0, m2_speed), 0.0)
 
-            # 7. Update motors
             self.motor.set_wheels_speed(m1_speed * direction, m2_speed * direction)
 
-            # 8. Update history for next loop
-            e1_prev_error = e1_error
-            e2_prev_error = e2_error
-            e1_sum_error += e1_error
-            e2_sum_error += e2_error
+            e1_prev_err, e2_prev_err = e1_err, e2_err
+            e1_sum_err += e1_err
+            e2_sum_err += e2_err
 
-            # 9. Track total distance for exit condition
             avg_ticks = (abs(self.left_encoder._ticks) + abs(self.right_encoder._ticks)) / 2.0
-            total_dist_traveled = (avg_ticks / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
+            total_dist = (avg_ticks / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
 
-        # Stop and cleanup
         self.motor.set_wheels_speed(0.0, 0.0)
         self.set_wheel_state(0, 0)
         self.status_pub.publish(Bool(data=True))
 
     def execute_rotation(self, degrees, speed=0.3):
-        # (Rotation logic remains standard as PID is primarily for straight lines)
         target_rad = abs(degrees) * (math.pi / 180.0)
-        if degrees > 0:
+        if degrees > 0: # Right
             self.set_wheel_state(1, -1)
             self.motor.set_wheels_speed(speed, -speed)
-        else:
+        else: # Left
             self.set_wheel_state(-1, 1)
             self.motor.set_wheels_speed(-speed, speed)
 
@@ -146,7 +150,6 @@ class MovementNode(Node):
             time.sleep(0.01)
 
     def tracking_angle_cb(self, msg):
-        # Placeholder logic for tracking angle if needed
         pass
 
     def destroy_node(self):
