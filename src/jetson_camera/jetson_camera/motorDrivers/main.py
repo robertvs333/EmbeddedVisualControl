@@ -1,4 +1,4 @@
-from jetson_camera.motorDrivers import *
+from jetson_camera.motorDrivers.motorDriver import DaguWheelsDriver
 from time import sleep
 
 import math
@@ -7,12 +7,12 @@ from jetson_camera.motorDrivers.encoderDriver import WheelEncoderDriver
 
 
 class PositionController:
-    def __init__(self, wheel_radius=0.033, axle_width=0.19, trim=0.0):
+    def __init__(self, wheel_radius=0.033, axle_width=0.185, trim=0):
         self.motor = DaguWheelsDriver()
         self.wheel_radius = wheel_radius
         self.wheel_base = axle_width
         self.trim = trim
-        self.resolution = 140.0
+        self.resolution = 147.0
         self.left_encoder = WheelEncoderDriver(self.motor.GPIO_MOTOR_ENCODER_1)
         self.right_encoder = WheelEncoderDriver(self.motor.GPIO_MOTOR_ENCODER_2)
         self.x = 0.0
@@ -24,8 +24,13 @@ class PositionController:
         # Linear calibration gains: maps [-1, +1] command -> rad/s
         # gain * command = physical wheel speed in rad/s
         # These are updated by calibrate()
-        self.left_gain = 1.0   # rad/s per unit command
-        self.right_gain = 1.0  # rad/s per unit command
+        self.left_gain = 25.1402  # rad/s per unit command
+        self.right_gain = 22.7463  # rad/s per unit command
+
+    def set_motor_speeds(self, left, right):
+        """Logs the exact commands being dispatched to the Dagu motor driver."""
+        print(f"[MOTOR COMMAND] Dispatched Power -> Left: {left:+.4f} | Right: {right:+.4f}")
+        self.motor.set_wheels_speed(left=left, right=right)
 
     # ------------------------------------------------------------------
     # Calibration
@@ -41,9 +46,9 @@ class PositionController:
         t0_left = self.left_encoder._ticks
         t0_right = self.right_encoder._ticks
 
-        self.motor.set_wheels_speed(left=left_cmd, right=right_cmd)
+        self.set_motor_speeds(left=left_cmd, right=right_cmd)
         sleep(duration)
-        self.motor.set_wheels_speed(left=0.0, right=0.0)
+        self.set_motor_speeds(left=0.0, right=0.0)
         sleep(0.2)  # brief settle
 
         d_left  = self.left_encoder._ticks  - t0_left
@@ -70,7 +75,7 @@ class PositionController:
 
         The gains are stored in self.left_gain and self.right_gain.
         """
-        commands = list(np.linspace(0.2, 1.0, sweep_steps)) + [-0.5]
+        commands = list(np.linspace(-0.2, -1.0, sweep_steps)) + [0.5]
 
         left_cmds,  left_omegas  = [], []
         right_cmds, right_omegas = [], []
@@ -165,7 +170,7 @@ class PositionController:
     def move_forward(self, distance, velocity=0.5):
         start_x = self.x
         start_y = self.y
-        self.motor.set_wheels_speed(
+        self.set_motor_speeds(
             left=velocity - self.trim * velocity,
             right=velocity + self.trim * velocity)
 
@@ -173,24 +178,20 @@ class PositionController:
             self.update_odometry()
             travelled = math.sqrt((self.x - start_x)**2 + (self.y - start_y)**2)
             if travelled >= distance:
-                self.motor.set_wheels_speed(left=0.0, right=0.0)
+                self.set_motor_speeds(left=0.0, right=0.0)
                 break
             sleep(0.01)
 
     def rotate(self, angle, velocity=0.5):
         start_theta = self.theta
         if angle > 0:
-            self.motor.set_wheels_speed(
-                #left=velocity  - self.trim * velocity,
+            self.set_motor_speeds(
                 left=0,
-                #right=0
                 right=-velocity + self.trim * velocity
                 )
         else:
-            self.motor.set_wheels_speed(
-                #left=-velocity + self.trim * velocity,
+            self.set_motor_speeds(
                 left=0,
-                #right=0
                 right=velocity - self.trim * velocity
                 )
 
@@ -198,7 +199,7 @@ class PositionController:
             self.update_theta()
             rotated = abs(self.theta - start_theta)
             if rotated >= abs(angle):
-                self.motor.set_wheels_speed(left=0.0, right=0.0)
+                self.set_motor_speeds(left=0.0, right=0.0)
                 break
             sleep(0.01)
 
@@ -220,7 +221,7 @@ class PositionController:
         v_left  = v - (omega * self.wheel_base / 2.0)
         v_right = v + (omega * self.wheel_base / 2.0)
 
-        self.motor.set_wheels_speed(left=v_left, right=v_right)
+        self.set_motor_speeds(left=v_left, right=v_right)
 
         return rho < 0.05
 
@@ -232,19 +233,20 @@ class PositionController:
 # Main
 # ---------------------------------------------------------------------------
 
-velocity   = 0.2
-Controller = PositionController(trim=0)
+
+velocity   = 0.73
+Controller = PositionController(trim=0.08)
 
 try:
     # Run calibration first; comment out if already calibrated
-    #Controller.calibrate(sweep_steps=5, step_duration=5.0)
+    #Controller.calibrate(sweep_steps=10, step_duration=10.0)
 
     # Example: print what 0.5 command means in physical units after calibration
-    #l_rads, r_rads = Controller.cmd_to_rad_per_s(0.5, 0.5)
+    #l_rads, r_rads = Controller.cmd_to_rad_per_s(-0.25, -0.25)
     #print(f"Command 0.5 -> Left: {l_rads:.4f} rad/s | Right: {r_rads:.4f} rad/s")
 
-    #Controller.move_forward(1, velocity=-velocity)
-    Controller.rotate(-math.pi / 2, velocity=velocity)
+    Controller.move_forward(0.6, velocity=-velocity)
+    #Controller.rotate(-math.pi / 2, velocity=velocity)
 
 except KeyboardInterrupt:
     print("\nExiting...")
