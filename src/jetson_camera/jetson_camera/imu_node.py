@@ -20,7 +20,7 @@ class ImuNode(Node):
 
         self.declare_parameter('i2c_bus', 1)
         self.declare_parameter('device_address', 0x68)
-        self.declare_parameter('publish_rate_hz', 40.0)
+        self.declare_parameter('publish_rate_hz', 100.0)
         self.declare_parameter('calibration_samples', 200)
         self.declare_parameter('frame_id', 'imu_link')
         self.declare_parameter('imu_topic', '/imu/data_raw')
@@ -79,7 +79,7 @@ class ImuNode(Node):
             )
             self.sensor.set_accel_range(Mpu6050.ACCEL_RANGE_2G)
             self.sensor.set_gyro_range(Mpu6050.GYRO_RANGE_250DEG)
-            self.sensor.set_filter_range(Mpu6050.FILTER_BW_42)
+            self.sensor.set_filter_range(Mpu6050.FILTER_BW_188)
             self.get_logger().info("MPU6050 I2C connection initialized successfully.")
             return True
         except Exception as e:

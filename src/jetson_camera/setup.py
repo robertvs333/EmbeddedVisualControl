@@ -41,6 +41,7 @@ setup(
             'route_plotter = jetson_camera.plot_route:main',
             'movement_node = jetson_camera.movement_node:main',
             'imu_node = jetson_camera.imu_node:main',
+            'square_driver_node = jetson_camera.square_driver_node:main',
         ],
     },
 )
