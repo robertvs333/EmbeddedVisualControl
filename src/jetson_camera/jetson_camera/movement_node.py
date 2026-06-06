@@ -14,16 +14,16 @@ class MovementNode(Node):
         self.motor = DaguWheelsDriver()
 
         # Robot Constants
-        self.wheel_radius = 0.033
+        self.wheel_radius = 0.0325
         self.axle_width = 0.185
         self.encoder_resolution = 140.0
         
         # --- CALIBRATION & LIMITS (SLOW & PRECISE) ---
         # Right motor is physically weaker, so it gets 1.105x more command power to match the Left
         self.RIGHT_TRIM = 1.105        
-        self.BASE_PWR = 0.25          # Cruise linear speed
-        self.MIN_STEER_PWR = 0.18     # Minimum motor torque floor (decel target/ramp start)
-        self.MAX_PWR = 0.45           
+        self.BASE_PWR = 0.5          # Cruise linear speed
+        self.MIN_STEER_PWR = 0.3     # Minimum motor torque floor (decel target/ramp start)
+        self.MAX_PWR = 0.7           
 
         # Straight PID heading lock
         self.KP_STRAIGHT = 2.5        
@@ -48,6 +48,11 @@ class MovementNode(Node):
         self.locked_yaw = 0.0
         self.stop_counter = 0
 
+        # IMU Watchdog variables [NEW]
+        self.last_yaw_time = self.get_clock().now()
+        self.imu_timeout_seconds = 0.25  # 10 missed frames at 40Hz
+        self.imu_warning_logged = False
+
         # Publishers
         self.status_pub = self.create_publisher(Bool, '/movement_finished', 10)
         self.left_dir_pub = self.create_publisher(Int8, '/motors/left_direction', 10)
@@ -69,6 +74,9 @@ class MovementNode(Node):
 
     def yaw_cb(self, msg): 
         """Smooths out IMU yaw data using a Circular Rolling Average."""
+        # Update watchdog timer [NEW]
+        self.last_yaw_time = self.get_clock().now()
+
         self.yaw_history.append(msg.data)
         if len(self.yaw_history) > 5: # 5-sample moving window (~125ms of data)
             self.yaw_history.pop(0)
@@ -110,6 +118,7 @@ class MovementNode(Node):
             self.get_logger().info(f"Starting Linear Move of {self.target_distance}m")
             self.t1_start, self.t2_start = self.left_ticks, self.right_ticks
             self.locked_yaw = self.current_yaw
+            self.imu_warning_logged = False
             self.state = "LIN"
 
         elif self.state == "LIN":
@@ -134,9 +143,21 @@ class MovementNode(Node):
             
             current_base = self.MIN_STEER_PWR + (self.BASE_PWR - self.MIN_STEER_PWR) * combined_factor
 
-            # Heading Correction
-            yaw_error = self.normalize_angle(self.current_yaw - self.locked_yaw)
-            correction = yaw_error * self.KP_STRAIGHT * direction
+            # --- WATCHDOG: CHECK IMU STATUS [NEW] ---
+            now = self.get_clock().now()
+            yaw_age = (now - self.last_yaw_time).nanoseconds * 1e-9
+
+            if yaw_age > self.imu_timeout_seconds:
+                # IMU is lagging or disconnected: temporarily disable heading correction
+                correction = 0.0
+                if not self.imu_warning_logged:
+                    self.get_logger().warn("IMU watchdog timeout! Disabling heading lock. Falling back to open-loop trim.")
+                    self.imu_warning_logged = True
+            else:
+                # IMU is healthy: perform heading correction
+                self.imu_warning_logged = False
+                yaw_error = self.normalize_angle(self.current_yaw - self.locked_yaw)
+                correction = yaw_error * self.KP_STRAIGHT * direction
 
             l_pwr = max(min(self.MAX_PWR, current_base + correction), self.MIN_STEER_PWR)
             r_pwr = max(min(self.MAX_PWR, (current_base - correction) * self.RIGHT_TRIM), self.MIN_STEER_PWR * self.RIGHT_TRIM)
@@ -149,6 +170,15 @@ class MovementNode(Node):
             self.state = "ROT"
 
         elif self.state == "ROT":
+            # --- WATCHDOG: ROTATION SAFETY CHECK [NEW] ---
+            # If turning relies on IMU and it drops out, we must stop immediately to avoid infinite rotation.
+            now = self.get_clock().now()
+            yaw_age = (now - self.last_yaw_time).nanoseconds * 1e-9
+            if yaw_age > self.imu_timeout_seconds:
+                self.get_logger().error("IMU signal lost during rotation! Emergency stop initiated.")
+                self.state = "STOPPING"
+                return
+
             # --- SKELETON PLACEHOLDER ---
             self.get_logger().info("ROT skeleton active. Simulating turn completion.", once=True)
             self.state = "STOPPING"

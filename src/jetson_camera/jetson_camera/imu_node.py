@@ -13,7 +13,7 @@ from jetson_camera.plot_route import yaw_to_quaternion
 
 
 class ImuNode(Node):
-    """Publish MPU6050 raw IMU data and integrated relative yaw."""
+    """Publish MPU6050 raw IMU data and integrated relative yaw with auto-recovery."""
 
     def __init__(self):
         super().__init__('imu_node')
@@ -31,14 +31,25 @@ class ImuNode(Node):
         self.gyro_deadband_deg_s = float(
             self.get_parameter('gyro_deadband_deg_s').value
         )
+        self.i2c_bus = int(self.get_parameter('i2c_bus').value)
+        self.device_address = int(self.get_parameter('device_address').value)
+        self.calibration_samples = int(self.get_parameter('calibration_samples').value)
 
-        self.sensor = Mpu6050(
-            address=int(self.get_parameter('device_address').value),
-            bus=int(self.get_parameter('i2c_bus').value),
-        )
-        self.sensor.set_accel_range(Mpu6050.ACCEL_RANGE_2G)
-        self.sensor.set_gyro_range(Mpu6050.GYRO_RANGE_250DEG)
-        self.sensor.set_filter_range(Mpu6050.FILTER_BW_42)
+        # Failure tracking parameters
+        self.consecutive_failures = 0
+        self.max_allowed_failures = 8  # ~200ms of downtime at 40Hz before resetting
+        self.calibrated = False
+        self.gyro_offset = {'x': 0.0, 'y': 0.0, 'z': 0.0}
+
+        self.sensor = None
+        self.initialize_sensor()
+
+        if self.sensor is not None:
+            self.gyro_offset = self.calibrate_gyro(self.calibration_samples)
+            self.calibrated = True
+
+        self.yaw = 0.0
+        self.last_time = self.get_clock().now()
 
         self.imu_pub = self.create_publisher(
             Imu,
@@ -51,12 +62,6 @@ class ImuNode(Node):
             10,
         )
 
-        self.gyro_offset = self.calibrate_gyro(
-            int(self.get_parameter('calibration_samples').value)
-        )
-        self.yaw = 0.0
-        self.last_time = self.get_clock().now()
-
         publish_rate_hz = float(self.get_parameter('publish_rate_hz').value)
         self.timer = self.create_timer(1.0 / publish_rate_hz, self.publish_imu)
 
@@ -64,12 +69,33 @@ class ImuNode(Node):
             'IMU node ready. Keep the robot still during startup calibration.'
         )
 
+    def initialize_sensor(self):
+        """Attempts to open the bus and configure the MPU6050 hardware."""
+        try:
+            self.get_logger().info(f"Connecting to MPU6050 (I2C Bus: {self.i2c_bus}, Address: 0x{self.device_address:02x})...")
+            self.sensor = Mpu6050(
+                address=self.device_address,
+                bus=self.i2c_bus,
+            )
+            self.sensor.set_accel_range(Mpu6050.ACCEL_RANGE_2G)
+            self.sensor.set_gyro_range(Mpu6050.GYRO_RANGE_250DEG)
+            self.sensor.set_filter_range(Mpu6050.FILTER_BW_42)
+            self.get_logger().info("MPU6050 I2C connection initialized successfully.")
+            return True
+        except Exception as e:
+            self.get_logger().error(f"MPU6050 initialization failed: {e}")
+            self.sensor = None
+            return False
+
     def calibrate_gyro(self, samples):
         self.get_logger().info('Calibrating gyro with %d samples...' % samples)
         sums = {'x': 0.0, 'y': 0.0, 'z': 0.0}
 
         for _ in range(samples):
-            gyro = self.sensor.get_gyro_data()
+            try:
+                gyro = self.sensor.get_gyro_data()
+            except Exception:
+                gyro = {'x': 0.0, 'y': 0.0, 'z': 0.0}
             sums['x'] += gyro['x']
             sums['y'] += gyro['y']
             sums['z'] += gyro['z']
@@ -86,7 +112,49 @@ class ImuNode(Node):
         )
         return offset
 
+    def recover_sensor(self):
+        """Auto-recovery sequence to clear a locked I2C bus and reconnect the chip."""
+        self.get_logger().error("Consecutive I2C failures exceeded threshold. Initiating auto-recovery sequence...")
+        
+        # 1. Gracefully close the stale file handle
+        self.get_logger().info("Closing stale SMBus file descriptor...")
+        try:
+            if self.sensor is not None:
+                self.sensor.close()
+        except Exception as e:
+            self.get_logger().warn(f"Failed to close SMBus cleanly: {e}")
+        
+        self.sensor = None
+        
+        # 2. Settle time to allow hardware lines to discharge/release
+        time.sleep(0.15)
+        
+        # 3. Re-open connection
+        self.get_logger().info("Attempting to reconnect and re-initialize MPU6050...")
+        success = self.initialize_sensor()
+        if success:
+            self.get_logger().info("Re-initialization successful! Clearing error counters.")
+            self.consecutive_failures = 0
+            # If the sensor was never calibrated successfully at boot, run calibration now
+            if not self.calibrated:
+                self.gyro_offset = self.calibrate_gyro(self.calibration_samples)
+                self.calibrated = True
+            self.last_time = self.get_clock().now()  # Reset step timer
+        else:
+            self.get_logger().warn("Re-initialization failed. Will retry on next loop tick.")
+
     def publish_imu(self):
+        # If the sensor is completely disconnected or initialization failed, attempt to connect
+        if self.sensor is None:
+            success = self.initialize_sensor()
+            if success:
+                if not self.calibrated:
+                    self.gyro_offset = self.calibrate_gyro(self.calibration_samples)
+                    self.calibrated = True
+                self.last_time = self.get_clock().now()
+            else:
+                return  # Skip this tick until sensor is re-established
+
         try:
             now = self.get_clock().now()
             dt = (now - self.last_time).nanoseconds * 1e-9
@@ -106,6 +174,9 @@ class ImuNode(Node):
             }
 
             self.yaw = self.normalize_angle(self.yaw + gyro_rad_s['z'] * dt)
+
+            # Reset consecutive failures on any successful I2C read
+            self.consecutive_failures = 0
 
             imu_msg = Imu()
             imu_msg.header.stamp = now.to_msg()
@@ -139,10 +210,18 @@ class ImuNode(Node):
             self.yaw_pub.publish(yaw_msg)
 
         except Exception as exc:
-            self.get_logger().warn('IMU read failed: %s' % exc)
+            self.consecutive_failures += 1
+            self.get_logger().warn(
+                f"IMU read failed (Failure count: {self.consecutive_failures}/{self.max_allowed_failures}): {exc}"
+            )
+            
+            # If failures exceed limit, execute the reset sequence
+            if self.consecutive_failures >= self.max_allowed_failures:
+                self.recover_sensor()
 
     def shutdown(self):
-        self.sensor.close()
+        if self.sensor is not None:
+            self.sensor.close()
 
     @staticmethod
     def normalize_angle(angle):

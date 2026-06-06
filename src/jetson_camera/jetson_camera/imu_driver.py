@@ -121,4 +121,9 @@ class Mpu6050:
         }
 
     def close(self):
-        self.bus.close()
+        """Safely closes the I2C bus instance."""
+        if hasattr(self, 'bus') and self.bus is not None:
+            try:
+                self.bus.close()
+            except Exception:
+                pass
