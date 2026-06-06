@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from rclpy.executors import MultiThreadedExecutor
-from rclpy.callback_groups import ReentrantCallbackGroup
-from std_msgs.msg import Bool, Int8, Int64, Float32MultiArray
+from std_msgs.msg import Bool, Int8, Int64, Float32MultiArray, Float32
 import math
 import time
 
@@ -13,60 +11,72 @@ class MovementNode(Node):
     def __init__(self):
         super().__init__('movement_node')
         
-        # 1. Use a Reentrant Callback Group to allow callbacks to run in parallel
-        self.callback_group = ReentrantCallbackGroup()
-        
         self.motor = DaguWheelsDriver()
-        self.wheel_radius = 0.0325
-        self.axle_width = 0.19
-        self.encoder_resolution = 147.0
-        
-        self.SAMPLETIME = 0.1 
-        self.TARGET = 20       
-        self.KP = 0.004        
-        self.KD = 0.0025       
-        self.KI = 0.0005       
 
+        # Robot Constants
+        self.wheel_radius = 0.033
+        self.axle_width = 0.185
+        self.encoder_resolution = 140.0
+        
+        # --- CALIBRATION & LIMITS (SLOW & PRECISE) ---
+        # Right motor is physically weaker, so it gets 1.105x more command power to match the Left
+        self.RIGHT_TRIM = 1.105        
+        self.BASE_PWR = 0.25          # Cruise linear speed
+        self.MIN_STEER_PWR = 0.18     # Minimum motor torque floor (decel target/ramp start)
+        self.MAX_PWR = 0.45           
+
+        # Straight PID heading lock
+        self.KP_STRAIGHT = 2.5        
+        
+        # Linear Ramping Parameters
+        self.RAMP_DISTANCE = 0.15     # Distance in meters (15cm) used to ramp up and ramp down
+
+        # State Machine Variables
+        self.state = "IDLE"           # IDLE, START_LIN, LIN, START_ROT, ROT, STOPPING
+        self.target_distance = 0.0
+        self.target_degrees = 0.0
+        
         self.left_ticks = 0
         self.right_ticks = 0
+        self.current_yaw = 0.0        
+        self.yaw_history = []         # Stores recent yaw samples for rolling filter
         self.last_wheel_state = [0, 0]
-        self.is_busy = False 
+        
+        # Tracking variables
+        self.t1_start = 0
+        self.t2_start = 0
+        self.locked_yaw = 0.0
+        self.stop_counter = 0
 
         # Publishers
         self.status_pub = self.create_publisher(Bool, '/movement_finished', 10)
         self.left_dir_pub = self.create_publisher(Int8, '/motors/left_direction', 10)
         self.right_dir_pub = self.create_publisher(Int8, '/motors/right_direction', 10)
         
-        # 2. Assign all subscribers to the reentrant callback group
-        self.cmd_sub = self.create_subscription(
-            Float32MultiArray, 
-            '/cmd_movement', 
-            self.instruction_cb, 
-            10,
-            callback_group=self.callback_group
-        )
-        self.left_tick_sub = self.create_subscription(
-            Int64, 
-            '/encoders/left_ticks', 
-            self.left_tick_cb, 
-            10,
-            callback_group=self.callback_group
-        )
-        self.right_tick_sub = self.create_subscription(
-            Int64, 
-            '/encoders/right_ticks', 
-            self.right_tick_cb, 
-            10,
-            callback_group=self.callback_group
-        )
+        # Subscribers
+        self.create_subscription(Float32MultiArray, '/cmd_movement', self.instruction_cb, 10)
+        self.create_subscription(Int64, '/encoders/left_ticks', self.left_tick_cb, 10)
+        self.create_subscription(Int64, '/encoders/right_ticks', self.right_tick_cb, 10)
+        self.create_subscription(Float32, '/imu/yaw', self.yaw_cb, 10)
 
-        self.get_logger().info("Movement Node (Multi-Threaded) ready.")
+        # 50Hz Control Loop Timer
+        self.control_timer = self.create_timer(0.02, self.control_loop)
 
-    def left_tick_cb(self, msg):
-        self.left_ticks = msg.data
+        self.get_logger().info("Precision State-Machine Movement Node Active.")
 
-    def right_tick_cb(self, msg):
-        self.right_ticks = msg.data
+    def left_tick_cb(self, msg): self.left_ticks = msg.data
+    def right_tick_cb(self, msg): self.right_ticks = msg.data
+
+    def yaw_cb(self, msg): 
+        """Smooths out IMU yaw data using a Circular Rolling Average."""
+        self.yaw_history.append(msg.data)
+        if len(self.yaw_history) > 5: # 5-sample moving window (~125ms of data)
+            self.yaw_history.pop(0)
+        
+        # Circular mean to prevent averaging bugs near the -180/180 boundary
+        sin_sum = sum(math.sin(y) for y in self.yaw_history)
+        cos_sum = sum(math.cos(y) for y in self.yaw_history)
+        self.current_yaw = math.atan2(sin_sum, cos_sum)
 
     def set_wheel_state(self, left, right):
         if [left, right] != self.last_wheel_state:
@@ -75,93 +85,87 @@ class MovementNode(Node):
             self.left_dir_pub.publish(l_msg)
             self.right_dir_pub.publish(r_msg)
             self.last_wheel_state = [left, right]
-            time.sleep(0.05) 
+
+    def normalize_angle(self, angle):
+        return (angle + math.pi) % (2.0 * math.pi) - math.pi
 
     def instruction_cb(self, msg):
-        if self.is_busy or len(msg.data) < 2:
+        if self.state != "IDLE" or len(msg.data) < 2: 
             return
-            
+        
         dist, angle = msg.data[0], msg.data[1]
-        self.is_busy = True
         
-        try:
-            if dist != 0.0:
-                self.execute_linear_move(dist)
-            elif angle != 0.0:
-                self.execute_rotation(angle)
-        finally:
-            self.stop_and_finish()
+        if dist != 0.0:
+            self.target_distance = dist
+            self.state = "START_LIN"
+        elif angle != 0.0:
+            self.target_degrees = angle
+            self.state = "START_ROT"
 
-    def execute_linear_move(self, distance):
-        direction = -1 if distance > 0 else 1 
-        self.set_wheel_state(direction, direction)
+    def control_loop(self):
+        if self.state == "IDLE":
+            return
 
-        m1_speed, m2_speed = 0.1, 0.1
-        e1_prev_err, e2_prev_err = 0, 0
-        e1_sum_err, e2_sum_err = 0, 0
-        total_dist = 0.0
-        
-        # Start reference points
-        t1_abs_start = self.left_ticks
-        t2_abs_start = self.right_ticks
+        elif self.state == "START_LIN":
+            self.get_logger().info(f"Starting Linear Move of {self.target_distance}m")
+            self.t1_start, self.t2_start = self.left_ticks, self.right_ticks
+            self.locked_yaw = self.current_yaw
+            self.state = "LIN"
 
-        while rclpy.ok() and abs(total_dist) < abs(distance):
-            t1_sample_start = self.left_ticks
-            t2_sample_start = self.right_ticks
+        elif self.state == "LIN":
+            direction = -1 if self.target_distance > 0 else 1
+            self.set_wheel_state(direction, direction)
 
-            time.sleep(self.SAMPLETIME)
+            # Calculate current distance
+            cur_l = abs(self.left_ticks - self.t1_start)
+            cur_r = abs(self.right_ticks - self.t2_start)
+            dist_traveled = ((cur_l + cur_r) / 2.0 / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
+            remaining = abs(self.target_distance) - dist_traveled
 
-            # Because of the MultiThreadedExecutor, self.left_ticks is 
-            # now updating in the background!
-            e1_val = abs(self.left_ticks - t1_sample_start)
-            e2_val = abs(self.right_ticks - t2_sample_start)
+            if dist_traveled >= abs(self.target_distance):
+                self.state = "STOPPING"
+                return
 
-            e1_err = self.TARGET - e1_val
-            e2_err = self.TARGET - e2_val
-
-            m1_adj = (e1_err * self.KP) + ((e1_err - e1_prev_err) * self.KD) + (e1_sum_err * self.KI)
-            m2_adj = (e2_err * self.KP) + ((e2_err - e2_prev_err) * self.KD) + (e2_sum_err * self.KI)
-
-            m1_speed = max(min(0.8, m1_speed + m1_adj), 0.1)
-            m2_speed = max(min(0.8, m2_speed + m2_adj), 0.1)
-
-            self.motor.set_wheels_speed(m1_speed * direction, m2_speed * direction)
+            # --- DYNAMIC LINEAR ACCELERATION & DECELERATION PROFILE ---
+            # Linearly ramps up over the first 15cm and ramps down over the last 15cm
+            ramp_up_factor = min(1.0, dist_traveled / self.RAMP_DISTANCE)
+            ramp_down_factor = min(1.0, remaining / self.RAMP_DISTANCE)
+            combined_factor = min(ramp_up_factor, ramp_down_factor)
             
-            e1_prev_err, e2_prev_err = e1_err, e2_err
-            e1_sum_err = max(min(e1_sum_err + e1_err, 50), -50)
-            e2_sum_err = max(min(e2_sum_err + e2_err, 50), -50)
+            current_base = self.MIN_STEER_PWR + (self.BASE_PWR - self.MIN_STEER_PWR) * combined_factor
 
-            l_moved = abs(self.left_ticks - t1_abs_start)
-            r_moved = abs(self.right_ticks - t2_abs_start)
-            avg_ticks = (l_moved + r_moved) / 2.0
-            total_dist = (avg_ticks / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
+            # Heading Correction
+            yaw_error = self.normalize_angle(self.current_yaw - self.locked_yaw)
+            correction = yaw_error * self.KP_STRAIGHT * direction
 
-    def execute_rotation(self, degrees, speed=0.3):
-        target_rad = abs(degrees) * (math.pi / 180.0)
-        
-        if degrees > 0: 
-            self.set_wheel_state(1, -1)
-            self.motor.set_wheels_speed(speed, -speed)
-        else: 
-            self.set_wheel_state(-1, 1)
-            self.motor.set_wheels_speed(-speed, speed)
+            l_pwr = max(min(self.MAX_PWR, current_base + correction), self.MIN_STEER_PWR)
+            r_pwr = max(min(self.MAX_PWR, (current_base - correction) * self.RIGHT_TRIM), self.MIN_STEER_PWR * self.RIGHT_TRIM)
 
-        t1_abs_start = self.left_ticks
-        t2_abs_start = self.right_ticks
+            self.motor.set_wheels_speed(l_pwr * direction, r_pwr * direction)
 
-        while rclpy.ok():
-            l_dist = (abs(self.left_ticks - t1_abs_start) / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
-            r_dist = (abs(self.right_ticks - t2_abs_start) / self.encoder_resolution) * 2 * math.pi * self.wheel_radius
-            
-            if abs((r_dist + l_dist) / self.axle_width) >= target_rad:
-                break
-            time.sleep(0.01)
+        elif self.state == "START_ROT":
+            self.get_logger().info(f"START_ROT skeleton active for turn of {self.target_degrees}°")
+            # --- SKELETON PLACEHOLDER ---
+            self.state = "ROT"
 
-    def stop_and_finish(self):
-        self.motor.set_wheels_speed(0.0, 0.0)
-        self.set_wheel_state(0, 0)
-        self.status_pub.publish(Bool(data=True))
-        self.is_busy = False
+        elif self.state == "ROT":
+            # --- SKELETON PLACEHOLDER ---
+            self.get_logger().info("ROT skeleton active. Simulating turn completion.", once=True)
+            self.state = "STOPPING"
+
+        elif self.state == "STOPPING":
+            # Multi-cycle braking sequence
+            self.motor.set_wheels_speed(0.0, 0.0)
+            self.set_wheel_state(0, 0)
+            self.stop_counter += 1
+            if self.stop_counter >= 5: 
+                self.stop_counter = 0
+                
+                status_msg = Bool()
+                status_msg.data = True
+                self.status_pub.publish(status_msg)
+                self.get_logger().info("Sequence complete. Stopped.")
+                self.state = "IDLE"
 
     def destroy_node(self):
         self.motor.set_wheels_speed(0.0, 0.0)
@@ -171,14 +175,8 @@ class MovementNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = MovementNode()
-    
-    # 3. Use MultiThreadedExecutor to allow the tick callbacks to fire 
-    # while the instruction loop is running.
-    executor = MultiThreadedExecutor()
-    executor.add_node(node)
-    
     try:
-        executor.spin()
+        rclpy.spin(node)
     except KeyboardInterrupt:
         pass
     finally:
