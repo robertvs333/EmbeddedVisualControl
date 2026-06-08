@@ -20,8 +20,8 @@ class ImuNode(Node):
 
         self.declare_parameter('i2c_bus', 1)
         self.declare_parameter('device_address', 0x68)
-        self.declare_parameter('publish_rate_hz', 100.0)
-        self.declare_parameter('calibration_samples', 200)
+        self.declare_parameter('publish_rate_hz', 20.0)
+        self.declare_parameter('calibration_samples', 400)
         self.declare_parameter('frame_id', 'imu_link')
         self.declare_parameter('imu_topic', '/imu/data_raw')
         self.declare_parameter('yaw_topic', '/imu/yaw')

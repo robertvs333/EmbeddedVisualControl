@@ -9,15 +9,19 @@ class SquareDriverNode(Node):
         
         # Define the exact 50cm x 50cm square pattern path.
         # Alternates strictly: [Distance (meters), Angle (degrees)]
+        #self.sequence = [
+        #    [0.5, 0.0],   # Move Forward 50cm (Side 1)
+        #    [0.0, 90.0],  # Turn Left 90 degrees
+        #    [0.5, 0.0],   # Move Forward 50cm (Side 2)
+        #    [0.0, 90.0],  # Turn Left 90 degrees
+        #    [0.5, 0.0],   # Move Forward 50cm (Side 3)
+        #    [0.0, 90.0],  # Turn Left 90 degrees
+        #    [0.5, 0.0],   # Move Forward 50cm (Side 4)
+        #    [0.0, 90.0]   # Turn Left 90 degrees (Restores original orientation)
+        #]
+
         self.sequence = [
-            [0.5, 0.0],   # Move Forward 50cm (Side 1)
-            [0.0, 90.0],  # Turn Left 90 degrees
-            [0.5, 0.0],   # Move Forward 50cm (Side 2)
-            [0.0, 90.0],  # Turn Left 90 degrees
-            [0.5, 0.0],   # Move Forward 50cm (Side 3)
-            [0.0, 90.0],  # Turn Left 90 degrees
-            [0.5, 0.0],   # Move Forward 50cm (Side 4)
-            [0.0, 90.0]   # Turn Left 90 degrees (Restores original orientation)
+            [1.0, 0.0],   # Move Forward 50cm (Side 1)
         ]
         
         self.current_step = 0

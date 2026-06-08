@@ -30,7 +30,7 @@ class EncoderNode(Node):
         self.declare_parameter('right_ticks_topic', '/encoders/right_ticks')
         self.declare_parameter('left_direction_topic', '/motors/left_direction')
         self.declare_parameter('right_direction_topic', '/motors/right_direction')
-        self.declare_parameter('publish_rate_hz', 10.0)
+        self.declare_parameter('publish_rate_hz', 20.0)
 
         self.left_encoder = WheelEncoderDriver(
             int(self.get_parameter('left_encoder_pin').value)

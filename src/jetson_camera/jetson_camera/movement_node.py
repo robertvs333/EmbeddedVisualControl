@@ -18,12 +18,12 @@ class MovementNode(Node):
         
         # PD Controller Gains
         self.KP_ROT = 0.55         # Proportional Gain (determines rotational push)
-        self.KD_ROT = 0.04         # Derivative Gain (Damping term - eliminates target oscillations)
+        self.KD_ROT = 0.08         # Derivative Gain (Damping term - eliminates target oscillations)
         
         # Tolerances
         self.ROT_TOLERANCE = math.radians(2.0)  # Precision success window (2.0 degrees)
         self.SETTLE_TIME = 0.30                 # Must remain stable inside tolerance for 300ms
-        self.INTER_TURN_DELAY = 0.1            # 1s electrical and physical recovery pause between chunks
+        self.INTER_TURN_DELAY = 0.1             # 1s electrical and physical recovery pause between chunks
 
         # Robot Physical Constants
         self.wheel_radius = 0.0325
@@ -72,9 +72,9 @@ class MovementNode(Node):
         self.right_dir_pub = self.create_publisher(Int8, '/motors/right_direction', 10)
         
         self.create_subscription(Float32MultiArray, '/cmd_movement', self.instruction_cb, 10)
-        self.create_subscription(Int64, '/encoders/left_ticks', self.left_tick_cb, 10)
-        self.create_subscription(Int64, '/encoders/right_ticks', self.right_tick_cb, 10)
-        self.create_subscription(Float32, '/imu/yaw', self.yaw_cb, 10)
+        self.create_subscription(Int64, '/encoders/left_ticks', self.left_tick_cb, 20)
+        self.create_subscription(Int64, '/encoders/right_ticks', self.right_tick_cb, 20)
+        self.create_subscription(Float32, '/imu/yaw', self.yaw_cb, 20)
 
         # Control Loop (50Hz)
         self.control_timer = self.create_timer(0.02, self.control_loop)
