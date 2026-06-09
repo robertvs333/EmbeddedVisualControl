@@ -17,8 +17,8 @@ class AlgorithmNode(Node):
     class StateMachine(Enum):
         INIT = auto()
         SEARCHING = auto()
-        SCANNING_ALIGN = auto()  # New state: Master algorithm controls the centering tracking maneuvers
-        SCANNING_CAPTURE = auto()# New state: Locks chassis motionless to capture the 10-sample average
+        SCANNING_ALIGN = auto()  
+        SCANNING_CAPTURE = auto()
         FINDGAP = auto()
         TRACKING = auto()
         CALLING = auto()
