@@ -49,32 +49,19 @@ class AlgorithmNode(Node):
         self.max_gap_distance = 0.0
 
         # --- Publishers ---
-        # The single point of control for robot chassis movement
         self.motion_pub = self.create_publisher(Float32MultiArray, '/cmd_movement', 10)
-        # Authorizes sensor_fusion.py to look for targets
         self.scan_trigger_pub = self.create_publisher(String, '/detection/trigger', 10)
 
         # --- Subscribers ---
-        # 1. ToF Distance data (Matches sensor data profile from ToF_sensor.py)
         self.create_subscription(Range, '/tof/distance', self.tof_callback, qos_profile=qos_profile_sensor_data)
-        
-        # 2. IMU Relative orientation yaw
         self.create_subscription(Float32, '/imu/yaw', self.yaw_callback, 10)
-        
-        # 3. Movement Node feedback hook
         self.create_subscription(Bool, '/movement_finished', self.movement_finished_callback, 10)
-        
-        # 4. Continuous live tracking angle stream from sensor_fusion
         self.create_subscription(Float32, '/detection/tracking_angle', self.tracking_angle_callback, 10)
-        
-        # 5. Final evaluated 10-sample evaluation payload string
         self.create_subscription(String, '/detection/final_result', self.vision_result_callback, 10)
 
-        # --- 20Hz Master Synchronous Loop Clock ---
         self.control_timer = self.create_timer(0.05, self.movement_loop)
         self.get_logger().info("Master Centralized Strategy Node Online.")
 
-    # --- Subscriber Callbacks ---
 
     def tof_callback(self, msg):
         self.current_distance = msg.range
@@ -89,7 +76,6 @@ class AlgorithmNode(Node):
     def tracking_angle_callback(self, msg):
         """Receives live offset computations from sensor_fusion stream continuously."""
         self.latest_tracking_angle = msg.data
-        # If angle is exactly 0.0 or defaults, it implies nothing is visible in the frame
         if msg.data == 0.0:
             self.target_detected_in_frame = False
         else:
@@ -120,8 +106,6 @@ class AlgorithmNode(Node):
             self.get_logger().error(f"Error reading result dictionary string: {e}")
             self.transition_to(self.StateMachine.SEARCHING)
 
-    # --- Command Utilities ---
-
     def transition_to(self, next_state):
         self.get_logger().info(f"State Transition: {self.state.name} -> {next_state.name}")
         self.state = next_state
@@ -131,8 +115,6 @@ class AlgorithmNode(Node):
         msg.data = [float(distance), float(angle_deg)]
         self.motion_pub.publish(msg)
         self.movement_busy = True
-
-    # --- Master Synchronous Control Loop ---
 
     def movement_loop(self):
         # Guard clause: Wait if the movement_node is actively driving or executing an absolute chunk turn
@@ -170,12 +152,9 @@ class AlgorithmNode(Node):
                     self.get_logger().info("Chassis centered with target. Commencing data snapshot capture.")
                     self.transition_to(self.StateMachine.SCANNING_CAPTURE)
                 else:
-                    # Convert rad error to degrees for our standard movement_node API
                     turn_step_deg = math.degrees(self.latest_tracking_angle)
-                    # Feed proportional corrections safely via movement_node execution blocks
                     self.send_drive_command(0.0, turn_step_deg)
             else:
-                # If we hit an obstacle but sensor_fusion sees absolutely nothing, skip to open path searches
                 self.get_logger().info("No targets visible in current view. Checking for environmental gaps.")
                 self.transition_to(self.StateMachine.FINDGAP)
 
@@ -186,7 +165,7 @@ class AlgorithmNode(Node):
                 trigger_msg.data = "START_SCAN"
                 self.scan_trigger_pub.publish(trigger_msg)
                 self.scan_triggered = True
-                self.movement_busy = True # Force structural wait until vision_result_callback unlocks it
+                self.movement_busy = True 
 
         # FINDGAP STATE: Sweep room boundaries to isolate clear corridors
         elif self.state == self.StateMachine.FINDGAP:
@@ -210,7 +189,7 @@ class AlgorithmNode(Node):
                     self.get_logger().error("No viable paths found. Resetting state machine.")
                     self.transition_to(self.StateMachine.INIT)
 
-        # 6. TRACKING STATE: Aim chassis down the selected escape corridor
+        # TRACKING STATE: Aim chassis down the selected escape corridor
         elif self.state == self.StateMachine.TRACKING:
             yaw_error_rad = self.best_gap_angle - self.current_yaw
             yaw_error_rad = (yaw_error_rad + math.pi) % (2.0 * math.pi) - math.pi
@@ -220,7 +199,7 @@ class AlgorithmNode(Node):
             self.send_drive_command(0.0, yaw_error_deg)
             self.transition_to(self.StateMachine.SEARCHING)
 
-        # 7. CALLING STATE: Goal termination
+        # CALLING STATE: Goal termination
         elif self.state == self.StateMachine.CALLING:
             self.motor.set_wheels_speed(0.0, 0.0)
             self.movement_busy = True
