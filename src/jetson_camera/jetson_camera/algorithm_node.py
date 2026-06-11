@@ -2,7 +2,7 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Bool, Float32, String, Float32MultiArray
+from std_msgs.msg import Bool, Float32, String, Float32MultiArray, OccupancyGrid
 from sensor_msgs.msg import Range
 from rclpy.qos import qos_profile_sensor_data
 import math
@@ -69,23 +69,17 @@ class AlgorithmNode(Node):
         # --- Publishers ---
         self.motion_pub = self.create_publisher(Float32MultiArray, '/cmd_movement', 10)
         self.scan_trigger_pub = self.create_publisher(String, '/detection/trigger', 10)
-        # publisher (FLoat32MultiArray, '/map/mapping') # specifiek punt op grid
+        self.scan_result = self.create_publisher(String, '/detection/map_result', 10)
 
         # --- Subscribers ---
         self.create_subscription(Range, '/tof/distance', self.tof_callback, qos_profile=qos_profile_sensor_data)
         self.create_subscription(Float32, '/imu/yaw', self.yaw_callback, 10)
         self.create_subscription(Bool, '/movement_finished', self.movement_finished_callback, 10)
-<<<<<<< HEAD
         self.create_subscription(Float32MultiArray, '/detection/tracking_angle', self.tracking_angle_callback, 10)
         self.create_subscription(String, '/detection/final_result', self.vision_result_callback, 10)
-        
+        self.create_subscription(OccupancyGrid, '/mapping/semantic_grid',10)
         
         # --- 20Hz Master Synchronous Loop Clock ---
-=======
-        self.create_subscription(Float32, '/detection/tracking_angle', self.tracking_angle_callback, 10)
-        self.create_subscription(String, '/detection/final_result', self.vision_result_callback, 10)
-
->>>>>>> d8980cadae3293e6b82541f559f1c276bd1afac9
         self.control_timer = self.create_timer(0.05, self.movement_loop)
 
 
@@ -133,15 +127,12 @@ class AlgorithmNode(Node):
             self.get_logger().error(f"Error reading result dictionary string: {e}")
             self.transition_to(self.StateMachine.SEARCHING)
 
-<<<<<<< HEAD
 
     # def map_callback(self, msg):
     #     self.obstacle
 
     # --- Command Utilities ---
 
-=======
->>>>>>> d8980cadae3293e6b82541f559f1c276bd1afac9
     def transition_to(self, next_state):
         self.get_logger().info(f"State Transition: {self.state.name} -> {next_state.name}")
         self.state = next_state
