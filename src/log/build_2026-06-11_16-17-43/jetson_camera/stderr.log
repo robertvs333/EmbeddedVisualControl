@@ -1,5 +1,0 @@
-  File "/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/algorithm_node.py", line 164
-    break
-    ^
-SyntaxError: 'break' outside loop
-
