@@ -1,0 +1,115 @@
+[1.462s] Invoking command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera:/opt/ros/foxy JETSON_P_NUMBER=pders- /usr/bin/cmake --build /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces -- -j4 -l4
+[1.724s] [  3%] Built target jetson_interfaces__cpp
+[1.743s] [ 12%] Built target jetson_interfaces__rosidl_generator_c
+[1.928s] [ 22%] Built target jetson_interfaces__rosidl_typesupport_introspection_c
+[1.984s] [ 32%] Built target jetson_interfaces__rosidl_typesupport_introspection_cpp
+[2.011s] [ 41%] Built target jetson_interfaces__rosidl_typesupport_cpp
+[2.017s] [ 51%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_cpp
+[2.055s] [ 61%] Built target jetson_interfaces__rosidl_typesupport_c
+[2.134s] [ 70%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_c
+[2.212s] [ 70%] Built target jetson_interfaces
+[2.293s] [ 74%] Built target jetson_interfaces__py
+[2.406s] [ 80%] Built target jetson_interfaces__python
+[2.523s] [ 87%] Built target jetson_interfaces__rosidl_typesupport_c__pyext
+[2.524s] [ 96%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[2.526s] [100%] Built target jetson_interfaces__rosidl_typesupport_introspection_c__pyext
+[2.572s] Invoked command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera:/opt/ros/foxy JETSON_P_NUMBER=pders- /usr/bin/cmake --build /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces -- -j4 -l4
+[2.619s] Invoking command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera:/opt/ros/foxy JETSON_P_NUMBER=pders- /usr/bin/cmake --install /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces
+[2.652s] -- Install configuration: ""
+[2.652s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/ament_index/resource_index/rosidl_interfaces/jetson_interfaces
+[2.653s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces
+[2.654s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg
+[2.654s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[2.655s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__functions.c
+[2.655s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__functions.h
+[2.656s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__struct.h
+[2.656s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.h
+[2.657s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_generator_c__visibility_control.h
+[2.658s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/dual_image.h
+[2.658s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/library_path.sh
+[2.658s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/library_path.dsv
+[2.659s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_generator_c.so
+[2.660s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces
+[2.660s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg
+[2.660s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[2.661s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_fastrtps_c.h
+[2.661s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[2.662s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_c.so
+[2.662s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces
+[2.663s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg
+[2.663s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[2.664s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_fastrtps_cpp.hpp
+[2.664s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dds_fastrtps
+[2.665s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[2.665s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[2.666s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces
+[2.666s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg
+[2.667s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[2.667s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.c
+[2.668s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_introspection_c.h
+[2.668s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[2.669s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_c.so
+[2.669s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_c.so
+[2.670s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces
+[2.670s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg
+[2.670s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[2.671s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.hpp
+[2.671s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__traits.hpp
+[2.672s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__struct.hpp
+[2.672s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__builder.hpp
+[2.673s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/dual_image.hpp
+[2.673s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
+[2.674s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces
+[2.674s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg
+[2.674s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail
+[2.675s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.cpp
+[2.675s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_introspection_cpp.hpp
+[2.676s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_cpp.so
+[2.676s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_cpp.so
+[2.676s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/pythonpath.sh
+[2.677s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/pythonpath.dsv
+[2.677s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/__init__.py
+[2.813s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg
+[2.814s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/_dual_image.py
+[2.814s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/_dual_image_s.c
+[2.814s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/__init__.py
+[2.815s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so
+[2.817s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so
+[2.820s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so
+[2.822s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__python.so
+[2.823s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/msg/DualImage.idl
+[2.826s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/msg/DualImage.msg
+[2.827s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/ament_index/resource_index/package_run_dependencies/jetson_interfaces
+[2.827s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/ament_index/resource_index/parent_prefix_path/jetson_interfaces
+[2.828s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/ament_prefix_path.sh
+[2.829s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/ament_prefix_path.dsv
+[2.829s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/path.sh
+[2.830s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/path.dsv
+[2.830s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/local_setup.bash
+[2.831s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/local_setup.sh
+[2.832s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/local_setup.zsh
+[2.833s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/local_setup.dsv
+[2.834s] -- Installing: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.dsv
+[2.834s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/ament_index/resource_index/packages/jetson_interfaces
+[2.835s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cExport.cmake
+[2.835s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cExport-noconfig.cmake
+[2.836s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[2.837s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[2.837s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cExport.cmake
+[2.838s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[2.839s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cppExport.cmake
+[2.840s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[2.840s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[2.841s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cppExport.cmake
+[2.841s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[2.842s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake-extras.cmake
+[2.842s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[2.842s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[2.843s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[2.843s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[2.844s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[2.844s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[2.845s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfacesConfig.cmake
+[2.846s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfacesConfig-version.cmake
+[2.847s] -- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.xml
+[2.850s] Invoked command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera:/opt/ros/foxy JETSON_P_NUMBER=pders- /usr/bin/cmake --install /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces

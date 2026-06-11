@@ -1,0 +1,43 @@
+[5.036s] Invoking command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_camera': PYTHONPATH=/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/jetson_camera build --build-base /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/build install --record /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/install.log --single-version-externally-managed install_data
+[6.988s] running egg_info
+[7.015s] writing ../build/jetson_camera/jetson_camera.egg-info/PKG-INFO
+[7.052s] writing dependency_links to ../build/jetson_camera/jetson_camera.egg-info/dependency_links.txt
+[7.053s] writing entry points to ../build/jetson_camera/jetson_camera.egg-info/entry_points.txt
+[7.053s] writing requirements to ../build/jetson_camera/jetson_camera.egg-info/requires.txt
+[7.054s] writing top-level names to ../build/jetson_camera/jetson_camera.egg-info/top_level.txt
+[7.070s] reading manifest file '../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'
+[7.076s] writing manifest file '../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'
+[7.077s] running build
+[7.079s] running build_py
+[7.091s] copying jetson_camera/algorithm_node.py -> /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/build/lib/jetson_camera
+[7.092s] running install
+[7.092s] running install_lib
+[7.093s] copying /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/build/lib/jetson_camera/algorithm_node.py -> /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages/jetson_camera
+[7.094s] byte-compiling /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages/jetson_camera/algorithm_node.py to algorithm_node.cpython-38.pyc
+[7.106s] Sorry: IndentationError: unexpected indent (algorithm_node.py, line 176)
+[7.108s] running install_data
+[7.112s] running install_egg_info
+[7.114s] removing '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info' (and everything under it)
+[7.145s] Copying ../build/jetson_camera/jetson_camera.egg-info to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info
+[7.155s] running install_scripts
+[7.297s] Installing QR_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.300s] Installing ToF_sensor script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.304s] Installing algorithm script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.307s] Installing application_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.308s] Installing camera_detection script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.309s] Installing encoder_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.309s] Installing face_detection_recognition script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.310s] Installing face_tracking_sub script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.312s] Installing grid_mapping_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.314s] Installing imu_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.316s] Installing main_qr script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.326s] Installing movement_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.332s] Installing processing_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.334s] Installing publisher_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.338s] Installing route_plotter script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.341s] Installing sensor_fusion script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.343s] Installing square_driver_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.345s] Installing subscriber_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.347s] Installing tracking script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera
+[7.349s] writing list of installed files to '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/install.log'
+[7.436s] Invoked command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_camera' returned '0': PYTHONPATH=/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/jetson_camera build --build-base /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/build install --record /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/install.log --single-version-externally-managed install_data

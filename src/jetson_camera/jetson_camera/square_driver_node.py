@@ -21,7 +21,7 @@ class SquareDriverNode(Node):
         #]
 
         self.sequence = [
-            [1.0, 0.0],   # Move Forward 50cm (Side 1)
+            [0.0, 45.0],   # Move Forward 50cm (Side 1)
         ]
         
         self.current_step = 0

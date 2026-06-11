@@ -15,6 +15,8 @@ from jetson_camera.motorDrivers.motorDriver import DaguWheelsDriver
 class AlgorithmNode(Node):
 
     class StateMachine(Enum):
+        BOOTING = auto()
+        NETWORK_READY = auto()
         INIT = auto()
         SEARCHING = auto()
         SCANNING_ALIGN = auto()  
@@ -26,12 +28,28 @@ class AlgorithmNode(Node):
     def __init__(self):
         super().__init__('algorithm_node')
         
+
+        self.required_nodes = [
+            'tof_node',
+            'imu_node',
+            'Face_detection_recognition',
+            'movement_node',
+            'object_detection',
+            'plan_route',
+
+        ]
+        
+        self.is_robot_ready = False
+        
+        # Block startup until the full network topology is online
+        self.wait_for_system_mesh()
+
         # Hardware setup
         self.motor = DaguWheelsDriver()
 
         # --- Internal State Variables ---
-        self.state = self.StateMachine.INIT
-        self.current_distance = 1.25  
+        self.state = self.StateMachine.BOOTING
+        self.current_distance = None  
         self.current_yaw = 0.0
         self.movement_busy = False    
 
@@ -41,7 +59,7 @@ class AlgorithmNode(Node):
         self.scan_triggered = False
         self.centering_start_time = None
         self.CENTERING_TIMEOUT = 5.0
-        self.ALIGNMENT_TOLERANCE_RAD = math.radians(4.0) # Stop tracking when within 4 degrees of center
+        self.ALIGNMENT_TOLERANCE_RAD = math.radians(4.0) 
 
         # FINDGAP room scanning state trackers
         self.gap_search_start_time = None
@@ -51,16 +69,24 @@ class AlgorithmNode(Node):
         # --- Publishers ---
         self.motion_pub = self.create_publisher(Float32MultiArray, '/cmd_movement', 10)
         self.scan_trigger_pub = self.create_publisher(String, '/detection/trigger', 10)
+        # publisher (FLoat32MultiArray, '/map/mapping') # specifiek punt op grid
 
         # --- Subscribers ---
         self.create_subscription(Range, '/tof/distance', self.tof_callback, qos_profile=qos_profile_sensor_data)
         self.create_subscription(Float32, '/imu/yaw', self.yaw_callback, 10)
         self.create_subscription(Bool, '/movement_finished', self.movement_finished_callback, 10)
+<<<<<<< HEAD
+        self.create_subscription(Float32MultiArray, '/detection/tracking_angle', self.tracking_angle_callback, 10)
+        self.create_subscription(String, '/detection/final_result', self.vision_result_callback, 10)
+        
+        
+        # --- 20Hz Master Synchronous Loop Clock ---
+=======
         self.create_subscription(Float32, '/detection/tracking_angle', self.tracking_angle_callback, 10)
         self.create_subscription(String, '/detection/final_result', self.vision_result_callback, 10)
 
+>>>>>>> d8980cadae3293e6b82541f559f1c276bd1afac9
         self.control_timer = self.create_timer(0.05, self.movement_loop)
-        self.get_logger().info("Master Centralized Strategy Node Online.")
 
 
     def tof_callback(self, msg):
@@ -92,6 +118,7 @@ class AlgorithmNode(Node):
             
             self.get_logger().info(f"Capture results verified: {target_type} ({confidence*100:.1f}%)")
 
+            ## aanpassen voor twee detectie nodes
             if self.state == self.StateMachine.SCANNING_CAPTURE:
                 self.scan_triggered = False
                 self.movement_busy = False
@@ -106,6 +133,15 @@ class AlgorithmNode(Node):
             self.get_logger().error(f"Error reading result dictionary string: {e}")
             self.transition_to(self.StateMachine.SEARCHING)
 
+<<<<<<< HEAD
+
+    # def map_callback(self, msg):
+    #     self.obstacle
+
+    # --- Command Utilities ---
+
+=======
+>>>>>>> d8980cadae3293e6b82541f559f1c276bd1afac9
     def transition_to(self, next_state):
         self.get_logger().info(f"State Transition: {self.state.name} -> {next_state.name}")
         self.state = next_state
@@ -117,26 +153,78 @@ class AlgorithmNode(Node):
         self.movement_busy = True
 
     def movement_loop(self):
-        # Guard clause: Wait if the movement_node is actively driving or executing an absolute chunk turn
+        # Guard clause: Wait if the movement_node is actively driving 
         if self.movement_busy:
             return
 
+        # BOOTING state
+        if self.state == self.StateMachine.BOOTING and rclpy.ok():
+            current_nodes = self.get_node_names()
+            missing_nodes = [node for node in self.required_nodes if node not in current_nodes]
+            self.get_logger().info("Initializing System Verification...")
+
+            if not missing_nodes:
+                self.get_logger().info("Graph Verified: All nodes are active")           
+                if self.verify_active_publishers():
+                    self.state = self.State_Machine.INIT
+            else:
+                self.get_logger().warn(
+                    f"Startup Blocked. Waiting for missing nodes: {missing_nodes}. "
+                )
+            time.sleep(1.0)
+
         # INIT STATE: Validate startup clearances
         if self.state == self.StateMachine.INIT:
-            if self.current_distance >= 0.3:
-                self.transition_to(self.StateMachine.SEARCHING)
-            else:
-                self.get_logger().warn("Obstacle blocking start. Moving back...")
-                self.send_drive_command(-0.15, 0.0)
+            trigger_msg = String()
+            trigger_msg.data = "START_SCAN"
+            
+            # self.transition_to(self.StateMachine.SEARCHING)
+
+            # if self.current_distance >= 0.3:
+            #     self.transition_to(self.StateMachine.SEARCHING)
+            # else:
+            #     self.get_logger().warn("Obstacle blocking start. Moving back...")
+            #     self.send_drive_command(-0.15, 0.0)
+
+
+
+
 
         # SEARCHING STATE: Forward scanning path progression
-        elif self.state == self.StateMachine.SEARCHING:
-            if self.current_distance >= 0.3:
-                self.send_drive_command(0.2, 0.0)
-            else:
-                self.get_logger().info("Obstacle boundary hit. Entering alignment mode.")
-                self.centering_start_time = time.time()
-                self.transition_to(self.StateMachine.SCANNING_ALIGN)
+        # om de 15 graden draaien, nieuwe scan, check hit, publish hit naar map, en opnieuw tot je de 
+            # total_angle = angle
+            # turn_angle = 15
+            # nieuwe scan --> target angle transition_to SCANNING ALLIGN 
+            # scanning allign done --> publish hit naar map (wait 1 sec)
+            # number_scan += 1
+            # if number_scan >= int(total_angle / turn_angle) 
+            #    return
+
+            # init maar hoek van 90 graden checken
+                # align is ook rijd naar voren (tof, distance - 0.2) zodat scan 
+                # klaar met allign --> terug naar home positie.
+
+                # home positie wordt aan gepast als robot alle stappen van hoeken heeft gehad 
+                # algoritme houd bij waar robot is en waar hij vandaan komt
+                    # [ home_x, home_y, robot_yaw, ]
+
+            # daarna is search state ongeveer 180 graden of meer, (hoek die hij nog niet gezien heeft)
+            # angle increments 15 degrees
+            
+
+
+        # if self.state == self.StateMachine.SEARCHING:
+        #     # if self.current_distance is not self.object_distance and self.current_yaw is not self.object_yaw:
+        #     #     driving_distance = self.object_distance - self.current_distance
+        #     #     driving_yaw = self.object_yaw - self.current_yaw
+        #     #     self.send_drive_command(0.0, driving_yaw)
+        #     #     if 
+        #     #     self.send_drive_command(driving_distance, 0.0)
+
+        #     else:
+        #         self.get_logger().info("Obstacle boundary hit. Entering alignment mode.")
+        #         self.centering_start_time = time.time()
+        #         self.transition_to(self.StateMachine.SCANNING_ALIGN)
 
         # SCANNING_ALIGN STATE: Algorithm-driven target tracking loops
         elif self.state == self.StateMachine.SCANNING_ALIGN:
@@ -199,7 +287,13 @@ class AlgorithmNode(Node):
             self.send_drive_command(0.0, yaw_error_deg)
             self.transition_to(self.StateMachine.SEARCHING)
 
+<<<<<<< HEAD
+            # extra loop om te checken of hij draait/beweegt via imu
+
+        # 7. CALLING STATE: Goal termination
+=======
         # CALLING STATE: Goal termination
+>>>>>>> d8980cadae3293e6b82541f559f1c276bd1afac9
         elif self.state == self.StateMachine.CALLING:
             self.motor.set_wheels_speed(0.0, 0.0)
             self.movement_busy = True

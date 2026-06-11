@@ -1,0 +1,194 @@
+[1.059s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[1.060s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f7bf2a070>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=4, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f7bf2a070>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f7beb47c0>)
+[2.124s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[2.125s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[2.126s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[2.127s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[2.127s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[2.128s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[2.128s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/jetson/Final_assignment/EmbeddedVisualControl/src'
+[2.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[2.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[2.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[2.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[2.131s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[2.131s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[2.132s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[2.133s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[2.134s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[2.234s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[2.235s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[2.235s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[2.236s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[2.236s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[2.238s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[2.239s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[2.240s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[2.241s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[2.242s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[2.243s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[2.245s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extensions ['ignore', 'ignore_ament_install']
+[2.246s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extension 'ignore'
+[2.248s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extension 'ignore_ament_install'
+[2.250s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extensions ['colcon_pkg']
+[2.253s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extension 'colcon_pkg'
+[2.255s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extensions ['colcon_meta']
+[2.256s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extension 'colcon_meta'
+[2.257s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extensions ['ros']
+[2.258s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_camera) by extension 'ros'
+[2.274s] DEBUG:colcon.colcon_core.package_identification:Package 'jetson_camera' with type 'ros.ament_python' and name 'jetson_camera'
+[2.276s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[2.277s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extension 'ignore'
+[2.278s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extension 'ignore_ament_install'
+[2.279s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extensions ['colcon_pkg']
+[2.279s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extension 'colcon_pkg'
+[2.280s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extensions ['colcon_meta']
+[2.281s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extension 'colcon_meta'
+[2.282s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extensions ['ros']
+[2.283s] Level 1:colcon.colcon_core.package_identification:_identify(jetson_interfaces) by extension 'ros'
+[2.287s] DEBUG:colcon.colcon_core.package_identification:Package 'jetson_interfaces' with type 'ros.ament_cmake' and name 'jetson_interfaces'
+[2.289s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[2.290s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[2.291s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[2.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[2.294s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[2.295s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[2.307s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[2.308s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[2.529s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[2.536s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[2.562s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/jetson/Final_assignment/EmbeddedVisualControl/src/install
+[2.571s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 191 installed packages in /opt/ros/foxy
+[2.581s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[2.893s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'cmake_args' from command line to 'None'
+[2.894s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'cmake_target' from command line to 'None'
+[2.895s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[2.896s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'cmake_clean_cache' from command line to 'False'
+[2.897s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'cmake_clean_first' from command line to 'False'
+[2.897s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'cmake_force_configure' from command line to 'False'
+[2.898s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'ament_cmake_args' from command line to 'None'
+[2.898s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'catkin_cmake_args' from command line to 'None'
+[2.899s] Level 5:colcon.colcon_core.verb:set package 'jetson_camera' build argument 'catkin_skip_building_tests' from command line to 'False'
+[2.900s] DEBUG:colcon.colcon_core.verb:Building package 'jetson_camera' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera', 'merge_install': False, 'path': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_camera', 'symlink_install': False, 'test_result_base': None}
+[2.902s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'cmake_args' from command line to 'None'
+[2.903s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'cmake_target' from command line to 'None'
+[2.904s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[2.904s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[2.905s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[2.905s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[2.906s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[2.907s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[2.907s] Level 5:colcon.colcon_core.verb:set package 'jetson_interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[2.912s] DEBUG:colcon.colcon_core.verb:Building package 'jetson_interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces', 'merge_install': False, 'path': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_interfaces', 'symlink_install': False, 'test_result_base': None}
+[2.913s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[2.929s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[2.930s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_camera' with build type 'ament_python'
+[2.930s] Level 1:colcon.colcon_core.shell:create_environment_hook('jetson_camera', 'ament_prefix_path')
+[2.947s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[2.948s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/hook/ament_prefix_path.ps1'
+[2.965s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/hook/ament_prefix_path.dsv'
+[2.969s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/hook/ament_prefix_path.sh'
+[2.977s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.978s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.040s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_interfaces' with build type 'ament_cmake'
+[3.041s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_interfaces'
+[3.043s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.043s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[4.774s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_camera'
+[4.777s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[4.778s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[4.829s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera:/opt/ros/foxy /usr/bin/cmake --build /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces -- -j4 -l4
+[7.408s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_camera': PYTHONPATH=/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/jetson_camera build --build-base /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/build install --record /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/install.log --single-version-externally-managed install_data
+[8.444s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera:/opt/ros/foxy /usr/bin/cmake --build /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces -- -j4 -l4
+[8.538s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera:/opt/ros/foxy /usr/bin/cmake --install /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces
+[9.406s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(jetson_interfaces)
+[9.421s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces' for CMake module files
+[9.441s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces' for CMake config files
+[9.450s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera:/opt/ros/foxy /usr/bin/cmake --install /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces
+[9.457s] Level 1:colcon.colcon_core.shell:create_environment_hook('jetson_interfaces', 'cmake_prefix_path')
+[9.462s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/cmake_prefix_path.ps1'
+[9.465s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/cmake_prefix_path.dsv'
+[9.469s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/cmake_prefix_path.sh'
+[9.475s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib'
+[9.476s] Level 1:colcon.colcon_core.shell:create_environment_hook('jetson_interfaces', 'ld_library_path_lib')
+[9.478s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/ld_library_path_lib.ps1'
+[9.482s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/ld_library_path_lib.dsv'
+[9.485s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/ld_library_path_lib.sh'
+[9.489s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/bin'
+[9.490s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/pkgconfig/jetson_interfaces.pc'
+[9.492s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages'
+[9.494s] Level 1:colcon.colcon_core.shell:create_environment_hook('jetson_interfaces', 'pythonpath')
+[9.497s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/pythonpath.ps1'
+[9.503s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/pythonpath.dsv'
+[9.507s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/pythonpath.sh'
+[9.516s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/bin'
+[9.520s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.ps1'
+[9.526s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.dsv'
+[9.532s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.sh'
+[9.538s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.bash'
+[9.548s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.zsh'
+[9.568s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/colcon-core/packages/jetson_interfaces)
+[9.575s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(jetson_interfaces)
+[9.578s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces' for CMake module files
+[9.585s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces' for CMake config files
+[9.591s] Level 1:colcon.colcon_core.shell:create_environment_hook('jetson_interfaces', 'cmake_prefix_path')
+[9.596s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/cmake_prefix_path.ps1'
+[9.607s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/cmake_prefix_path.dsv'
+[9.617s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/cmake_prefix_path.sh'
+[9.632s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib'
+[9.633s] Level 1:colcon.colcon_core.shell:create_environment_hook('jetson_interfaces', 'ld_library_path_lib')
+[9.645s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/ld_library_path_lib.ps1'
+[9.677s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/ld_library_path_lib.dsv'
+[9.680s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/ld_library_path_lib.sh'
+[9.684s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/bin'
+[9.685s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/pkgconfig/jetson_interfaces.pc'
+[9.686s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages'
+[9.687s] Level 1:colcon.colcon_core.shell:create_environment_hook('jetson_interfaces', 'pythonpath')
+[9.689s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/pythonpath.ps1'
+[9.696s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/pythonpath.dsv'
+[9.704s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/hook/pythonpath.sh'
+[9.730s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/bin'
+[9.733s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.ps1'
+[9.748s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.dsv'
+[9.757s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.sh'
+[9.763s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.bash'
+[9.789s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.zsh'
+[9.792s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/colcon-core/packages/jetson_interfaces)
+[10.167s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera' for CMake module files
+[10.170s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_camera' returned '0': PYTHONPATH=/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/jetson_camera build --build-base /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/build install --record /home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/install.log --single-version-externally-managed install_data
+[10.182s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera' for CMake config files
+[10.218s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib'
+[10.224s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/bin'
+[10.225s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/pkgconfig/jetson_camera.pc'
+[10.226s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages'
+[10.254s] Level 1:colcon.colcon_core.shell:create_environment_hook('jetson_camera', 'pythonpath')
+[10.256s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/hook/pythonpath.ps1'
+[10.258s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/hook/pythonpath.dsv'
+[10.266s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/hook/pythonpath.sh'
+[10.273s] Level 1:colcon.colcon_core.environment:checking '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/bin'
+[10.273s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(jetson_camera)
+[10.280s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/package.ps1'
+[10.283s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/package.dsv'
+[10.286s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/package.sh'
+[10.288s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/package.bash'
+[10.290s] INFO:colcon.colcon_core.shell:Creating package script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/jetson_camera/package.zsh'
+[10.292s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/share/colcon-core/packages/jetson_camera)
+[10.295s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[10.296s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[10.297s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[10.297s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[10.327s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[10.327s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[10.328s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[10.398s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.Notifications exited with status 1
+[10.400s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[10.401s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/local_setup.ps1'
+[10.423s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/_local_setup_util_ps1.py'
+[10.431s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/setup.ps1'
+[10.457s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/local_setup.sh'
+[10.459s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/_local_setup_util_sh.py'
+[10.471s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/setup.sh'
+[10.511s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/local_setup.bash'
+[10.516s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/setup.bash'
+[10.556s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/local_setup.zsh'
+[10.562s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/setup.zsh'

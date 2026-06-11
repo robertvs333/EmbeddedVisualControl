@@ -36,7 +36,7 @@ class TofPublisherNode(Node):
             self.get_logger().warn("Running in SIMULATED MOCK MODE (ToFDriver.py missing or disconnected).")
 
         # 2. High-Frequency Timer Loop (30Hz)
-        self.timer = self.create_timer(0.033, self.timer_callback)
+        self.timer = self.create_timer(0.05, self.timer_callback)
 
     def timer_callback(self):
         distance_meters = 0.0
