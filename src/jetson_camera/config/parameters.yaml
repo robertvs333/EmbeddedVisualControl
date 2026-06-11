@@ -14,7 +14,7 @@ encoder_node:
     right_ticks_topic: /encoders/right_ticks
     left_direction_topic: /motors/left_direction
     right_direction_topic: /motors/right_direction
-    publish_rate_hz: 10.0
+    publish_rate_hz: 20.0
 
 route_plotter:
   ros__parameters:
@@ -22,20 +22,34 @@ route_plotter:
     right_ticks_topic: /encoders/right_ticks
     left_direction_topic: /motors/left_direction
     right_direction_topic: /motors/right_direction
+    imu_yaw_topic: /imu/yaw
+    heading_source: fused
+    imu_heading_weight: 0.9
     path_topic: /route/path
     odom_topic: /route/odom
     frame_id: odom
     child_frame_id: base_link
     wheel_radius: 0.0325
     wheel_base: 0.19
-    ticks_per_rev: 147.0
+    ticks_per_rev: 140.0
     initial_x: 0.0
     initial_y: 0.0
-    initial_theta: 0.0
+    initial_theta: -1.5708
     ticks_are_signed: true
     save_plot_on_shutdown: true
     plot_output_path: route_plot.png
     save_route_log_on_shutdown: true
     route_log_output_path: route_log.csv
     show_live_plot: true
-    update_rate_hz: 10.0
+    update_rate_hz: 20.0
+
+imu_node:
+  ros__parameters:
+    i2c_bus: 1
+    device_address: 104
+    publish_rate_hz: 20.0
+    calibration_samples: 400
+    frame_id: imu_link
+    imu_topic: /imu/data_raw
+    yaw_topic: /imu/yaw
+    gyro_deadband_deg_s: 0.15
