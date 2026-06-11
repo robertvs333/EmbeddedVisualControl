@@ -13,8 +13,8 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='jetson_camera',
-            executable='camera_detection',
-            name='camera_detection',
+            executable='object_detection',
+            name='object_detection',
             parameters=[config]
         )
     ])

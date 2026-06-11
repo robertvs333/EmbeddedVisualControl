@@ -13,8 +13,8 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='jetson_camera',
-            executable='sensor_fusion',
-            name='sensor_fusion',
+            executable='face_detection_recognition',
+            name='face_detection_recognition',
             parameters=[config]
         )
     ])
