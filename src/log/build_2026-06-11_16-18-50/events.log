@@ -1,0 +1,264 @@
+[0.000000] (-) TimerEvent: {}
+[0.000965] (jetson_camera) JobQueued: {'identifier': 'jetson_camera', 'dependencies': OrderedDict()}
+[0.001837] (jetson_interfaces) JobQueued: {'identifier': 'jetson_interfaces', 'dependencies': OrderedDict()}
+[0.002393] (jetson_camera) JobStarted: {'identifier': 'jetson_camera'}
+[0.071528] (jetson_interfaces) JobStarted: {'identifier': 'jetson_interfaces'}
+[0.080337] (-) TimerEvent: {}
+[0.181295] (-) TimerEvent: {}
+[0.283002] (-) TimerEvent: {}
+[0.384729] (-) TimerEvent: {}
+[0.486463] (-) TimerEvent: {}
+[0.588135] (-) TimerEvent: {}
+[0.689808] (-) TimerEvent: {}
+[0.796178] (-) TimerEvent: {}
+[0.899529] (-) TimerEvent: {}
+[1.001030] (-) TimerEvent: {}
+[1.102407] (-) TimerEvent: {}
+[1.203137] (-) TimerEvent: {}
+[1.304699] (-) TimerEvent: {}
+[1.406133] (-) TimerEvent: {}
+[1.506821] (-) TimerEvent: {}
+[1.607649] (-) TimerEvent: {}
+[1.708397] (-) TimerEvent: {}
+[1.810015] (-) TimerEvent: {}
+[1.910741] (-) TimerEvent: {}
+[2.011523] (-) TimerEvent: {}
+[2.112352] (-) TimerEvent: {}
+[2.187124] (jetson_interfaces) JobProgress: {'identifier': 'jetson_interfaces', 'progress': 'cmake'}
+[2.187446] (jetson_interfaces) JobProgress: {'identifier': 'jetson_interfaces', 'progress': 'build'}
+[2.204907] (jetson_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces', '--', '-j4', '-l4'], 'cwd': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'jetson'), ('SSH_CLIENT', '192.168.8.165 53602 22'), ('LC_TIME', 'nl_NL.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('OLDPWD', '/home/jetson'), ('SSH_TTY', '/dev/pts/10'), ('JETSON_L4T', '32.6.1'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Nano Developer Kit'), ('LC_MONETARY', 'nl_NL.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'jetson'), ('JETSON_MODULE', ''), ('JETSON_SERIAL_NUMBER', '1654424001998'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('JETSON_CODENAME', 'Porg'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '14'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/jetson/.local/bin:/opt/ros/foxy/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin'), ('LC_ADDRESS', 'nl_NL.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:19.0'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'nl_NL.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra210'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'nl_NL.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_BOARDIDS', 'p3448'), ('LC_MEASUREMENT', 'nl_NL.UTF-8'), ('LC_IDENTIFICATION', 'nl_NL.UTF-8'), ('JETSON_CUDA_ARCH_BIN', '5.3'), ('PWD', '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces'), ('SSH_CONNECTION', '192.168.8.165 53602 192.168.8.238 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'nl_NL.UTF-8'), ('LC_PAPER', 'nl_NL.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', '4.6'), ('JETSON_P_NUMBER', 'p -tatu'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[2.212603] (-) TimerEvent: {}
+[2.317936] (-) TimerEvent: {}
+[2.424880] (-) TimerEvent: {}
+[2.526326] (-) TimerEvent: {}
+[2.629038] (-) TimerEvent: {}
+[2.731035] (-) TimerEvent: {}
+[2.833214] (-) TimerEvent: {}
+[2.935680] (-) TimerEvent: {}
+[3.038485] (-) TimerEvent: {}
+[3.139283] (-) TimerEvent: {}
+[3.184029] (jetson_interfaces) StdoutLine: {'line': b'[ 12%] Built target jetson_interfaces__cpp\n'}
+[3.239451] (-) TimerEvent: {}
+[3.340179] (-) TimerEvent: {}
+[3.440914] (-) TimerEvent: {}
+[3.541902] (-) TimerEvent: {}
+[3.572934] (jetson_interfaces) StdoutLine: {'line': b'[ 32%] Built target jetson_interfaces__rosidl_generator_c\n'}
+[3.642090] (-) TimerEvent: {}
+[3.743765] (-) TimerEvent: {}
+[3.836118] (jetson_interfaces) StdoutLine: {'line': b'[ 41%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[3.843824] (-) TimerEvent: {}
+[3.944545] (-) TimerEvent: {}
+[4.050011] (-) TimerEvent: {}
+[4.150741] (-) TimerEvent: {}
+[4.252360] (-) TimerEvent: {}
+[4.294674] (jetson_interfaces) StdoutLine: {'line': b'[ 51%] Built target jetson_interfaces__rosidl_typesupport_introspection_c\n'}
+[4.352512] (-) TimerEvent: {}
+[4.453669] (-) TimerEvent: {}
+[4.555382] (-) TimerEvent: {}
+[4.657147] (-) TimerEvent: {}
+[4.756101] (jetson_interfaces) StdoutLine: {'line': b'[ 70%] Built target jetson_interfaces__rosidl_typesupport_c\n'}
+[4.758265] (-) TimerEvent: {}
+[4.860323] (-) TimerEvent: {}
+[4.961957] (-) TimerEvent: {}
+[5.063687] (-) TimerEvent: {}
+[5.165124] (-) TimerEvent: {}
+[5.265856] (-) TimerEvent: {}
+[5.281939] (jetson_interfaces) StdoutLine: {'line': b'[ 74%] Built target jetson_interfaces__rosidl_typesupport_fastrtps_c\n'}
+[5.366025] (-) TimerEvent: {}
+[5.466722] (-) TimerEvent: {}
+[5.567468] (-) TimerEvent: {}
+[5.668571] (-) TimerEvent: {}
+[5.769865] (-) TimerEvent: {}
+[5.807804] (jetson_interfaces) StdoutLine: {'line': b'[ 80%] Built target jetson_interfaces__rosidl_typesupport_introspection_cpp\n'}
+[5.870718] (-) TimerEvent: {}
+[5.971852] (-) TimerEvent: {}
+[6.072616] (-) TimerEvent: {}
+[6.173365] (-) TimerEvent: {}
+[6.218714] (jetson_camera) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../build/jetson_camera', 'build', '--build-base', '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/build', 'install', '--record', '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/jetson_camera', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'jetson', 'SSH_CLIENT': '192.168.8.165 53602 22', 'LC_TIME': 'nl_NL.UTF-8', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64', 'MOTD_SHOWN': 'pam', 'HOME': '/home/jetson', 'OLDPWD': '/home/jetson', 'SSH_TTY': '/dev/pts/10', 'JETSON_L4T': '32.6.1', 'ROS_PYTHON_VERSION': '3', 'JETSON_MODEL': 'NVIDIA Jetson Nano Developer Kit', 'LC_MONETARY': 'nl_NL.UTF-8', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'jetson', 'JETSON_MODULE': '', 'JETSON_SERIAL_NUMBER': '1654424001998', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'JETSON_CODENAME': 'Porg', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '14', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/jetson/.local/bin:/opt/ros/foxy/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin', 'LC_ADDRESS': 'nl_NL.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': 'localhost:19.0', 'LANG': 'en_US.UTF-8', 'LC_TELEPHONE': 'nl_NL.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'JETSON_SOC': 'tegra210', 'AMENT_PREFIX_PATH': '/opt/ros/foxy', 'SHELL': '/bin/bash', 'LC_NAME': 'nl_NL.UTF-8', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'JETSON_BOARDIDS': 'p3448', 'LC_MEASUREMENT': 'nl_NL.UTF-8', 'LC_IDENTIFICATION': 'nl_NL.UTF-8', 'JETSON_CUDA_ARCH_BIN': '5.3', 'PWD': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera', 'SSH_CONNECTION': '192.168.8.165 53602 192.168.8.238 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'LC_NUMERIC': 'nl_NL.UTF-8', 'LC_PAPER': 'nl_NL.UTF-8', 'COLCON': '1', 'JETSON_JETPACK': '4.6', 'JETSON_P_NUMBER': 'p -tatu'}, 'shell': False}
+[6.276590] (-) TimerEvent: {}
+[6.302243] (jetson_interfaces) StdoutLine: {'line': b'[ 87%] Built target jetson_interfaces__rosidl_typesupport_cpp\n'}
+[6.376762] (-) TimerEvent: {}
+[6.477589] (-) TimerEvent: {}
+[6.579476] (-) TimerEvent: {}
+[6.657823] (jetson_interfaces) StdoutLine: {'line': b'[ 87%] Built target jetson_interfaces\n'}
+[6.679631] (-) TimerEvent: {}
+[6.781254] (-) TimerEvent: {}
+[6.882791] (-) TimerEvent: {}
+[6.984139] (-) TimerEvent: {}
+[7.085268] (-) TimerEvent: {}
+[7.112070] (jetson_interfaces) StdoutLine: {'line': b'[ 93%] Built target jetson_interfaces__py\n'}
+[7.185446] (-) TimerEvent: {}
+[7.286878] (-) TimerEvent: {}
+[7.387639] (-) TimerEvent: {}
+[7.488465] (-) TimerEvent: {}
+[7.592980] (-) TimerEvent: {}
+[7.615525] (jetson_interfaces) StdoutLine: {'line': b'Built target jetson_interfaces__python\n'}
+[7.693143] (-) TimerEvent: {}
+[7.794619] (-) TimerEvent: {}
+[7.895364] (-) TimerEvent: {}
+[7.945114] (jetson_interfaces) StdoutLine: {'line': b'Built target jetson_interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[7.995528] (-) TimerEvent: {}
+[8.096245] (-) TimerEvent: {}
+[8.197484] (-) TimerEvent: {}
+[8.298204] (-) TimerEvent: {}
+[8.390300] (jetson_interfaces) StdoutLine: {'line': b'Built target jetson_interfaces__rosidl_typesupport_c__pyext\n'}
+[8.398383] (-) TimerEvent: {}
+[8.499405] (-) TimerEvent: {}
+[8.600192] (-) TimerEvent: {}
+[8.701027] (-) TimerEvent: {}
+[8.745254] (jetson_camera) StdoutLine: {'line': b'running egg_info\n'}
+[8.749402] (jetson_interfaces) StdoutLine: {'line': b'Built target jetson_interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[8.750870] (jetson_camera) StdoutLine: {'line': b'writing ../build/jetson_camera/jetson_camera.egg-info/PKG-INFO\n'}
+[8.753402] (jetson_camera) StdoutLine: {'line': b'writing dependency_links to ../build/jetson_camera/jetson_camera.egg-info/dependency_links.txt\n'}
+[8.758038] (jetson_camera) StdoutLine: {'line': b'writing entry points to ../build/jetson_camera/jetson_camera.egg-info/entry_points.txt\n'}
+[8.761287] (jetson_camera) StdoutLine: {'line': b'writing requirements to ../build/jetson_camera/jetson_camera.egg-info/requires.txt\n'}
+[8.764607] (jetson_camera) StdoutLine: {'line': b'writing top-level names to ../build/jetson_camera/jetson_camera.egg-info/top_level.txt\n'}
+[8.801360] (-) TimerEvent: {}
+[8.803773] (jetson_camera) StdoutLine: {'line': b"reading manifest file '../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'\n"}
+[8.811697] (jetson_camera) StdoutLine: {'line': b"writing manifest file '../build/jetson_camera/jetson_camera.egg-info/SOURCES.txt'\n"}
+[8.820147] (jetson_camera) StdoutLine: {'line': b'running build\n'}
+[8.820907] (jetson_camera) StdoutLine: {'line': b'running build_py\n'}
+[8.837385] (jetson_interfaces) CommandEnded: {'returncode': 0}
+[8.844646] (jetson_camera) StdoutLine: {'line': b'running install\n'}
+[8.845617] (jetson_camera) StdoutLine: {'line': b'running install_lib\n'}
+[8.865466] (jetson_interfaces) JobProgress: {'identifier': 'jetson_interfaces', 'progress': 'install'}
+[8.866827] (jetson_camera) StdoutLine: {'line': b'running install_data\n'}
+[8.871304] (jetson_camera) StdoutLine: {'line': b'running install_egg_info\n'}
+[8.882799] (jetson_camera) StdoutLine: {'line': b"removing '/home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[8.889953] (jetson_camera) StdoutLine: {'line': b'Copying ../build/jetson_camera/jetson_camera.egg-info to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/python3.8/site-packages/jetson_camera-0.0.0-py3.8.egg-info\n'}
+[8.901903] (-) TimerEvent: {}
+[8.905935] (jetson_camera) StdoutLine: {'line': b'running install_scripts\n'}
+[9.001750] (-) TimerEvent: {}
+[9.031425] (jetson_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces'], 'cwd': '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'jetson'), ('SSH_CLIENT', '192.168.8.165 53602 22'), ('LC_TIME', 'nl_NL.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jetson'), ('OLDPWD', '/home/jetson'), ('SSH_TTY', '/dev/pts/10'), ('JETSON_L4T', '32.6.1'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Nano Developer Kit'), ('LC_MONETARY', 'nl_NL.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'jetson'), ('JETSON_MODULE', ''), ('JETSON_SERIAL_NUMBER', '1654424001998'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('JETSON_CODENAME', 'Porg'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '14'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/jetson/.local/bin:/opt/ros/foxy/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin'), ('LC_ADDRESS', 'nl_NL.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:19.0'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'nl_NL.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra210'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'nl_NL.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_BOARDIDS', 'p3448'), ('LC_MEASUREMENT', 'nl_NL.UTF-8'), ('LC_IDENTIFICATION', 'nl_NL.UTF-8'), ('JETSON_CUDA_ARCH_BIN', '5.3'), ('PWD', '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_interfaces'), ('SSH_CONNECTION', '192.168.8.165 53602 192.168.8.238 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'nl_NL.UTF-8'), ('LC_PAPER', 'nl_NL.UTF-8'), ('COLCON', '1'), ('JETSON_JETPACK', '4.6'), ('JETSON_P_NUMBER', 'p -tatu'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[9.083976] (jetson_interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[9.085734] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/ament_index/resource_index/rosidl_interfaces/jetson_interfaces\n'}
+[9.087108] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces\n'}
+[9.090340] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[9.093375] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[9.094672] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__functions.c\n'}
+[9.095755] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__functions.h\n'}
+[9.096821] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__struct.h\n'}
+[9.098098] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.h\n'}
+[9.099139] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[9.100162] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/dual_image.h\n'}
+[9.101437] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/library_path.sh\n'}
+[9.102046] (-) TimerEvent: {}
+[9.104315] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/library_path.dsv\n'}
+[9.105742] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_generator_c.so\n'}
+[9.108354] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces\n'}
+[9.109670] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[9.110907] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[9.112268] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_fastrtps_c.h\n'}
+[9.113331] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[9.115967] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[9.118472] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces\n'}
+[9.119799] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[9.121055] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[9.122816] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[9.129541] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dds_fastrtps\n'}
+[9.134038] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[9.135789] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[9.141717] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces\n'}
+[9.144700] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[9.148715] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[9.151183] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.c\n'}
+[9.160345] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_introspection_c.h\n'}
+[9.164788] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[9.168427] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_c.so\n'}
+[9.171233] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_c.so\n'}
+[9.183846] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces\n'}
+[9.187352] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[9.188565] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[9.195308] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.hpp\n'}
+[9.196694] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__traits.hpp\n'}
+[9.198035] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__struct.hpp\n'}
+[9.199459] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__builder.hpp\n'}
+[9.200740] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/dual_image.hpp\n'}
+[9.201925] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[9.208209] (-) TimerEvent: {}
+[9.209213] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces\n'}
+[9.219895] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg\n'}
+[9.221388] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail\n'}
+[9.224987] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__type_support.cpp\n'}
+[9.226695] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/include/jetson_interfaces/msg/detail/dual_image__rosidl_typesupport_introspection_cpp.hpp\n'}
+[9.229055] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[9.231380] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__rosidl_typesupport_cpp.so\n'}
+[9.233683] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/pythonpath.sh\n'}
+[9.236064] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/pythonpath.dsv\n'}
+[9.239034] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/__init__.py\n'}
+[9.249180] (jetson_camera) StdoutLine: {'line': b'Installing QR_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.257710] (jetson_camera) StdoutLine: {'line': b'Installing ToF_sensor script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.261638] (jetson_camera) StdoutLine: {'line': b'Installing algorithm script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.266133] (jetson_camera) StdoutLine: {'line': b'Installing application_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.270335] (jetson_camera) StdoutLine: {'line': b'Installing camera_detection script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.275349] (jetson_camera) StdoutLine: {'line': b'Installing encoder_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.279191] (jetson_camera) StdoutLine: {'line': b'Installing face_detection_recognition script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.282926] (jetson_camera) StdoutLine: {'line': b'Installing face_tracking_sub script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.287295] (jetson_camera) StdoutLine: {'line': b'Installing grid_mapping_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.290567] (jetson_camera) StdoutLine: {'line': b'Installing imu_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.294243] (jetson_camera) StdoutLine: {'line': b'Installing main_qr script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.297928] (jetson_camera) StdoutLine: {'line': b'Installing movement_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.302597] (jetson_camera) StdoutLine: {'line': b'Installing processing_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.308340] (jetson_camera) StdoutLine: {'line': b'Installing publisher_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.312455] (-) TimerEvent: {}
+[9.316725] (jetson_camera) StdoutLine: {'line': b'Installing route_plotter script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.324663] (jetson_camera) StdoutLine: {'line': b'Installing sensor_fusion script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.326682] (jetson_camera) StdoutLine: {'line': b'Installing square_driver_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.328503] (jetson_camera) StdoutLine: {'line': b'Installing subscriber_node script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.330261] (jetson_camera) StdoutLine: {'line': b'Installing tracking script to /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_camera/lib/jetson_camera\n'}
+[9.332466] (jetson_camera) StdoutLine: {'line': b"writing list of installed files to '/home/jetson/Final_assignment/EmbeddedVisualControl/src/build/jetson_camera/install.log'\n"}
+[9.412641] (-) TimerEvent: {}
+[9.501920] (jetson_camera) CommandEnded: {'returncode': 0}
+[9.513479] (-) TimerEvent: {}
+[9.614127] (jetson_camera) JobEnded: {'identifier': 'jetson_camera', 'rc': 0}
+[9.615906] (-) TimerEvent: {}
+[9.716541] (-) TimerEvent: {}
+[9.742473] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg\n'}
+[9.752180] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/_dual_image.py\n'}
+[9.752894] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/_dual_image_s.c\n'}
+[9.753435] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/msg/__init__.py\n'}
+[9.753908] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so\n'}
+[9.757442] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so\n'}
+[9.761780] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/python3.8/site-packages/jetson_interfaces/jetson_interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so\n'}
+[9.795385] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/lib/libjetson_interfaces__python.so\n'}
+[9.802747] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/msg/DualImage.idl\n'}
+[9.805658] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/msg/DualImage.msg\n'}
+[9.807190] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/ament_index/resource_index/package_run_dependencies/jetson_interfaces\n'}
+[9.808928] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/ament_index/resource_index/parent_prefix_path/jetson_interfaces\n'}
+[9.810479] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/ament_prefix_path.sh\n'}
+[9.812162] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/ament_prefix_path.dsv\n'}
+[9.813635] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/path.sh\n'}
+[9.815329] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/environment/path.dsv\n'}
+[9.816661] (-) TimerEvent: {}
+[9.817586] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/local_setup.bash\n'}
+[9.819708] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/local_setup.sh\n'}
+[9.822191] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/local_setup.zsh\n'}
+[9.836573] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/local_setup.dsv\n'}
+[9.840729] (jetson_interfaces) StdoutLine: {'line': b'-- Installing: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.dsv\n'}
+[9.857995] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/ament_index/resource_index/packages/jetson_interfaces\n'}
+[9.860142] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cExport.cmake\n'}
+[9.863066] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[9.865414] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[9.867523] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[9.869880] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cExport.cmake\n'}
+[9.874862] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[9.878433] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_generator_cppExport.cmake\n'}
+[9.897189] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[9.898480] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[9.899689] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[9.901070] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[9.902473] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[9.905803] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[9.907143] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[9.910054] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[9.911132] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[9.914073] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[9.917179] (-) TimerEvent: {}
+[9.917825] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[9.920701] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfacesConfig.cmake\n'}
+[9.925927] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/cmake/jetson_interfacesConfig-version.cmake\n'}
+[9.928064] (jetson_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/jetson/Final_assignment/EmbeddedVisualControl/src/install/jetson_interfaces/share/jetson_interfaces/package.xml\n'}
+[9.936385] (jetson_interfaces) CommandEnded: {'returncode': 0}
+[10.017373] (-) TimerEvent: {}
+[10.061434] (jetson_interfaces) JobEnded: {'identifier': 'jetson_interfaces', 'rc': 0}
+[10.065247] (-) EventReactorShutdown: {}

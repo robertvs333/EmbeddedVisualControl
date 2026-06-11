@@ -75,14 +75,19 @@ class AlgorithmNode(Node):
         self.create_subscription(Range, '/tof/distance', self.tof_callback, qos_profile=qos_profile_sensor_data)
         self.create_subscription(Float32, '/imu/yaw', self.yaw_callback, 10)
         self.create_subscription(Bool, '/movement_finished', self.movement_finished_callback, 10)
+<<<<<<< HEAD
         self.create_subscription(Float32MultiArray, '/detection/tracking_angle', self.tracking_angle_callback, 10)
         self.create_subscription(String, '/detection/final_result', self.vision_result_callback, 10)
         
         
         # --- 20Hz Master Synchronous Loop Clock ---
+=======
+        self.create_subscription(Float32, '/detection/tracking_angle', self.tracking_angle_callback, 10)
+        self.create_subscription(String, '/detection/final_result', self.vision_result_callback, 10)
+
+>>>>>>> d8980cadae3293e6b82541f559f1c276bd1afac9
         self.control_timer = self.create_timer(0.05, self.movement_loop)
 
-    # --- Subscriber Callbacks ---
 
     def tof_callback(self, msg):
         self.current_distance = msg.range
@@ -128,12 +133,15 @@ class AlgorithmNode(Node):
             self.get_logger().error(f"Error reading result dictionary string: {e}")
             self.transition_to(self.StateMachine.SEARCHING)
 
+<<<<<<< HEAD
 
     # def map_callback(self, msg):
     #     self.obstacle
 
     # --- Command Utilities ---
 
+=======
+>>>>>>> d8980cadae3293e6b82541f559f1c276bd1afac9
     def transition_to(self, next_state):
         self.get_logger().info(f"State Transition: {self.state.name} -> {next_state.name}")
         self.state = next_state
@@ -143,8 +151,6 @@ class AlgorithmNode(Node):
         msg.data = [float(distance), float(angle_deg)]
         self.motion_pub.publish(msg)
         self.movement_busy = True
-
-    # --- Master Synchronous Control Loop ---
 
     def movement_loop(self):
         # Guard clause: Wait if the movement_node is actively driving 
@@ -234,12 +240,9 @@ class AlgorithmNode(Node):
                     self.get_logger().info("Chassis centered with target. Commencing data snapshot capture.")
                     self.transition_to(self.StateMachine.SCANNING_CAPTURE)
                 else:
-                    # Convert rad error to degrees for our standard movement_node API
                     turn_step_deg = math.degrees(self.latest_tracking_angle)
-                    # Feed proportional corrections safely via movement_node execution blocks
                     self.send_drive_command(0.0, turn_step_deg)
             else:
-                # If we hit an obstacle but sensor_fusion sees absolutely nothing, skip to open path searches
                 self.get_logger().info("No targets visible in current view. Checking for environmental gaps.")
                 self.transition_to(self.StateMachine.FINDGAP)
 
@@ -274,7 +277,7 @@ class AlgorithmNode(Node):
                     self.get_logger().error("No viable paths found. Resetting state machine.")
                     self.transition_to(self.StateMachine.INIT)
 
-        # 6. TRACKING STATE: Aim chassis down the selected escape corridor
+        # TRACKING STATE: Aim chassis down the selected escape corridor
         elif self.state == self.StateMachine.TRACKING:
             yaw_error_rad = self.best_gap_angle - self.current_yaw
             yaw_error_rad = (yaw_error_rad + math.pi) % (2.0 * math.pi) - math.pi
@@ -284,9 +287,13 @@ class AlgorithmNode(Node):
             self.send_drive_command(0.0, yaw_error_deg)
             self.transition_to(self.StateMachine.SEARCHING)
 
+<<<<<<< HEAD
             # extra loop om te checken of hij draait/beweegt via imu
 
         # 7. CALLING STATE: Goal termination
+=======
+        # CALLING STATE: Goal termination
+>>>>>>> d8980cadae3293e6b82541f559f1c276bd1afac9
         elif self.state == self.StateMachine.CALLING:
             self.motor.set_wheels_speed(0.0, 0.0)
             self.movement_busy = True
