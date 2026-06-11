@@ -18,13 +18,13 @@ def generate_launch_description():
             parameters=[config],
             output='screen'
         ),
-        Node(
-            package='jetson_camera',
-            executable='algorithm',
-            name='algorithm_node',
-            parameters=[config],
-            output='screen'
-        ),
+        # Node(
+        #     package='jetson_camera',
+        #     executable='algorithm',
+        #     name='algorithm_node',
+        #     parameters=[config],
+        #     output='screen'
+        # ),
         # Node(
         #     package='jetson_camera',
         #     executable='publisher_node',
