@@ -18,19 +18,27 @@ def generate_launch_description():
             parameters=[config],
             output='screen'
         ),
-        # Node(
-        #     package='jetson_camera',
-        #     executable='algorithm',
-        #     name='algorithm_node',
-        #     parameters=[config],
-        #     output='screen'
-        # ),
-        # Node(
-        #     package='jetson_camera',
-        #     executable='publisher_node',
-        #     name='camera_publisher',
-        #     parameters=[config]
-        # )
+        Node(
+            package='jetson_camera',
+            executable='algorithm',
+            name='algorithm_node',
+            parameters=[config],
+            output='screen'
+        ),
+        
+            Node(
+            package='jetson_camera',
+            executable='grid_mapping_node',
+            name='grid_mapping_node',
+            parameters=[config],
+        ),
+
+        Node(
+            package='jetson_camera',
+            executable='route_plotter',
+            name='route_plotter',
+            parameters=[config],
+        ),
     
     ])
 

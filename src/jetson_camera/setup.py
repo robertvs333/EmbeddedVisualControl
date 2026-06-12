@@ -43,8 +43,8 @@ setup(
             'imu_node = jetson_camera.imu_node:main',
             'square_driver_node = jetson_camera.square_driver_node:main',
             'algorithm = jetson_camera.algorithm_node:main',
-            'face_detection_recognition = jetson_camera.Face_detection_recognition:main',
             'grid_mapping_node = jetson_camera.grid_mapping_node:main',
+            'algoritm_node = jetson_camera.algorithm_node:main',
         ],
     },
 )

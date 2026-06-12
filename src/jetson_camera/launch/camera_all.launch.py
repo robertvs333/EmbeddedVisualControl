@@ -29,19 +29,20 @@ def generate_launch_description():
             name='camera_processing',
             parameters=[config]
         ),
+        
         Node(
             package='jetson_camera',
-            executable='sensor_fusion',
-            name='sensor_fusion',
+            executable='face_detection_recognition',
+            name='face_detection_recognition',
             parameters=[config]
         ),
 
-        # Node(
-        #     package='jetson_camera',
-        #     executable='publisher_node',
-        #     name='camera_publisher',
-        #     parameters=[config]
-        # )
+        Node(
+            package='jetson_camera',
+            executable='object_detection',
+            name='object_detection',
+            parameters=[config]
+        )
     
     ])
 
