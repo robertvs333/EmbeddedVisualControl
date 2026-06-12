@@ -44,7 +44,7 @@ class GridMappingNode(Node):
         self.declare_parameter('origin_y_m', 0.0)
         self.declare_parameter('odom_topic', '/route/odom')
         self.declare_parameter('tof_topic', '/tof/distance')
-        self.declare_parameter('detection_result_topic', '/detection/final_result')
+        self.declare_parameter('detection_result_topic', '/detection/map_result')
         self.declare_parameter('grid_topic', '/mapping/semantic_grid')
         self.declare_parameter('tof_detection_threshold_m', 0.5)
         self.declare_parameter('duplicate_object_distance_m', 0.10)
