@@ -20,7 +20,7 @@ class FaceRecognitionNode(Node):
         self.bridge = CvBridge()
 
         # 1. Configuration Parameters
-        self.faces_dir = "/home/roel/vision_ws/known_faces"
+        self.faces_dir = "/../../../known_faces"
         self.camera_fov_rad = 1.05
         self.sample_size = 5
         self.remembered_identity = "Unknown"
