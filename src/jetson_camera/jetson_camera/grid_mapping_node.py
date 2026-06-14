@@ -10,9 +10,9 @@ from pathlib import Path
 import rclpy
 from nav_msgs.msg import OccupancyGrid, Odometry
 from rclpy.node import Node
-from rclpy.qos import QoSProfile, ReliabilityPolicy
+from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 from sensor_msgs.msg import Range
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
 
 
 CELL_UNKNOWN = 0
@@ -44,8 +44,9 @@ class GridMappingNode(Node):
         self.declare_parameter('origin_y_m', 0.0)
         self.declare_parameter('odom_topic', '/route/odom')
         self.declare_parameter('tof_topic', '/tof/distance')
-        self.declare_parameter('detection_result_topic', '/detection/map_result')
+        self.declare_parameter('detection_result_topic', '/vision/detection_result')
         self.declare_parameter('grid_topic', '/mapping/semantic_grid')
+        self.declare_parameter('mapping_topic', '/mapping/active')
         self.declare_parameter('tof_detection_threshold_m', 0.5)
         self.declare_parameter('duplicate_object_distance_m', 0.10)
         self.declare_parameter('sensor_forward_sign', -1.0)
@@ -112,7 +113,17 @@ class GridMappingNode(Node):
             self.get_parameter('grid_topic').value,
             10,
         )
-
+        latching_qos = QoSProfile(
+            reliability=ReliabilityPolicy.RELIABLE,
+            durability=DurabilityPolicy.TRANSIENT_LOCAL, # <-- Latches the message for late subscribers
+            depth=1
+        )
+        self.mapping_active_pub = self.create_publisher(
+            Bool,
+            self.get_parameter('mapping_topic').value,
+            qos_profile=latching_qos
+        )
+        
         self.create_subscription(
             Odometry,
             self.get_parameter('odom_topic').value,
@@ -131,17 +142,21 @@ class GridMappingNode(Node):
             String,
             self.get_parameter('detection_result_topic').value,
             self.detection_result_cb,
-            10,
+            tof_qos,
         )
 
         if self.show_live_grid:
             self.init_live_grid()
+            
 
         self.publish_timer = self.create_timer(0.5, self.publish_grid)
         self.get_logger().info(
             'Grid mapper ready: %dx%d cells, %.2f m/cell'
             % (self.width_cells, self.height_cells, self.cell_size_m)
         )
+        ready_msg = Bool()
+        ready_msg.data = True
+        self.mapping_active_pub.publish(ready_msg)
 
     def odom_cb(self, msg):
         self.robot_x = msg.pose.pose.position.x

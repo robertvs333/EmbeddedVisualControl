@@ -129,6 +129,8 @@ class MovementNode(Node):
                 self.target_degrees = self.rotation_queue.pop(0)
                 self.state = "START_ROT"
 
+    
+
     def control_loop(self):
         if self.state == "IDLE": return
 

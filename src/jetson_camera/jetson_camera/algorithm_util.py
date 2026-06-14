@@ -27,8 +27,20 @@ class Algorithm_utils:
             return False
         
     def verify_active_publishers(self):
-        """Ensures underlying topics have active hardware streams."""
-        return self.count_publishers('/tof/distance') > 0 and self.count_publishers('/imu/yaw') > 0
+        """Ensures sensors are publishing AND consumers (mapping/routing) are listening."""
+        hardware_ok = self.count_publishers('/tof/distance') > 0 and self.count_publishers('/imu/yaw') > 0
+    
+        mapping_node_ready = self.is_mapper_node_online
+        movement_node_ready = self.count_subscribers('/cmd_movement') > 0
+        
+        if not (hardware_ok and mapping_node_ready and movement_node_ready):
+            self.get_logger().warn(
+                f"Waiting for node subscribers... Map Listener: {mapping_node_ready}, Motion Driver: {movement_node_ready}", 
+                throttle_duration_sec=3.0
+            )
+            return False
+            
+        return True
 
     # --- Core ROS 2 Sensor Callbacks ---
 
@@ -45,6 +57,9 @@ class Algorithm_utils:
     def map_callback(self, msg):
         """Stores the global semantic occupancy grid representation."""
         self.current_map = msg
+
+    def mapping_status_callback(self, msg):
+        self.is_mapper_node_online = msg.data
 
     def tracking_angle_callback(self, msg):
         """Processes continuous numeric arrays from the Object Detection node's tracker."""
@@ -66,9 +81,20 @@ class Algorithm_utils:
 
     def check_for_motor_stall(self):
         """Monitors IMU updates while moving to catch hidden collisions."""
+        # SAFEGUARD 1: Do not monitor stalls if we are only making fine alignment adjustments
+        if self.state in [self.StateMachine.SCANNING_ALIGN, self.StateMachine.SCANNING, self.StateMachine.CALLING]:
+            self.drive_start_time = None
+            self.last_imu_check_time = None
+            return False
+
         if not self.movement_busy:
             self.drive_start_time = None
             self.last_imu_check_time = None
+            return False
+
+        # SAFEGUARD 2: Optional micro-turn bypass
+        # If the commanded turn is tiny (e.g., less than 5 degrees), ignore stall monitoring
+        if hasattr(self, 'current_target_turn_deg') and abs(self.current_target_turn_deg) < 5.0:
             return False
 
         now = time.time()
@@ -78,30 +104,33 @@ class Algorithm_utils:
             self.last_tracked_yaw = self.current_yaw
             return False
 
-        if now - self.last_imu_check_time >= 2.0:
+        if now - self.last_imu_check_time >= 3.0:
             yaw_delta = abs(self.current_yaw - self.last_tracked_yaw)
             if yaw_delta > math.pi:
                 yaw_delta = (2.0 * math.pi) - yaw_delta
 
+            # Evaluating if the robot has failed to rotate significantly
             if (yaw_delta < math.radians(1.5)) and (now - self.drive_start_time > 4.0):
                 self.get_logger().error("STALL DETECTED! Hit unmapped obstacle. Re-routing to FINDGAP.")
-                self.drive_start_time = None
-                self.last_imu_check_time = None
-                
-                self.motor.set_wheels_speed(0.0, 0.0)
+                self.stall_detected = False
+                self.hit_unmapped_obstacle = False
+                if hasattr(self, 'stall_counter'):
+                    self.stall_counter = 0
+        
                 self.transition_to(self.StateMachine.FINDGAP)
                 return True
             
             self.last_imu_check_time = now
             self.last_tracked_yaw = self.current_yaw
+            
         return False
 
     # --- Local Map Grid Path Optimization ---
 
     def find_clear_tracking_angle(self, target_distance_m=0.25):
-        """Parses the current OccupancyGrid to find a clear path orientation."""
+        """Parses the live OccupancyGrid data to find an obstruction-free relative gap."""
         if self.current_map is None:
-            self.get_logger().warn("Map array missing. Defaulting to straight ahead.")
+            self.get_logger().warn("Map message matrix missing. Defaulting to straight ahead.")
             return 0.0
 
         grid = self.current_map.data
@@ -109,16 +138,30 @@ class Algorithm_utils:
         width = self.current_map.info.width
         height = self.current_map.info.height
         
-        robot_x_m = self.current_map.info.origin.position.x
-        robot_y_m = self.current_map.info.origin.position.y
+        # Extract map origin anchor constants 
+        origin_x = self.current_map.info.origin.position.x
+        origin_y = self.current_map.info.origin.position.y
         
-        robot_col = int((0.0 - robot_x_m) / res)
-        robot_row = int((0.0 - robot_y_m) / res)
+        # We can locate the CELL_ROBOT (value 1) inside the array to find our precise position:
+        robot_idx = None
+        for idx, val in enumerate(grid):
+            if val == 1: # CELL_ROBOT constant from mapping design
+                robot_idx = idx
+                break
+                
+        if robot_idx is not None:
+            robot_col = robot_idx % width
+            robot_row = robot_idx // width
+        else:
+            # Fallback estimation using frame origins if grid marking is late
+            robot_col = int((0.0 - origin_x) / res)
+            robot_row = int((0.0 - origin_y) / res)
 
         best_angle_deg = None
         max_clear_score = -1
 
-        for rel_angle in range(-90, 91, 15):
+        # Sweep a full 360-degree panorama in 15-degree wedges to locate gaps
+        for rel_angle in range(-180, 181, 15):
             abs_rad = self.current_yaw + math.radians(rel_angle)
             path_is_blocked = False
             clear_cells_count = 0
@@ -133,7 +176,8 @@ class Algorithm_utils:
                     cell_index = test_y * width + test_x
                     cell_value = grid[cell_index]
                     
-                    if cell_value > 1: # Values 2,3,4 are mapped structural hazards
+                    # Values 2, 3, 4 are hazardous obstacles mapped by grid_mapping_node
+                    if cell_value > 1: 
                         path_is_blocked = True
                         break
                     else:
@@ -147,11 +191,11 @@ class Algorithm_utils:
                 best_angle_deg = float(rel_angle)
 
         if best_angle_deg is not None:
-            self.get_logger().info(f"Selected clear path angle: {best_angle_deg}° relative.")
+            self.get_logger().info(f"Selected clear gap relative path: {best_angle_deg}°")
             return best_angle_deg
         
-        self.get_logger().error("No clear paths found in map! Defaulting straight.")
-        return 0.0
+        self.get_logger().error("No escaping paths identified in local map grid! Defaulting spin.")
+        return 180.0 # Pivot around entirely if boxed in
 
     # --- Sequential Logic Recovery State Controls ---
 
@@ -182,11 +226,10 @@ class Algorithm_utils:
         self.previous_state = self.state
         self.state = next_state
 
-    def transition_to(self, next_state):
-        self.get_logger().info(f"State Transition: {self.state.name} -> {next_state.name}")
-        self.state = next_state
+    
 
     def send_drive_command(self, distance, angle_deg):
+
         msg = Float32MultiArray()
         msg.data = [float(distance), float(angle_deg)]
         self.cmd_pub.publish(msg)

@@ -147,8 +147,9 @@ class RoutePlotter(Node):
         self.declare_parameter('odom_topic', '/route/odom')
         self.declare_parameter('frame_id', 'odom')
         self.declare_parameter('child_frame_id', 'base_link')
-        self.declare_parameter('wheel_radius', 0.065)
-        self.declare_parameter('wheel_base', 0.19)
+        # self.declare_parameter('wheel_radius', 0.065)
+        self.declare_parameter('wheel_radius', 0.0325)
+        self.declare_parameter('wheel_base', 0.185)
         self.declare_parameter('ticks_per_rev', 140.0)
         self.declare_parameter('initial_x', 0.0)
         self.declare_parameter('initial_y', 0.0)
@@ -481,7 +482,10 @@ class RoutePlotter(Node):
         axis.grid(True)
         axis.legend()
         now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        figure.savefig(f"{now}{str(output_path)}", bbox_inches='tight')
+        now_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        base_dir = os.path.dirname(str(output_path)) if os.path.dirname(str(output_path)) else "."
+        filename = f"{now_str}_route_plot.png"
+        figure.savefig(os.path.join(base_dir, filename), bbox_inches='tight')
         plt.close(figure)
         self.get_logger().info('Saved route plot to %s' % output_path)
 
