@@ -109,7 +109,6 @@ class Algorithm_utils:
             if yaw_delta > math.pi:
                 yaw_delta = (2.0 * math.pi) - yaw_delta
 
-            # Evaluating if the robot has failed to rotate significantly
             if (yaw_delta < math.radians(1.5)) and (now - self.drive_start_time > 4.0):
                 self.get_logger().error("STALL DETECTED! Hit unmapped obstacle. Re-routing to FINDGAP.")
                 self.stall_detected = False
@@ -138,14 +137,12 @@ class Algorithm_utils:
         width = self.current_map.info.width
         height = self.current_map.info.height
         
-        # Extract map origin anchor constants 
         origin_x = self.current_map.info.origin.position.x
         origin_y = self.current_map.info.origin.position.y
         
-        # We can locate the CELL_ROBOT (value 1) inside the array to find our precise position:
         robot_idx = None
         for idx, val in enumerate(grid):
-            if val == 1: # CELL_ROBOT constant from mapping design
+            if val == 1: 
                 robot_idx = idx
                 break
                 
@@ -153,7 +150,6 @@ class Algorithm_utils:
             robot_col = robot_idx % width
             robot_row = robot_idx // width
         else:
-            # Fallback estimation using frame origins if grid marking is late
             robot_col = int((0.0 - origin_x) / res)
             robot_row = int((0.0 - origin_y) / res)
 
@@ -196,6 +192,68 @@ class Algorithm_utils:
         
         self.get_logger().error("No escaping paths identified in local map grid! Defaulting spin.")
         return 180.0 # Pivot around entirely if boxed in
+    
+
+    def find_next_target(self, min_range_m=0.25, max_range_m=2.0):
+        if self.current_map is None:
+            self.get_logger().warn("Map message missing for target hunting. Returning None.")
+            return None, None
+
+        grid = self.current_map.data
+        res = self.current_map.info.resolution
+        width = self.current_map.info.width
+        height = self.current_map.info.height
+        
+        origin_x = self.current_map.info.origin.position.x
+        origin_y = self.current_map.info.origin.position.y
+        
+        robot_idx = None
+        for idx, val in enumerate(grid):
+            if val == 1: 
+                robot_idx = idx
+                break
+                
+        if robot_idx is not None:
+            robot_col = robot_idx % width
+            robot_row = robot_idx // width
+        else:
+            robot_col = int((0.0 - origin_x) / res)
+            robot_row = int((0.0 - origin_y) / res)
+
+        closest_distant_target = None
+        min_target_dist = float('inf')
+
+        for rel_angle in range(-180, 181, 10):
+            abs_rad = self.current_yaw + math.radians(rel_angle)
+            
+            steps = int(max_range_m / res) + 1
+            
+            for step in range(1, steps + 1):
+                dist = step * res
+                test_x = robot_col + int((dist * math.cos(abs_rad)) / res)
+                test_y = robot_row + int((dist * math.sin(abs_rad)) / res)
+                
+                if (0 <= test_x < width) and (0 <= test_y < height):
+                    cell_index = test_y * width + test_x
+                    cell_value = grid[cell_index]
+                    
+                    if cell_value > 1:
+                        if min_range_m <= dist <= max_range_m:
+                            if dist < min_target_dist:
+                                min_target_dist = dist
+                                closest_distant_target = (float(dist), float(rel_angle))
+                        
+                        break
+                else:
+                    break
+
+        if closest_distant_target is not None:
+            target_distance, target_heading = closest_distant_target
+            self.get_logger().info(f"Found distant target at Dist: {target_distance}m, Heading: {target_heading}°")
+            return target_distance, target_heading
+
+        self.get_logger().info("No distant objects detected within range parameters.")
+        return None, None
 
     # --- Sequential Logic Recovery State Controls ---
 

@@ -11,13 +11,10 @@ import time
 from enum import Enum, auto
 import json
 
-
 from jetson_camera.motorDrivers.motorDriver import DaguWheelsDriver
 
-# IMPORT YOUR UTILS MIXIN FROM THE SEPARATE FILE HERE:
 from jetson_camera.algorithm_util import Algorithm_utils
 
-# ADD Algorithm_utils RIGHT BESIDE Node IN THE HERITAGE LINE:
 class AlgorithmNode(Node, Algorithm_utils):
 
     class StateMachine(Enum):
@@ -33,7 +30,6 @@ class AlgorithmNode(Node, Algorithm_utils):
         CALLING = auto()
 
     def __init__(self):
-        # Initialize the underlying ROS 2 Node first
         super().__init__('algorithm_node')
         
         self.required_nodes = [
@@ -46,11 +42,9 @@ class AlgorithmNode(Node, Algorithm_utils):
         ]
         
         self.is_robot_ready = False
-        
-        # Hardware setup
         self.motor = DaguWheelsDriver()
 
-        # --- Internal State Variables ---
+        # Internal State Variables
         self.face_found_globally = False
         self.state = self.StateMachine.BOOTING
         self.current_distance = None  
@@ -89,18 +83,12 @@ class AlgorithmNode(Node, Algorithm_utils):
 
         # --- ROS 2 Publishers & Subscribers ---
         mapping_qos = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT, depth=10)
-
         self.cmd_pub = self.create_publisher(Float32MultiArray, '/cmd_movement', 10)
-        # self.scan_trigger_pub = self.create_publisher(String, '/detection/trigger', 10)
         self.object_trigger_pub = self.create_publisher(String, '/detection/trigger', 10)
         self.face_trigger_pub = self.create_publisher(String, '/detection/face_trigger', 10)
         self.map_pub = self.create_publisher(String, '/vision/detection_result', qos_profile=mapping_qos)
-        matching_latching_qos = QoSProfile(
-            reliability=ReliabilityPolicy.RELIABLE,
-            durability=DurabilityPolicy.TRANSIENT_LOCAL, # <-- Matches the latching properties
-            depth=1
-        )
-        # Notice how these bindings match perfectly with methods inside your utility class:
+        matching_latching_qos = QoSProfile(reliability=ReliabilityPolicy.RELIABLE, durability=DurabilityPolicy.TRANSIENT_LOCAL, depth=1)
+
         self.create_subscription(Range, '/tof/distance', self.tof_callback, qos_profile=qos_profile_sensor_data)
         self.create_subscription(Float32, '/imu/yaw', self.yaw_callback, 10)
         self.create_subscription(Bool, '/movement_finished', self.movement_finished_callback, 10)
@@ -109,8 +97,6 @@ class AlgorithmNode(Node, Algorithm_utils):
         self.create_subscription(OccupancyGrid, '/mapping/semantic_grid', self.map_callback, 10)
         self.mapping_status_sub = self.create_subscription(Bool,'/mapping/active', self.mapping_status_callback, qos_profile=matching_latching_qos)
         self.final_result_sub = self.create_subscription( Bool, '/detection/final_result', self.final_result_callback, 10)
-        
-        # Main Processing Execution Synchronizers
         self.create_subscription(String, '/detection/final_result', self.object_result_callback, 10)
         self.create_subscription(String, '/detection/face_result', self.face_result_callback, 10)
 
@@ -184,20 +170,14 @@ class AlgorithmNode(Node, Algorithm_utils):
         self.scan_total_angle += self.scan_step_deg
         
         if self.scan_total_angle < self.scan_target_max:
-            # Step Turn Logic: Command movement_node to rotate by the step increment
             self.get_logger().info(f"Advancing sweep window. Turning next step: +{self.scan_step_deg}° (Total: {self.scan_total_angle}°/{self.scan_target_max}°)")
-            
-            # Issue physical drive movement (assuming format: send_drive_command(linear_velocity, angular_velocity/angle))
             self.send_drive_command(0.0, self.scan_step_deg) 
-            
-            # Block state execution loop until movement_node completes the turn profile
             self.movement_busy = True  
             self.transition_to(self.StateMachine.SEARCHING)
         else:
-            # Full 90-degree sweep complete with zero matching features found!
             self.get_logger().warn("Full 90° workspace area sweep completed with no targets. Resetting boundary bounds.")
             self.scan_total_angle = 0.0
-            self.transition_to(self.StateMachine.SEARCHING_INIT)
+            self.transition_to(self.StateMachine.FINDGAP)
 
     def face_result_callback(self, msg):
         """Processes final summary outputs from FaceRecognitionNode."""
@@ -212,13 +192,10 @@ class AlgorithmNode(Node, Algorithm_utils):
             self.get_logger().info(f"identity {identity}")
             allowed_identities = ["trump", "Markie", "Musk", "Geert"]
             if identity in allowed_identities:
-                # 1. IMMEDIATE GLOBAL TRIGGER: We found it! Flag it right away.
                 self.get_logger().info(f"SUCCESS: Face verified! Identity -> [{identity}].")
                 self.face_found_globally = True
                 self.process_and_publish_map_entry(target_type=f"face_{identity}", confidence=1.0)
                 
-                # 2. Check if we need a minute sub-degree adjustment (Using Radians! e.g., ~3 degrees)
-                # If your tracking angles are in degrees, change 0.05 to something like 2.0
                 if self.face_detected_in_frame and abs(self.latest_face_tracking_angle) > 0.05 and not self.face_scan_done:
                     self.get_logger().info(f"Face identified [{identity}], executing final precision centering adjustment.")
                     
@@ -229,7 +206,6 @@ class AlgorithmNode(Node, Algorithm_utils):
                     self.transition_to(self.StateMachine.SCANNING_ALIGN)
                     return
 
-                # If no alignment is needed, we are fully done with this target window
                 self.face_scan_done = True
                 self.advance_sweep_sequence()
                 self.transition_to(self.StateMachine.CALLING)
@@ -248,7 +224,6 @@ class AlgorithmNode(Node, Algorithm_utils):
 
     def process_and_publish_map_entry(self, object_payload=None, target_type=None, **kwargs):
         try:
-            # Secure fallback handling if object_payload is omitted
             if object_payload is None:
                 object_payload = {}
                 
@@ -281,14 +256,12 @@ class AlgorithmNode(Node, Algorithm_utils):
             self.get_logger().info("Received final vision detection signal. Breaking out of SCANNING_CAPTURE.")
             self.detection_received = True
 
-            # Force transition back to SCANNING state to proceed with the sweep sequence
             if self.current_state == "SCANNING_CAPTURE":
                 self.current_state = "SCANNING"
 
     def movement_loop(self):
         if self.check_for_motor_stall():
             return
-        # Guard clause: Wait if the movement_node is actively driving 
         if self.movement_busy:
             return
 
@@ -302,61 +275,40 @@ class AlgorithmNode(Node, Algorithm_utils):
 
     # INIT state
         elif self.state == self.StateMachine.INIT:
-            # 1. It re-runs the safety check
             if self.verify_active_publishers():
-                # 2. CRITICAL BLOCKER: It waits until it receives a valid sensor value!
                 if self.current_distance is not None and self.current_yaw is not None:
                     self.get_logger().info("Sensors settled. Core data feeds initialized.")
                     self.transition_to(self.StateMachine.SEARCHING_INIT)
 
     # SEARCH INIT STATE 
         elif self.state == self.StateMachine.SEARCHING_INIT:
-            # 1. Target captured check
             if self.face_found_globally:
                 self.get_logger().info("Target face confirmed globally. Proceeding to TRACKING.")
                 self.sweep_start_yaw = None # Reset baseline
-                self.transition_to(self.StateMachine.TRACKING)
+                self.gap_command_issued = False
+                self.transition_to(self.StateMachine.FINDGAP)
                 return
 
-            # 2. Lock down our starting heading if we haven't yet
             if self.sweep_start_yaw is None:
                 self.sweep_start_yaw = self.current_yaw
                 self.get_logger().info(f"Locking sweep baseline yaw at: {math.degrees(self.sweep_start_yaw):.2f}°")
 
-            # 3. Calculate absolute angular distance traveled from the baseline using IMU data
             yaw_delta = abs(self.current_yaw - self.sweep_start_yaw)
             if yaw_delta > math.pi:
                 yaw_delta = (2.0 * math.pi) - yaw_delta
                 
             actual_rotation_deg = math.degrees(yaw_delta)
 
-            # 4. Check if the physical rotation has met or exceeded the target boundary
             if actual_rotation_deg >= self.scan_target_max:
                 self.get_logger().warn(f"Sweep limit reached ({actual_rotation_deg:.1f}° >= {self.scan_target_max}°). Repeating sweep.")
-                self.sweep_start_yaw = None # Force a new baseline next iteration
+                self.sweep_start_yaw = None 
                 self.transition_to(self.StateMachine.SCANNING)
             else:
-                # Target boundary not reached yet, route to capture the current view frame
                 self.has_aligned = False  
                 self.object_scan_done = False
                 self.face_scan_done = False
                 self.scan_triggered = False
                 self.transition_to(self.StateMachine.SCANNING_CAPTURE)
-
-    # # SEARCH INIT STATE: 
-    #     elif self.state == self.StateMachine.SEARCHING_INIT:
-    #         if abs(self.scan_total_angle) >= self.scan_target_max:
-    #             # Gatekeeper: Only move to TRACKING if a face has been confirmed!
-    #             if self.face_found_globally:
-    #                 self.get_logger().info("Initial sweep complete and face found. Moving to TRACKING.")
-    #                 self.transition_to(self.StateMachine.TRACKING)
-    #             else:
-    #                 self.get_logger().warn("Initial sweep completed but NO face detected yet. Repeating initial sweep window.")
-    #                 self.scan_total_angle = 0.0 # Reset sweep accumulator to loop again
-    #                 self.transition_to(self.StateMachine.SCANNING)
-    #         else:
-    #             self.transition_to(self.StateMachine.SCANNING)
-
 
     # SCANNING: 
         elif self.state == self.StateMachine.SCANNING:
@@ -404,15 +356,11 @@ class AlgorithmNode(Node, Algorithm_utils):
                 self.has_aligned = True
                 self.movement_busy = True
                 self.alignment_offset_deg += step_offset 
-                
-                # Turn to center the target
                 self.send_drive_command(0.0, -step_offset)
-                
-                # Clear frame memory flags before executing the centered capture
+
                 self.scan_triggered = False 
                 self.target_detected_in_frame = False
                 self.face_detected_in_frame = False
-                
                 self.transition_to(self.StateMachine.SCANNING_CAPTURE)
 
             else:
@@ -422,22 +370,21 @@ class AlgorithmNode(Node, Algorithm_utils):
 
     # TRACKING:
         elif self.state == self.StateMachine.TRACKING:
-            self.get_logger().info("TRACKING: Evaluating map to find clear space...")
+            self.get_logger().info("TRACKING: Evaluating map to find clear path...")
             
-            # Search the occupancy grid for a clear direction to move
-            clear_relative_angle = self.find_clear_tracking_angle(target_distance_m=0.25)
+            if not self.gap_command_issued:
+                target_distance, target_heading = self.find_next_target()
+
+                self.send_drive_command(target_distance, target_heading)
+    
+            elif self.gap_command_issued:
+                escape_heading = self.find_clear_tracking_angle(target_distance_m=0.4)
+                self.best_gap_angle = escape_heading
+                self.send_drive_command(0.35, escape_heading)
             
-            # Turn toward the clear open space and drive forward 0.25 meters
-            self.send_drive_command(0.25, clear_relative_angle)
-            
-            # Configure loop parameters for the permanent wide-angle SEARCHING state
             self.scan_total_angle = 0.0
-            self.scan_target_max = 180.0  # Expanded search angle for the second loop
+            self.scan_target_max = 180.0 
             self.transition_to(self.StateMachine.SEARCHING)
-
-
-
-
 
 
     # SEARCHING 
@@ -454,24 +401,18 @@ class AlgorithmNode(Node, Algorithm_utils):
             else:
                 self.transition_to(self.StateMachine.SCANNING)
 
+
+
     # FINDGAP
         elif self.state == self.StateMachine.FINDGAP:
-            # Check if our physical laser/sensor clearance clears up safely
             if self.current_distance and self.current_distance > 0.5:
-                self.gap_command_issued = False # Reset guard lock for future stalls
+                self.gap_command_issued = False 
                 self.transition_to(self.StateMachine.TRACKING)
             else:
                 if not self.gap_command_issued:
                     self.get_logger().info("Analyzing semantic occupancy grid to select evasion heading...")
-                    
-                    # Extract the calculated open gap heading from the fixed grid utility function
-                    escape_heading = self.find_clear_tracking_angle(target_distance_m=0.4)
-                    
-                    # Command an escape maneuver: back away or turn cleanly into the gap
-                    self.best_gap_angle = escape_heading
-                    self.send_drive_command(0.15, escape_heading)
-                    
                     self.gap_command_issued = True
+                    self.transition_to(self.StateMachine.TRACKING)
 
     # Calling
         elif self.state == self.StateMachine.CALLING:
