@@ -207,7 +207,7 @@ class GridMappingNode(Node):
         if distance <= 0.0:
             return
 
-        if target_type in ('person', 'face', 'human'):
+        if target_type in ('person', 'face', 'human', 'trump', 'Geert', 'Markie'):
             cell_value = CELL_PERSON
         elif target_type == 'object':
             cell_value = CELL_NON_PERSON_OBJECT

@@ -13,8 +13,8 @@ class MovementNode(Node):
         self.motor = DaguWheelsDriver()
 
         # --- ROTATION PD & TRACTION TUNING PARAMETERS ---
-        self.MAX_ROT_PWR = 0.32    # Capped slightly lower to preserve traction on slippery floors
-        self.MIN_ROT_PWR = 0.15    # Minimum power required to overcome basic mechanical resistance
+        self.MAX_ROT_PWR = 0.45    # Capped slightly lower to preserve traction on slippery floors
+        self.MIN_ROT_PWR = 0.30    # Minimum power required to overcome basic mechanical resistance
         
         # PD Controller Gains
         self.KP_ROT = 0.55         # Proportional Gain (determines rotational push)

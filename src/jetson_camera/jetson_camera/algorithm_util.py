@@ -253,7 +253,7 @@ class Algorithm_utils:
             return target_distance, target_heading
 
         self.get_logger().info("No distant objects detected within range parameters.")
-        return None, None
+        return 0.0, 0.0
 
     # --- Sequential Logic Recovery State Controls ---
 

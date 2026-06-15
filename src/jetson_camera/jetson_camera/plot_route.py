@@ -168,6 +168,7 @@ class RoutePlotter(Node):
         self.declare_parameter('simplified_route_log_output_path', 'route_simplified.csv')
         self.declare_parameter('loop_closure_distance', 0.05)
         self.declare_parameter('simplification_tolerance', 0.01)
+        self.declare_parameter('route_overlay_plot_output_path', 'route_overlay.png')
 
         # Extract environment target
         self.run_on_jetson = bool(self.get_parameter('run_on_jetson').value)
@@ -207,6 +208,9 @@ class RoutePlotter(Node):
         self.simplification_tolerance = float(
             self.get_parameter('simplification_tolerance').value
         )
+        self.route_overlay_plot_output_path = self.get_parameter(
+            'route_overlay_plot_output_path'
+        ).value
 
         self.x = float(self.get_parameter('initial_x').value)
         self.y = float(self.get_parameter('initial_y').value)
@@ -282,6 +286,7 @@ class RoutePlotter(Node):
             self.initial_imu_yaw = self.latest_imu_yaw
         
     def tof_cb(self, msg):
+        return
         # Read directly from the hardware msg layout
         self.tof_distance = float(msg.range)
         
@@ -481,11 +486,7 @@ class RoutePlotter(Node):
         axis.set_title('Robot route from wheel encoders')
         axis.grid(True)
         axis.legend()
-        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        now_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        base_dir = os.path.dirname(str(output_path)) if os.path.dirname(str(output_path)) else "."
-        filename = f"{now_str}_route_plot.png"
-        figure.savefig(os.path.join(base_dir, filename), bbox_inches='tight')
+        figure.savefig(str(self.timestamped_output_path(output_path)), bbox_inches='tight')
         plt.close(figure)
         self.get_logger().info('Saved route plot to %s' % output_path)
 
@@ -522,6 +523,7 @@ class RoutePlotter(Node):
 
         self.save_simplified_route_plot(simplified_points)
         self.save_simplified_route_log(simplified_points)
+        self.save_route_overlay_plot(simplified_points)
 
     def save_simplified_route_plot(self, simplified_points):
         try:
@@ -547,7 +549,7 @@ class RoutePlotter(Node):
         axis.set_ylabel('y position [m]')
         axis.set_title('Loop-erased route from start to finish')
         axis.grid(True)
-        figure.savefig(str(output_path), bbox_inches='tight')
+        figure.savefig(str(self.timestamped_output_path(output_path)), bbox_inches='tight')
         plt.close(figure)
         self.get_logger().info('Saved simplified route plot to %s' % output_path)
 
@@ -571,6 +573,62 @@ class RoutePlotter(Node):
 
         self.get_logger().info('Saved simplified route log to %s' % output_path)
 
+    def save_route_overlay_plot(self, simplified_points):
+        try:
+            import matplotlib.pyplot as plt
+        except ImportError:
+            self.get_logger().warning(
+                'matplotlib is not installed; overlay route image was not saved.'
+            )
+            return
+
+        output_path = Path(os.path.expanduser(self.route_overlay_plot_output_path))
+        if not output_path.is_absolute():
+            output_path = Path.cwd() / output_path
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        simple_x = [point[0] for point in simplified_points]
+        simple_y = [point[1] for point in simplified_points]
+
+        figure, axis = plt.subplots()
+        axis.plot(
+            self.x_positions,
+            self.y_positions,
+            marker='o',
+            color='tab:blue',
+            alpha=0.45,
+            label='Raw route',
+        )
+
+        if self.undefined_object_x:
+            axis.plot(
+                self.undefined_object_x,
+                self.undefined_object_y,
+                'o',
+                color='gray',
+                markersize=4,
+                label='Undefined objects',
+            )
+
+        axis.plot(
+            simple_x,
+            simple_y,
+            '--',
+            color='red',
+            linewidth=2.5,
+            marker='o',
+            label='Simplified route',
+        )
+        axis.set_aspect('equal', adjustable='datalim')
+        axis.set_xlabel('x position [m]')
+        axis.set_ylabel('y position [m]')
+        axis.set_title('Raw route with simplified route overlay')
+        axis.grid(True)
+        axis.legend()
+        figure.savefig(str(self.timestamped_output_path(output_path)), bbox_inches='tight')
+        plt.close(figure)
+        self.get_logger().info('Saved route overlay plot to %s' % output_path)
+
     @staticmethod
     def normalize_angle(angle):
         return (angle + math.pi) % (2.0 * math.pi) - math.pi
@@ -578,6 +636,11 @@ class RoutePlotter(Node):
     @classmethod
     def shortest_angle(cls, from_angle, to_angle):
         return cls.normalize_angle(to_angle - from_angle)
+
+    @staticmethod
+    def timestamped_output_path(output_path):
+        now_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+        return output_path.with_name(f"{now_str}_{output_path.name}")
 
     @classmethod
     def blend_angles(cls, encoder_theta, imu_theta, imu_weight):
@@ -593,15 +656,18 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
-        if node.save_route_log_on_shutdown:
-            node.save_route_log()
         if node.save_plot_on_shutdown:
             node.save_plot()
         if node.save_simplified_route_on_shutdown:
             node.save_simplified_route()
+        if node.save_route_log_on_shutdown:
+            node.save_route_log()
+        if plt is not None:
+            plt.close("all")
         node.destroy_node()
-        rclpy.shutdown()
+        rclpy.try_shutdown()
 
 
 if __name__ == '__main__':
     main()
+    

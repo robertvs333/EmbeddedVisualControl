@@ -26,7 +26,7 @@ def generate_launch_description():
             output='screen'
         ),
         
-            Node(
+        Node(
             package='jetson_camera',
             executable='grid_mapping_node',
             name='grid_mapping_node',
